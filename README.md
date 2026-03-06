@@ -463,22 +463,55 @@ Copyright © 2026 **Himanshu — Vridhira**. All rights reserved.
 
 ## 👤 Author
 
-Built with ❤️ for India's artisans by **Himanshu** — independently, without commercial backing.
+<table>
+  <tr>
+    <td valign="top" width="120">
+      <a href="https://github.com/Newbie-Himanshu">
+        <img
+          src="https://github.com/Newbie-Himanshu.png"
+          width="96"
+          style="border-radius:50%"
+          alt="Himanshu"
+        />
+      </a>
+    </td>
+    <td valign="top">
+      <h3>Himanshu</h3>
+      <p>
+        Independent developer building open commerce infrastructure for India's artisans and handcraft sellers.<br/>
+        Vridhira is a solo project — no team, no VC backing, no SaaS subscriptions. Just code, craft, and conviction.
+      </p>
+      <p>
+        <a href="https://github.com/Newbie-Himanshu">
+          <img src="https://img.shields.io/badge/GitHub-Newbie--Himanshu-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub" />
+        </a>
+        &nbsp;
+        <a href="https://github.com/Newbie-Himanshu/vridhira-frontend">
+          <img src="https://img.shields.io/badge/Repo-vridhira--frontend-8B4513?style=flat-square&logo=github&logoColor=white" alt="Frontend Repo" />
+        </a>
+        &nbsp;
+        <a href="https://github.com/Newbie-Himanshu/vridhira-backend">
+          <img src="https://img.shields.io/badge/Repo-vridhira--backend-24292f?style=flat-square&logo=github&logoColor=white" alt="Backend Repo" />
+        </a>
+        &nbsp;
+        <a href="https://github.com/vridhira">
+          <img src="https://img.shields.io/badge/Org-vridhira-8B4513?style=flat-square&logo=github&logoColor=white" alt="Org: vridhira" />
+        </a>
+      </p>
+    </td>
+  </tr>
+</table>
 
-<p>
-  <a href="https://github.com/Newbie-Himanshu">
-    <img
-      src="https://img.shields.io/badge/GitHub-Newbie--Himanshu-181717?style=flat-square&logo=github"
-      alt="GitHub: Newbie-Himanshu"
-    />
-  </a>
-  &nbsp;
-  <a href="https://github.com/vridhira">
-    <img
-      src="https://img.shields.io/badge/Org-vridhira-8B4513?style=flat-square&logo=github&logoColor=white"
-      alt="GitHub Org: vridhira"
-    />
-  </a>
-</p>
+| | |
+|---|---|
+| **What I build** | Full-stack e-commerce — payments, logistics, search, storefront |
+| **Stack** | Next.js · MedusaJS · TypeScript · Razorpay · Shiprocket · Algolia |
+| **Why Vridhira** | India has 7 crore+ artisans with no good open-source digital storefront built for how India shops |
+| **License** | [Vridhira Attribution License v2.0](./LICENSE) — free to use, always credit |
+
+> [!NOTE]
+> If you find this project useful — **star the repo**, share it with someone building for India, or open a PR. That's the best way to support independent open-source work.
+
+---
 
 <sub>Powered by <a href="https://github.com/medusajs/medusa"><img src="https://img.shields.io/badge/MedusaJS-medusajs%2Fmedusa-7c3aed?style=flat-square&logo=github&logoColor=white" alt="MedusaJS" /></a> — licensed separately under the MIT License by Medusa, Inc.</sub>
