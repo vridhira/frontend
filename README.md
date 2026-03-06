@@ -463,54 +463,85 @@ Copyright © 2026 **Himanshu — Vridhira**. All rights reserved.
 
 ## 👤 Author
 
-<table>
-  <tr>
-    <td valign="top" width="120">
-      <a href="https://github.com/Newbie-Himanshu">
-        <img
-          src="https://github.com/Newbie-Himanshu.png"
-          width="96"
-          style="border-radius:50%"
-          alt="Himanshu"
-        />
-      </a>
-    </td>
-    <td valign="top">
-      <h3>Himanshu</h3>
-      <p>
-        Independent developer building open commerce infrastructure for India's artisans and handcraft sellers.<br/>
-        Vridhira is a solo project — no team, no VC backing, no SaaS subscriptions. Just code, craft, and conviction.
-      </p>
-      <p>
-        <a href="https://github.com/Newbie-Himanshu">
-          <img src="https://img.shields.io/badge/GitHub-Newbie--Himanshu-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub" />
-        </a>
-        &nbsp;
-        <a href="https://github.com/Newbie-Himanshu/vridhira-frontend">
-          <img src="https://img.shields.io/badge/Repo-vridhira--frontend-8B4513?style=flat-square&logo=github&logoColor=white" alt="Frontend Repo" />
-        </a>
-        &nbsp;
-        <a href="https://github.com/Newbie-Himanshu/vridhira-backend">
-          <img src="https://img.shields.io/badge/Repo-vridhira--backend-24292f?style=flat-square&logo=github&logoColor=white" alt="Backend Repo" />
-        </a>
-        &nbsp;
-        <a href="https://github.com/vridhira">
-          <img src="https://img.shields.io/badge/Org-vridhira-8B4513?style=flat-square&logo=github&logoColor=white" alt="Org: vridhira" />
-        </a>
-      </p>
-    </td>
-  </tr>
-</table>
+<br/>
 
-| | |
-|---|---|
-| **What I build** | Full-stack e-commerce — payments, logistics, search, storefront |
-| **Stack** | Next.js · MedusaJS · TypeScript · Razorpay · Shiprocket · Algolia |
-| **Why Vridhira** | India has 7 crore+ artisans with no good open-source digital storefront built for how India shops |
-| **License** | [Vridhira Attribution License v2.0](./LICENSE) — free to use, always credit |
+<p align="center">
+  <a href="https://github.com/Newbie-Himanshu">
+    <img
+      src="https://github.com/Newbie-Himanshu.png"
+      width="110"
+      alt="Himanshu"
+    />
+  </a>
+</p>
+
+<h3 align="center">Himanshu</h3>
+
+<p align="center">
+  <strong>Vibecoder · AI-native builder · India-first indie dev</strong><br/>
+  <em>I don't just write code — I orchestrate AI agents to build production software.</em>
+</p>
+
+<p align="center">
+  <a href="https://github.com/Newbie-Himanshu">
+    <img src="https://img.shields.io/badge/GitHub-Newbie--Himanshu-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub" />
+  </a>
+  &nbsp;
+  <a href="https://github.com/Newbie-Himanshu/vridhira-frontend">
+    <img src="https://img.shields.io/badge/Frontend-vridhira--frontend-8B4513?style=flat-square&logo=github&logoColor=white" alt="Frontend Repo" />
+  </a>
+  &nbsp;
+  <a href="https://github.com/Newbie-Himanshu/vridhira-backend">
+    <img src="https://img.shields.io/badge/Backend-vridhira--backend-24292f?style=flat-square&logo=github&logoColor=white" alt="Backend Repo" />
+  </a>
+  &nbsp;
+  <a href="https://github.com/vridhira">
+    <img src="https://img.shields.io/badge/Org-vridhira-8B4513?style=flat-square&logo=github&logoColor=white" alt="Org: vridhira" />
+  </a>
+</p>
+
+---
+
+### What is a vibecoder?
+
+A vibecoder is someone who ships real, production-quality software **by directing AI agents** — using tools like GitHub Copilot and Antigravity as the execution layer while owning the architecture, decisions, and creative direction entirely.
+
+This is **not** "AI wrote my code." This is a new way of building:
+
+| Old way | Vibecoder way |
+|:---|:---|
+| Write every line manually | Define the system, direct the agents, review the output |
+| Bottlenecked by typing speed | Bottlenecked only by thinking speed |
+| One dev = one feature at a time | One dev = multiple modules in parallel |
+| AI as autocomplete | AI as a junior engineer you manage |
+
+Vridhira — the entire frontend + backend — is built this way. Every module, every payment integration, every security decision was **directed by Himanshu and executed with AI agents**.
+
+---
+
+### How this project was built
+
+```
+Himanshu (architect + director)
+    │
+    ├── GitHub Copilot     → component migration, TypeScript, README
+    ├── Antigravity        → backend modules, API wiring, security audit
+    └── Manual review      → every decision, every architectural choice
+```
+
+> [!IMPORTANT]
+> **AI agents wrote the code. Himanshu owns it.** Every integration, every license clause, every design decision was specified, reviewed, and approved by Himanshu. The agents are the hands — the vision is entirely human.
+
+---
+
+### Why Vridhira?
+
+India has **7 crore+ artisans** — weavers, potters, block printers, leatherworkers — with no good open-source storefront built for how India actually shops: UPI-first, COD-heavy, Hindi-ready, Shiprocket-wired. Every existing solution is either a paid SaaS, a generic Western template with INR bolted on, or enterprise software that a solo artisan can't run.
+
+Vridhira is built to fix that. One dev, AI-augmented, shipping fast.
 
 > [!NOTE]
-> If you find this project useful — **star the repo**, share it with someone building for India, or open a PR. That's the best way to support independent open-source work.
+> If you find this project useful — **star the repo**, share it with someone building for India, or open a PR. That's the best way to support independent AI-native open-source work.
 
 ---
 
