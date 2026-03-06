@@ -155,6 +155,9 @@ This is the **customer-facing storefront**. It connects to the **Vridhira Backen
 > [!TIP]
 > All six features work **out of the box** after a standard setup. No paid plugins, no per-transaction SaaS fees — fully self-hosted.
 
+> [!NOTE]
+> **Feature readiness status:** Full Commerce ✅, Payments ✅, Fulfillment ✅ are production-wired in the backend. Instant Search (Algolia), Wishlist, and Google OAuth are **backend-complete but storefront UI is pending** — the API contracts exist, the React components are not yet migrated from the reference design.
+
 ---
 
 ## 🇮🇳 India-First Commerce
@@ -254,6 +257,12 @@ Vridhira ships with **two payment providers**, pre-configured for Indian consume
 > [!TIP]
 > Razorpay's **EMI option** unlocks high-AOV purchases (₹5,000+) for customers who would otherwise abandon. Enable it from the Razorpay Dashboard under Payment Methods → EMI.
 
+> [!WARNING]
+> **Always verify Razorpay webhook signatures** on the backend — never trust the webhook payload alone. Razorpay signs every webhook with your `RAZORPAY_WEBHOOK_SECRET`. Unverified webhooks are a fraud vector: an attacker can post a fake `payment.captured` event and trigger order fulfilment without paying.
+
+> [!IMPORTANT]
+> Razorpay **live-mode payments require HTTPS**. If you test with live keys on `http://localhost`, the Razorpay checkout will load but card/UPI flows will silently fail or be blocked by the browser. Use a tunnel like [ngrok](https://ngrok.com) for local live-key testing.
+
 ---
 
 ## 🔑 Environment Variables
@@ -275,6 +284,9 @@ Copy `.env.template` to `.env.local` and fill in your values:
 > [!TIP]
 > Variables prefixed with `NEXT_PUBLIC_` are **exposed to the browser**. Only put keys that are safe to be public there (e.g. Razorpay public key, Algolia search-only key). Secret keys like Razorpay secret and Twilio tokens belong in the **backend** `.env` only.
 
+> [!WARNING]
+> **Never use the Algolia Admin API key** in `NEXT_PUBLIC_ALGOLIA_SEARCH_KEY`. The Admin key grants full index write access — if leaked via the browser bundle, an attacker can delete or overwrite your entire search index. Use the **Search-Only** key from your Algolia Dashboard → API Keys.
+
 ---
 
 ## 🗂️ Tech Stack
@@ -289,6 +301,9 @@ Copy `.env.template` to `.env.local` and fill in your values:
 | Logistics | <a href="https://shiprocket.in"><img src="https://img.shields.io/badge/Shiprocket-logistics-FF6B00?style=flat-square" alt="Shiprocket" /></a> | India's **leading D2C** fulfillment & real-time tracking network |
 | Search | <a href="https://www.algolia.com"><img src="https://img.shields.io/badge/Algolia-search-003DFF?style=flat-square&logo=algolia&logoColor=white" alt="Algolia" /></a> | **Sub-50ms** instant search with relevance tuning and facets |
 | Package Manager | <a href="https://yarnpkg.com"><img src="https://img.shields.io/badge/Yarn-v4-2C8EBB?style=flat-square&logo=yarn&logoColor=white" alt="Yarn" /></a> | Fast, **deterministic** installs with lockfile consistency |
+
+> [!WARNING]
+> This project uses **Yarn exclusively** — do not run `npm install`. Using npm will generate a `package-lock.json` alongside `yarn.lock`, creating dependency version conflicts. If you accidentally ran npm, delete `node_modules/`, delete `package-lock.json`, and run `yarn` to restore a clean install.
 
 > [!IMPORTANT]
 > The `v0-boty-e-commerce-template/` folder in this monorepo is a **read-only visual reference** — it uses `shadcn/ui` which is **not** installed in the Vridhira storefront. When adapting components from it, re-implement the UI using Tailwind and existing module patterns. Never copy-paste its code directly.
@@ -352,6 +367,9 @@ vridhira-frontend/
 > [!NOTE]
 > The storefront and backend are **decoupled via REST API**. You can run the storefront against any MedusaJS v2 backend — not just Vridhira's. This makes it easy to prototype with a vanilla Medusa instance before wiring up the custom modules.
 
+> [!TIP]
+> When setting up both repos for the first time: (1) start the backend with `yarn dev` and wait for the `Server is ready` log, (2) run `yarn seed` in the backend to populate test products and regions, (3) **only then** start the storefront. The storefront expects the `in` (India) region to already exist — seeding creates it.
+
 ---
 
 ## 📚 Resources
@@ -370,6 +388,9 @@ vridhira-frontend/
 
 > [!TIP]
 > Medusa provides a **Storefront Development Guide** at `docs.medusajs.com/storefront-development` that explains exactly which API endpoints Vridhira's `src/lib/data/` calls map to. Read it if you're extending or debugging data-fetching logic.
+
+> [!WARNING]
+> **MedusaJS v2 is not backward-compatible with v1.** Most tutorials, YouTube videos, blog posts, and Stack Overflow answers you find online are for v1. Their code will not work — the module system, API routes, and SDK are completely different. Always check the URL contains `/v2/` or the version header says `2.x` before following any guide.
 
 ---
 
@@ -417,6 +438,9 @@ Vridhira is built on the shoulders of these excellent open-source projects:
 | <a href="https://github.com/tailwindlabs/tailwindcss"><img src="https://img.shields.io/badge/Tailwind_CSS-github-06B6D4?style=flat-square&logo=github&logoColor=white" alt="Tailwind CSS" /></a> | **Styling system** — design tokens, responsive utilities | MIT |
 | <a href="https://razorpay.com"><img src="https://img.shields.io/badge/Razorpay-website-2196F3?style=flat-square" alt="Razorpay" /></a> | **Payment infrastructure** — UPI, cards, COD flows | Commercial |
 | <a href="https://shiprocket.in"><img src="https://img.shields.io/badge/Shiprocket-website-FF6B00?style=flat-square" alt="Shiprocket" /></a> | **Logistics infrastructure** — D2C fulfillment & tracking | Commercial |
+
+> [!NOTE]
+> The Vridhira **custom backend modules** (COD payment, Razorpay queue, Shiprocket fulfillment, Wishlist, Algolia indexing) are original work by Himanshu and are **not part of MedusaJS**. They are covered by the Vridhira Attribution License v2.0 — not by MedusaJS's MIT license. MedusaJS's MIT license applies only to the MedusaJS framework core.
 
 ---
 
