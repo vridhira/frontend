@@ -19,3 +19,17 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+-------------------------------------------------------------------------------
+
+This project is built and maintained by Himanshu as part of the Vridhira
+open e-commerce initiative for Indian artisans.
+
+  Project : Vridhira — E-Commerce for Indian Artisans
+  Author  : Himanshu
+  GitHub  : https://github.com/Newbie-Himanshu
+  Org     : https://github.com/vridhira
+  Repo    : https://github.com/Newbie-Himanshu/vridhira-frontend
+
+This project uses MedusaJS (https://github.com/medusajs/medusa) as its
+commerce engine, licensed separately under the MIT License by Medusa, Inc.
