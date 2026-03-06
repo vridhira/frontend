@@ -454,7 +454,7 @@ Copyright © 2026 **Himanshu — Vridhira**. All rights reserved.
 > You are **free to fork, self-host, modify, and use commercially** — but you **must** publicly credit Vridhira and Himanshu in your README and keep the storefront credits visible. Removing attribution is a license violation. See [LICENSE](./LICENSE) for exact conditions.
 
 > [!IMPORTANT]
-> **v2.0 introduces a one-time cure rule.** If you violate the license and cure within 14 days, rights are reinstated — but **only once per licensee**. A second violation is permanent termination with no reinstatement path.
+> **v2.0 introduces a one-time cure rule.** If you violate the license and cure within 7 days, rights are reinstated — but **only once per licensee**. A second violation is permanent termination with no reinstatement path.
 
 > [!WARNING]
 > This is **not standard MIT**. It is a custom attribution-required license. If you fork this project, read [LICENSE](./LICENSE) before deploying publicly.
