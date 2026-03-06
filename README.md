@@ -1,125 +1,149 @@
-<p align="center">
-  <a href="https://www.medusajs.com">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/59018053/229103275-b5e482bb-4601-46e6-8142-244f531cebdb.svg">
-    <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/59018053/229103726-e5b529a3-9b3f-4970-8a1f-c6af37f087bf.svg">
-    <img alt="Medusa logo" src="https://user-images.githubusercontent.com/59018053/229103726-e5b529a3-9b3f-4970-8a1f-c6af37f087bf.svg">
-    </picture>
-  </a>
-</p>
+﻿<!--
+  ============================================================
+  VRIDHIRA — E-Commerce for Indian Artisans
+  ============================================================
+  Author:         Himanshu
+  GitHub:         https://github.com/Newbie-Himanshu
+  Repo:           https://github.com/Newbie-Himanshu/vridhira-frontend
+  Copyright:      2026 Himanshu — Vridhira. All rights reserved.
+  License:        MIT
+  Last Modified:  Himanshu via GitHub Copilot on 2026-03-06
+  ============================================================
+-->
 
-<h1 align="center">
-  Medusa Next.js Starter Template
-</h1>
+# 🛕 Vridhira — Frontend Storefront
 
-<p align="center">
-Combine Medusa's modules for your commerce backend with the newest Next.js 15 features for a performant storefront.</p>
+> An open e-commerce platform built for India's artisans and handcraft sellers.
 
-<p align="center">
-  <a href="https://github.com/medusajs/medusa/blob/master/CONTRIBUTING.md">
-    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat" alt="PRs welcome!" />
-  </a>
-  <a href="https://discord.gg/xpCwq3Kfn8">
-    <img src="https://img.shields.io/badge/chat-on%20discord-7289DA.svg" alt="Discord Chat" />
-  </a>
-  <a href="https://twitter.com/intent/follow?screen_name=medusajs">
-    <img src="https://img.shields.io/twitter/follow/medusajs.svg?label=Follow%20@medusajs" alt="Follow @medusajs" />
-  </a>
-</p>
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Built with Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org)
+[![MedusaJS v2](https://img.shields.io/badge/MedusaJS-v2-purple)](https://medusajs.com)
+
+---
+
+## ✨ Features
+
+- Full e-commerce storefront powered by MedusaJS v2
+- Product browsing, filtering, and search (Algolia)
+- Cart and multi-step checkout
+- Razorpay payment integration (UPI, cards, netbanking, wallets)
+- Cash on Delivery with OTP verification
+- Shiprocket fulfillment and shipment tracking
+- Customer accounts, order history
+- Wishlist
+- India-first: INR currency, GST-inclusive pricing, Hindi-ready
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 15 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS |
+| Commerce Engine | MedusaJS v2 |
+| Payments | Razorpay |
+| Fulfillment | Shiprocket |
+| Search | Algolia |
+| Package Manager | Yarn |
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
-To use the [Next.js Starter Template](https://medusajs.com/nextjs-commerce/), you should have a Medusa server running locally on port 9000.
-For a quick setup, run:
+- Node.js >= 20
+- Yarn
+- Vridhira backend running at `http://localhost:9000`
 
-```shell
-npx create-medusa-app@latest
-```
+### Install & Run
 
-Check out [create-medusa-app docs](https://docs.medusajs.com/learn/installation) for more details and troubleshooting.
-
-# Overview
-
-The Medusa Next.js Starter is built with:
-
-- [Next.js](https://nextjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Typescript](https://www.typescriptlang.org/)
-- [Medusa](https://medusajs.com/)
-
-Features include:
-
-- Full ecommerce support:
-  - Product Detail Page
-  - Product Overview Page
-  - Product Collections
-  - Cart
-  - Checkout with Stripe
-  - User Accounts
-  - Order Details
-- Full Next.js 15 support:
-  - App Router
-  - Next fetching/caching
-  - Server Components
-  - Server Actions
-  - Streaming
-  - Static Pre-Rendering
-
-# Quickstart
-
-### Setting up the environment variables
-
-Navigate into your projects directory and get your environment variables ready:
-
-```shell
-cd nextjs-starter-medusa/
-mv .env.template .env.local
-```
-
-### Install dependencies
-
-Use Yarn to install all dependencies.
-
-```shell
+```bash
+# Install dependencies
 yarn
-```
 
-### Start developing
+# Copy env template
+cp .env.template .env.local
+# Fill in your values (see Environment Variables below)
 
-You are now ready to start up your project.
-
-```shell
+# Start development server
 yarn dev
 ```
 
-### Open the code and start customizing
+Open [http://localhost:8000](http://localhost:8000) in your browser.
 
-Your site is now running at http://localhost:8000!
+---
 
-# Payment integrations
+## 🔑 Environment Variables
 
-By default this starter supports the following payment integrations
+| Variable | Description |
+|---|---|
+| `NEXT_PUBLIC_MEDUSA_BACKEND_URL` | MedusaJS backend URL (default: `http://localhost:9000`) |
+| `NEXT_PUBLIC_BASE_URL` | Frontend base URL (default: `http://localhost:8000`) |
+| `NEXT_PUBLIC_DEFAULT_REGION` | Default region code (use `in` for India) |
+| `NEXT_PUBLIC_ALGOLIA_APP_ID` | Algolia application ID |
+| `NEXT_PUBLIC_ALGOLIA_SEARCH_KEY` | Algolia public search-only key |
+| `NEXT_PUBLIC_RAZORPAY_KEY_ID` | Razorpay public key ID |
 
-- [Stripe](https://stripe.com/)
+---
 
-To enable the integrations you need to add the following to your `.env.local` file:
+## 💳 Payment Integrations
 
-```shell
-NEXT_PUBLIC_STRIPE_KEY=<your-stripe-public-key>
+| Provider | Type | Notes |
+|---|---|---|
+| Razorpay | Cards, UPI, Netbanking, Wallets | Primary payment gateway |
+| Cash on Delivery | COD | With OTP verification via Twilio |
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+├── app/[countryCode]/     — App Router pages (i18n-aware routing)
+│   ├── (main)/            — Public storefront pages
+│   └── (checkout)/        — Checkout flow
+├── modules/               — Feature modules
+│   ├── cart/
+│   ├── checkout/
+│   ├── products/
+│   ├── account/
+│   ├── home/
+│   └── layout/            — Navbar, Footer, Credits
+├── lib/
+│   ├── data/              — Server-side Medusa SDK calls
+│   └── util/              — Utilities (formatting, helpers)
+└── styles/                — Global CSS
 ```
 
-You'll also need to setup the integrations in your Medusa server. See the [Medusa documentation](https://docs.medusajs.com) for more information on how to configure [Stripe](https://docs.medusajs.com/resources/commerce-modules/payment/payment-provider/stripe#main).
+---
 
-# Resources
+## 🔗 Related Repositories
 
-## Learn more about Medusa
+- **Backend:** [github.com/Newbie-Himanshu/vridhira-backend](https://github.com/Newbie-Himanshu/vridhira-backend)
 
-- [Website](https://www.medusajs.com/)
-- [GitHub](https://github.com/medusajs)
-- [Documentation](https://docs.medusajs.com/)
+---
 
-## Learn more about Next.js
+## 📜 License
 
-- [Website](https://nextjs.org/)
-- [GitHub](https://github.com/vercel/next.js)
-- [Documentation](https://nextjs.org/docs)
+MIT License — see [LICENSE](./LICENSE) for full text.
+
+Copyright (c) 2026 Himanshu — Vridhira
+
+---
+
+## 👤 Author & Credits
+
+Built with ❤️ for India's artisans by **Himanshu** — independently, without commercial backing.
+
+| | |
+|---|---|
+| GitHub | [@Newbie-Himanshu](https://github.com/Newbie-Himanshu) |
+| Frontend | [vridhira-frontend](https://github.com/Newbie-Himanshu/vridhira-frontend) |
+| Backend | [vridhira-backend](https://github.com/Newbie-Himanshu/vridhira-backend) |
+
+<!-- Add LinkedIn, Twitter, Instagram here when available -->
+
+© 2026 Himanshu — Vridhira. All rights reserved.

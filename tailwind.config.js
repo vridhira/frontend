@@ -1,3 +1,20 @@
+/**
+ * ============================================================
+ * VRIDHIRA — E-Commerce for Indian Artisans
+ * ============================================================
+ * @author      Himanshu
+ * @github      https://github.com/Newbie-Himanshu
+ * @repo        https://github.com/Newbie-Himanshu/vridhira-frontend
+ * @copyright   2026 Himanshu — Vridhira. All rights reserved.
+ * @license     MIT
+ * ------------------------------------------------------------
+ * @lastModifiedBy  Himanshu
+ * @modifiedWith    GitHub Copilot
+ * @modifiedOn      2026-03-06
+ * @changeNote      Added Vridhira brand color tokens and custom font families
+ * ============================================================
+ */
+
 const path = require("path")
 
 module.exports = {
@@ -34,6 +51,25 @@ module.exports = {
           80: "#1F2937",
           90: "#111827",
         },
+        // Vridhira brand palette
+        vridhira: {
+          primary:    "#8B4513",  // Saddle brown — earthy, warm, artisan
+          secondary:  "#D4A574",  // Warm sand
+          accent:     "#C9762B",  // Burnt sienna — CTA color
+          background: "#FAF7F2",  // Warm off-white — never pure white
+          surface:    "#F5EFE7",  // Slightly deeper warm surface
+          text:       "#2C1810",  // Deep warm brown — primary text
+          muted:      "#8D6E63",  // Muted brown-gray — secondary text
+          border:     "#E8DDD4",  // Soft warm border
+          // Status
+          success:    "#4CAF50",
+          warning:    "#FF9800",
+          error:      "#F44336",
+          // Indian accent pops (use sparingly)
+          saffron:    "#FF6F00",  // Badges, highlights
+          indigo:     "#3F51B5",  // Links, info states
+          gold:       "#FFD700",  // Ratings, premium indicators
+        },
       },
       borderRadius: {
         none: "0px",
@@ -59,16 +95,9 @@ module.exports = {
         "3xl": "2rem",
       },
       fontFamily: {
-        sans: [
-          "Inter",
-          "-apple-system",
-          "BlinkMacSystemFont",
-          "Segoe UI",
-          "Roboto",
-          "Helvetica Neue",
-          "Ubuntu",
-          "sans-serif",
-        ],
+        sans:  ["'Plus Jakarta Sans'", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        serif: ["'Playfair Display'", "Georgia", "serif"],
+        hindi: ["'Tiro Devanagari Hindi'", "serif"],
       },
       keyframes: {
         ring: {
