@@ -11,9 +11,19 @@ export default async function AccountPageLayout({
 }) {
   const customer = await retrieveCustomer().catch(() => null)
 
+  // Render login full-bleed (no AccountLayout wrapper) so the gradient fills the screen
+  if (!customer) {
+    return (
+      <>
+        {login}
+        <Toaster />
+      </>
+    )
+  }
+
   return (
     <AccountLayout customer={customer}>
-      {customer ? dashboard : login}
+      {dashboard}
       <Toaster />
     </AccountLayout>
   )
