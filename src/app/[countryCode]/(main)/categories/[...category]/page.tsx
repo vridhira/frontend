@@ -12,6 +12,10 @@ type Props = {
   searchParams: Promise<{
     sortBy?: SortOptions
     page?: string
+    inStock?: string
+    isNew?: string
+    hasSale?: string
+    maxPrice?: string
   }>
 }
 
@@ -47,12 +51,12 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   try {
     const productCategory = await getCategoryByHandle(params.category)
 
-    const title = productCategory.name + " | Medusa Store"
+    const title = productCategory.name
 
-    const description = productCategory.description ?? `${title} category.`
+    const description = productCategory.description ?? `Explore handcrafted ${title} products by Indian artisans.`
 
     return {
-      title: `${title} | Medusa Store`,
+      title: `${title} | Vridhira`,
       description,
       alternates: {
         canonical: `${params.category.join("/")}`,
@@ -66,7 +70,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 export default async function CategoryPage(props: Props) {
   const searchParams = await props.searchParams
   const params = await props.params
-  const { sortBy, page } = searchParams
+  const { sortBy, page, inStock, isNew, hasSale, maxPrice } = searchParams
 
   const productCategory = await getCategoryByHandle(params.category)
 
@@ -80,6 +84,10 @@ export default async function CategoryPage(props: Props) {
       sortBy={sortBy}
       page={page}
       countryCode={params.countryCode}
+      inStock={inStock === "true"}
+      isNew={isNew === "true"}
+      hasSale={hasSale === "true"}
+      maxPrice={maxPrice ? parseInt(maxPrice) : undefined}
     />
   )
 }

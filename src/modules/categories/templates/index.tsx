@@ -8,6 +8,7 @@ import PaginatedProducts from "@modules/store/templates/paginated-products"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { HttpTypes } from "@medusajs/types"
 import { listCategories } from "@lib/data/categories"
+import SortBar from "@modules/store/components/sort-bar"
 
 // Emoji map — same as sidebar, used in the banner
 const EMOJI_MAP: Record<string, string> = {
@@ -26,11 +27,19 @@ export default async function CategoryTemplate({
   sortBy,
   page,
   countryCode,
+  inStock,
+  isNew,
+  hasSale,
+  maxPrice
 }: {
   category: HttpTypes.StoreProductCategory
   sortBy?: SortOptions
   page?: string
   countryCode: string
+  inStock?: boolean
+  isNew?: boolean
+  hasSale?: boolean
+  maxPrice?: number
 }) {
   if (!category || !countryCode) notFound()
 
@@ -71,7 +80,7 @@ export default async function CategoryTemplate({
           style={{ background: "radial-gradient(circle, #C9762B 0%, transparent 70%)" }}
         />
 
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-10 pb-16 lg:pb-20 relative">
+        <div className="max-w-7xl mx-auto pl-12 pr-6 lg:pl-20 lg:pr-8 pt-10 pb-16 lg:pb-20 relative">
 
           {/* Breadcrumb */}
           <nav className="flex items-center flex-wrap gap-1 mb-7" aria-label="Breadcrumb">
@@ -200,12 +209,11 @@ export default async function CategoryTemplate({
 
       {/* ── Content ── */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-10">
-        <div className="flex flex-col lg:flex-row gap-8 items-start">
+        <div className="flex flex-col lg:flex-row gap-8">
 
           {/* Sidebar */}
           <aside className="w-full lg:w-64 flex-shrink-0">
             <RefinementList
-              sortBy={sort}
               categories={allCategories}
               categoryHandle={category.handle}
               data-testid="sort-by-container"
@@ -214,12 +222,28 @@ export default async function CategoryTemplate({
 
           {/* Product grid */}
           <div className="flex-1 min-w-0">
+            {/* Sort bar row */}
+            <div
+              style={{
+                display:        "flex",
+                alignItems:     "center",
+                justifyContent: "flex-end",
+                marginBottom:   20,
+              }}
+            >
+              <SortBar sortBy={sort} inStock={inStock} isNew={isNew} hasSale={hasSale} maxPrice={maxPrice} />
+            </div>
+
             <Suspense fallback={<SkeletonProductGrid numberOfProducts={category.products?.length ?? 8} />}>
               <PaginatedProducts
                 sortBy={sort}
                 page={pageNumber}
                 categoryId={category.id}
                 countryCode={countryCode}
+                inStock={inStock}
+                isNew={isNew}
+                hasSale={hasSale}
+                maxPrice={maxPrice}
               />
             </Suspense>
           </div>
