@@ -6,13 +6,367 @@
 
 ---
 
-## 2026-03-07 (Saturday) — NavShell Liquid-Glass Overhaul
+## 2026-03-07 (Saturday) — NavShell Liquid-Glass Overhaul + Hero Cinematic Rebuild + Scroll-Glide Engine + CategoryStrip Curtain Reveal + FAQ Query System + Footer Locale Fix
 
-**Session scope:** Complete rebuild of the navigation bar from a static Tailwind header into a scroll-driven, physics-animated, liquid-glass pill. Every visual layer (glass, specular, float, ripple, halftone trail) was implemented from scratch inside a single new component `nav-shell`.
+**Session scope:**
+- Morning: NavShell liquid-glass rebuild (previous session)
+- Afternoon: Hero cinematic rebuild (previous session)
+- Evening: Complete scroll interaction engine — velocity-matched auto-glide from hero to CategoryStrip, CategoryStrip curtain-reveal entrance animations, font scale polish, jitter elimination
+- Night: FAQ Query System — full-stack customer question submission page; permanent footer Help Center locale fix
+
+---
+
+### Change 12 — Help Center: `/help-center/ask` — Customer FAQ Submission Page
+
+**Files added:**
+| File | Purpose |
+|---|---|
+| `src/modules/help-center/components/ask-form-client.tsx` | `"use client"` form — 4-state machine, client validation, `fetch()` to Medusa store API |
+| `src/modules/help-center/templates/ask.tsx` | Server component page template — two-column layout, breadcrumb, sticky info panel |
+| `src/app/[countryCode]/(main)/help-center/ask/page.tsx` | Next.js 15 App Router route with metadata |
+
+**Why:** The "FAQs" footer link previously pointed to `/help-center` — a passive article listing. The user's requirement was an active submission form where customers submit questions and admins answer them from the Medusa Admin panel. This change is the storefront half of that full-stack system (backend in `vridhira-marketplace`).
+
+**Architecture decision — server/client boundary:**
+The page uses a two-component split to preserve Next.js server-rendering where possible:
+- `ask.tsx` (server): renders static layout, breadcrumbs, sticky info panel — no JS needed on the client for these
+- `ask-form-client.tsx` (client): owns all interactive state; `"use client"` boundary lets it use `useState`, controlled inputs, and `fetch()`
+
+**`ask-form-client.tsx` — 4-state machine:**
+
+| State | UI | Trigger |
+|---|---|---|
+| `idle` | Blank form, submit enabled | Initial render / "Ask another" button |
+| `submitting` | Fields disabled, animated SVG spinner on button | `onSubmit` fires |
+| `success` | Checkmark circle, "Question submitted!", two action buttons | HTTP 201 response |
+| `error` | Red-tinted alert banner with SVG icon, form re-enabled | Non-2xx or network error |
+
+The `success` screen offers two buttons:
+- **"Back to Help Center"** — `LocalizedClientLink href="/help-center"`
+- **"Ask another question"** — resets state back to `idle` (sets form fields back to empty via `useState` reset, transitions to `idle`)
+
+**Client-side validation (mirrors server-side rules exactly):**
+
+| Field | Rule | Message shown |
+|---|---|---|
+| `customer_name` | 2–100 chars | "Name must be 2–100 characters" |
+| `customer_email` | RFC email regex `/^[^\s@]+@[^\s@]+\.[^\s@]+$/` | "Enter a valid email address" |
+| `subject` | 3–150 chars | "Subject must be 3–150 characters" |
+| `question` | 10–2000 chars | "Your question must be 10–2000 characters" |
+
+Validation runs on submit (not on every keystroke) to avoid jarring mid-type errors. All four fields must pass simultaneously; errors are shown as a `{ field: string }` map so each input can display its own inline message.
+
+**`fetch` call:**
+```ts
+fetch(`${process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL}/store/faq-queries`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ customer_name, customer_email, subject, question }),
+})
+```
+Response is typed as `{ faq_query: { id: string; subject: string; status: string; created_at: string } }` — only non-PII fields returned by the store API (backend deliberately omits `customer_email` from the 201 response to prevent email harvesting via the response body).
+
+**`ask.tsx` — server component layout:**
+- `content-container` → `grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-8` — form takes the main column; sticky panel takes 340px right column
+- Left: gradient header card (`linear-gradient(135deg, #8B4513 0%, #C9762B 100%)`), oversized question-mark icon, H1 "Ask a Question", subtitle text, then `<AskFormClient />`
+- Right sticky panel: response time callout ("We typically reply within 1–2 business days"), quick-answer list (5 help articles linking to existing `/help-center/[articleId]` routes), back-to-help-center link
+- Breadcrumb: Home icon → "Help Center" (`href="/help-center"`) → "Ask a Question" (active: amber pill `bg-[#C9762B]/10 text-[#C9762B]`) — consistent with other `help-center` pages
+
+**`app/[countryCode]/(main)/help-center/ask/page.tsx`:**
+```ts
+export const metadata: Metadata = {
+  title: "Ask a Question | Vridhira Help Center",
+  description: "Submit your question to the Vridhira support team — we reply within 1–2 business days.",
+}
+```
+Registered as a child route of the existing `help-center/` segment — no new route group needed; the `(main)` layout and locale middleware apply automatically.
+
+---
+
+### Change 11 — Footer: Permanent Help Center link fix + FAQs → `/help-center/ask`
+
+**File:** `src/modules/layout/templates/footer/index.tsx`
+
+**Root cause of the recurring Help Center disappearance:**
+
+The bottom strip "Help Center" link used a bare `<a href="/help-center">`. In Medusa's Next.js storefront the entire route tree is prefixed with `/[countryCode]/` (e.g. `/in/`). A plain `<a>` bypasses Next.js `Link` entirely — the browser navigates to the literal string `"/help-center"` without the country code. This lands outside the Next.js App Router segment tree, producing a 404 on initial nav and a blank render on client-side transitions. Because the footer runs in a server component context, the error surfaces silently — the link visually disappears rather than throwing.
+
+**Fix — `LocalizedClientLink`:**
+```tsx
+// BEFORE (broken — bare <a>, no locale prefix):
+<a href="/help-center" className="text-sm text-neutral-400 hover:text-white transition-colors">
+  Help Center
+</a>
+
+// AFTER (fixed — Medusa core component, prepends countryCode):
+<LocalizedClientLink
+  href="/help-center"
+  className="text-sm text-neutral-400 hover:text-white transition-colors"
+>
+  Help Center
+</LocalizedClientLink>
+```
+
+`LocalizedClientLink` is the Medusa-standard wrapper around Next.js `Link`. It reads the current `countryCode` from the URL context and prepends it before delegating to `<Link>`. Rendered `href` becomes `/in/help-center` (or whichever region). This is the permanent fix — the link will survive locale changes, server-side renders, and client-side navigations.
+
+**Additional change — `title` attribute removed:**
+```diff
+- <a href="/help-center" title="Help Center" className="…">Help Center</a>
++ <LocalizedClientLink href="/help-center" className="…">Help Center</LocalizedClientLink>
+```
+The `title` attribute was redundant (link text is already "Help Center") and technically violates WCAG 2.4.6 — adding a `title` tooltip identical to the visible label provides no accessibility value.
+
+**FAQ link update (Customer Services column):**
+```tsx
+// BEFORE:
+{ label: "FAQs", href: "/help-center" }
+
+// AFTER:
+{ label: "FAQs", href: "/help-center/ask" }
+```
+"FAQs" now routes to the new customer question submission page (`/help-center/ask`) rather than the article listing. Customers who click "FAQs" have a question to ask — the submission form is the correct destination.
+
+**References:**
+- Medusa Storefront Docs — `LocalizedClientLink`: locale-aware navigation component, wraps Next.js `<Link>` with countryCode prefix
+- WCAG 2.1 SC 2.4.6 — Headings and Labels: labels should describe purpose; redundant `title` tooltips violate the spirit of this criterion
+
+---
+
+### Change 10 — Hero: Velocity-matched auto-glide + CategoryStrip curtain reveal
+
+**Files modified:**
+| File | Summary |
+|---|---|
+| `src/modules/home/components/hero/index.tsx` | Auto-glide engine, CSS scroll-driven exit polish |
+| `src/modules/home/components/category-strip/index.tsx` | Full rewrite: curtain-reveal entrance animations, font scale fix |
+
+---
+
+#### Part A — Hero: CSS scroll-driven exit
+
+**Replaced:** `isExiting` React state + `exitDelay()` stagger + RAF `smoothScrollTo` loop + `wheelBlock`/`touchBlock` scroll-lock + event bus (`cat-strip-glide-start` / `cat-strip-glide-abort`) — ~100 lines removed.
+
+**Added:**
+```css
+@supports (animation-timeline: scroll()) {
+  .hero-scroll-exit {
+    animation: hero-scroll-exit-kf linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0vh 38vh;
+  }
+}
+@keyframes hero-scroll-exit-kf {
+  from { opacity: 1; transform: translateY(0px)   scale(1);    filter: blur(0px); }
+  to   { opacity: 0; transform: translateY(-18px) scale(0.97); filter: blur(3px); }
+}
+```
+
+`animation-timeline: scroll(root)` ties animation progress directly to `window.scrollY` — zero JS, auto-reverses on scroll-back, no state. The `scale(0.97)` gives depth as the hero recedes. `@supports` guard makes Firefox/Safari <18 show content at full opacity.
+
+**Scroll indicator button:** `handleGlide` simplified from 20-line RAF loop to one line:
+```ts
+document.getElementById("category-strip")?.scrollIntoView({ behavior: "smooth", block: "start" })
+```
+
+---
+
+#### Part B — Hero: Auto-glide engine (velocity-matched cubic Hermite spline)
+
+**Trigger condition:** `scrollY ≥ heroHeight × 0.10` + downward velocity `> 0.04 px/ms`
+
+**Velocity measurement:** 6-sample ring buffer with linearly increasing weights (most-recent sample has weight 6, oldest has weight 1). Far more accurate than exponential IIR on a sudden flick.
+
+**Animation curve — cubic Hermite spline:**
+```
+pos(t) = fromY
+       + D        × (−2t³ + 3t²)     ← smooth-step [0 → D]
+       + v0s × T  × (t³ − 2t² + t)   ← velocity tangent
+```
+
+Four mathematical guarantees:
+| Condition | Value | Meaning |
+|---|---|---|
+| `pos(0)` | `fromY` | Starts exactly where inertia stopped |
+| `pos(T)` | `toY` | Lands exactly on CategoryStrip top |
+| `pos'(0)` | `v0s` | Departure velocity matches user's scroll speed |
+| `pos'(T)` | `0` | Zero-velocity landing — no bounce |
+
+**No-overshoot proof:** overshoot occurs iff `v0s × T > 3D`. Cap is `v0s = min(v0, 2.0D/T)` → `v0s × T ≤ 2.0D < 3D`. ✓
+
+**Duration:** `T = clamp(2.2 × D / v0, 520ms, 1200ms)` — the 2.2× multiplier is what produces the "glide" feel (page decelerates gradually rather than snapping).
+
+**Jitter fix — deferred `fromY` capture:**
+```ts
+// BEFORE (caused jitter):
+function smoothGlideTo(fromY: number, ...) {  // fromY captured in scroll handler
+  frame(now) {
+    window.scrollTo(0, fromY + ...)  // ← BACKWARD SNAP: inertia moved scrollY
+  }                                  //   10–20px forward in the 16ms gap
+}
+
+// AFTER (jitter-free):
+function smoothGlideTo(toY, v0) {
+  let fromY = -1
+  frame(now) {
+    if (fromY === -1) fromY = window.scrollY  // capture AFTER inertia settles
+    window.scrollTo(0, Math.round(getPos(elapsed)))
+  }
+}
+```
+
+**Direction guard + re-arm logic:**
+- Glide only fires when `measuredVel() > 0 px/ms` (never on scroll-back)
+- `glideFired` resets only when `scrollY < threshold × 0.5` — prevents CategoryStrip → Hero return journey from re-triggering mid-scrollback
+- `wheel` + `touchmove` are `preventDefault()`-blocked during the RAF loop — prevents browser inertia engine from writing `scrollY` in parallel (root cause of original jitter)
+
+---
+
+#### Part C — CategoryStrip: curtain-reveal entrance animations
+
+**Replaced:** `ready`/`entered` React state + `useEffect`/`useRef`/`useState` imports + IObs (threshold `[0, 0.85]`) + 3 CustomEvent listeners + visibility wrapper `<div>` with JS-driven `translateY`/`pointerEvents` + `smoothScrollTo` dead code — ~90 lines removed.
+
+**Component is now a pure function** — zero hooks, zero state.
+
+**New animation classes:**
+
+| Class | Keyframe | Entrance |
+|---|---|---|
+| `.cat-curtain` | `cat-curtain-rise` | Word rises from `translateY(105%)` inside `overflow:hidden` mask — theatrical curtain effect |
+| `.cat-eyebrow` | `cat-eyebrow-slide` | Eyebrow slides in from `translateX(-110%)` — reveals from behind left wall |
+| `.cat-line` | `cat-line-wipe` | Decorative underline wipes `scaleX(0 → 1)` from center |
+| `.cat-card` | `cat-card-in` | Card lifts from `translateY(36px) scale(0.95) opacity(0)` — depth approach |
+
+All driven by `animation-timeline: view()` — fires as each element enters the viewport with no JS. `@supports not` fallback leaves all content visible on Firefox <135.
+
+**Section heading font corrected:** `text-4xl md:text-5xl` (36–48px) → `text-2xl md:text-3xl` (24–30px) — industry-standard section subheading range (Amazon, Etsy, Shopify all use 24–28px).
+
+**Card hover:** `.cat-card-inner:hover { transform: translateY(-4px) scale(1.015); box-shadow: 0 12px 36px rgba(139,69,19,0.14) }` — subtle physical lift, no abrupt jump.
+
+---
+
+#### Part D — Hero heading/subheading size reduction
+
+| Element | Before | After | Δ |
+|---|---|---|---|
+| H1 (mobile) | `text-4xl` 36px | 34px | −2px |
+| H1 (sm) | `text-5xl` 48px | 46px | −2px |
+| H1 (lg) | `text-6xl` 60px | 58px | −2px |
+| Sub-tagline (base) | `text-base` 16px | `text-xs` 12px | −4px |
+| Sub-tagline (sm) | `text-lg` 18px | `text-sm` 14px | −4px |
+
+---
+
+
+
+**Session scope:** Complete rebuild of the navigation bar (morning) + complete rebuild of the homepage hero (afternoon). NavShell: scroll-driven liquid-glass pill with physics float, water ripple, and canvas halftone trail. Hero: canvas warm-dust particles, word-cascade entrance, three-layer scroll parallax, magnetic CTA button, artisan category chip mosaic with independent bob physics.
 
 **Branch:** `master` (direct)
 **Files added:** `src/modules/layout/components/nav-shell/` (new component directory)
 **Files modified:** `src/modules/layout/components/cart-dropdown/index.tsx`, `src/modules/layout/templates/nav/index.tsx`, `src/modules/home/components/hero/index.tsx`, `src/app/[countryCode]/(main)/page.tsx`, `src/app/layout.tsx`, `src/modules/layout/templates/footer/index.tsx`, `src/styles/globals.css`, `tailwind.config.js`, `tsconfig.json`
+
+---
+
+### Change 8 — Hero: Cinematic full-screen rebuild
+
+**File:** `src/modules/home/components/hero/index.tsx` (complete rewrite)
+
+**Why:** The previous hero was a static server component with no animations, no interactivity, and no visual depth. A full-screen landing section for a premium artisan marketplace requires a cinematic first impression — felt motion, physical weight, and environmental richness.
+
+**Architecture decision — `"use client"` conversion:**
+The previous hero was a pure server component (`import ... from "..."` only). Converting to `"use client"` enables:
+- `IntersectionObserver` for entrance-gated animations (text never animates if the user jumps mid-page)
+- `useEffect` + `requestAnimationFrame` for the particle canvas (zero-overhead draw loop, no React re-renders)
+- `onMouseMove` for the magnetic CTA (real-time cursor tracking)
+- scroll listener (passive RAF-gated) for parallax
+
+**Particle field — canvas imperative draw loop:**
+52 warm-amber particles drift upward across the full hero surface. Each particle has:
+- `vx` ∈ [−0.38, +0.38], `vy` ∈ [−0.64, −0.12] — slow upward drift with slight lateral spread
+- Brownian micro-sway: each frame adds `± 0.012` to `vx`, clamped to ±0.42 — prevents particles from straightening out into vertical columns
+- Two hues: warm amber `rgb(201,118,43)` (62% probability) and deep saddle-brown `rgb(139,69,19)` (38%) — matches the Vridhira brand palette
+- Respawn from the bottom when exiting the top edge (continuous field)
+- `ResizeObserver` syncs canvas pixel dimensions to CSS layout size each frame — no blurry/stretched particles on resize or orientation change
+
+Architecture: imperative `canvas.getContext("2d")` draw loop gated by a single `requestAnimationFrame`. No React state is mutated per frame. `particlesRef` stores the array; the draw function reads and mutates it directly. Zero re-renders at 60 fps.
+
+**Entrance animation system:**
+`IntersectionObserver` (threshold: 0.15) fires once when the section enters the viewport. It sets `entered = true` and disconnects. JS then adds the `.entered` class to every hero element simultaneously — each element's `animation-delay` staggers them:
+
+| Element | Delay | Effect |
+|---|---|---|
+| Eyebrow label | 0.08s | Hero-fade-up (14px rise) |
+| "Handcrafted" | 0.28s | Hero-word-in (28px rise + blur clear) |
+| "with" | 0.37s | Hero-word-in |
+| "soul." | 0.46s | Hero-word-in |
+| "Delivered" | 0.55s | Hero-word-in |
+| … (every word + 0.09s) | … | … |
+| Sub-tagline | 0.88s | Hero-fade-up |
+| CTAs row | 1.02s | Hero-fade-up |
+| Trust badges | 1.18s | Hero-fade-up |
+| Scroll indicator | 1.50s | Hero-fade-up |
+
+`hero-word-in` keyframe: `opacity: 0, translateY(28px), blur(8px)` → `opacity: 1, translateY(0), blur(0)` with `cubic-bezier(0.22, 1, 0.36, 1)` — Apple-style over-shoot spring feel.
+`hero-fade-up` keyframe: same without blur (appropriate for paragraph text where per-word granularity isn't needed).
+
+**Three-layer scroll parallax:**
+
+| Layer | Translate scalar | Element |
+|---|---|---|
+| Background | `scrollY × 0.32` | Decorative amber/brown radial blobs |
+| Ghost text | `scrollY × 0.52` | Oversized "Artisan" serif background text |
+| Content | `scrollY × 0.10` | Main headline + CTA block |
+
+The differential speeds create separated depth planes. Content barely moves (0.10×) so it reads clearly across the scroll range. The ghost text (0.52×) lags behind the real scroll creating a deep-background parallax. The blobs (0.32×) sit in the middle depth.
+
+**Magnetic CTA button:**
+`onMouseMove` fires on the whole `<section>`. On each event, it measures the distance from the cursor to the `ctaWrapRef` div's centre. If `dist < 130px`, it displaces the wrapper by `delta × (1 − dist/130) × 0.4` — the pull strength is maximum at the centre (1.0) and fades linearly to zero at the 130px radius boundary. A `cubic-bezier(0.22, 1, 0.36, 1)` CSS transition on the wrapper smoothly springs the button back when the cursor leaves.
+
+Architecture: the magnetic transform is applied to a plain `<div>` wrapper (`ctaWrapRef`). `LocalizedClientLink` never needs a `ref` — avoids the `forwardRef` dependency on Next.js Link.
+
+**CTA shimmer:**
+The primary button uses a 200%-wide gradient background with `background-position` animated from `200% center` → `-200% center`. This sweeps a bright `#D4A574` band left-to-right across the button face like a specular highlight catching light. Starts only after `1.8s` (once the button is fully visible from the entrance animation).
+
+**Artisan category mosaic (right panel, lg+ only):**
+Six category chips (Textiles, Pottery, Jewellery, Woodcraft, Paintings, Metalwork) are absolutely positioned in a loose cluster around a central badge. Each chip has:
+- Independent bob animation (`hero-bob-a/b/c` — three variants, different phases)
+- Independent duration (4.2s–5.6s) and delay (0s–1.3s) — prevents synchronised "breathing" across chips
+- `backdrop-blur-sm` + white glassmorphism fill — matches the NavShell glass aesthetic
+
+Two spinning compass rings surround the cluster:
+- Outer ring: 288px diameter, clockwise `36s linear infinite`
+- Inner ring: 192px diameter, counter-clockwise `22s linear infinite`
+- 8 radial tick marks on the outer ring rotate with it
+
+The centre V-badge uses the same `linear-gradient(135deg, #8B4513, #C9762B)` radial graphic as the brand primary, positioned with `inset: 0; margin: auto` (the CSS centering trick for absolutely-positioned boxes with known dimensions).
+
+**Three bob keyframe variants:**
+```css
+@keyframes hero-bob-a {
+  0%,100% { transform: translateY(0px)  rotate(0deg);    }
+  38%     { transform: translateY(-10px) rotate(1.2deg);  }
+  68%     { transform: translateY(4px)   rotate(-0.5deg); }
+}
+@keyframes hero-bob-b {
+  0%,100% { transform: translateY(0px)  rotate(0deg);    }
+  32%     { transform: translateY(-7px)  rotate(-1.0deg); }
+  63%     { transform: translateY(5px)   rotate(0.7deg);  }
+}
+@keyframes hero-bob-c {
+  0%,100% { transform: translateY(0px);  }
+  50%     { transform: translateY(-12px); }
+}
+```
+The slight `rotate()` in `bob-a` and `bob-b` adds micro-tilt that makes the chips feel like they're reacting to air currents rather than oscillating mechanically.
+
+**CSS injection pattern:** `<style>{`...`}</style>` inside the JSX return — same approach as NavShell, keeping all animation logic co-located with the component.
+
+**References:**
+- Apple WWDC 2023 — "Animate with springs" — spring easing characterisation
+- `cubic-bezier(0.22, 1, 0.36, 1)` — approximates a spring with low damping and high stiffness (Josh W. Comeau, *The Magic of CSS Easing*, 2022)
+- `IntersectionObserver` MDN — scroll-linked entrance animation pattern
+- Brownian motion simulation: `vx += (Math.random()-0.5) * ε` per frame — Euler integration of a Wiener process with bounded drift
+
+---
 
 ---
 
