@@ -28,6 +28,14 @@
   }
 }
 
+/* ── Product card hover shadow (CSS-only, works in Server Components) ── */
+[data-testid="product-wrapper"] {
+  transition: box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+[data-testid="product-wrapper"]:hover {
+  box-shadow: 0 8px 28px rgba(139, 69, 19, 0.16) !important;
+}
+
 
 @layer utilities {
   /* Chrome, Safari and Opera */

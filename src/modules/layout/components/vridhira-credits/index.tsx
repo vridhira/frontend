@@ -81,7 +81,7 @@ const VridhiraCredits: React.FC<VridhiraCreditsProps> = ({
       >
         Built with ❤️ by{" "}
         <a
-          href="https://github.com/vridhira/vridhira-frontend"
+          href="https://github.com/Newbie-Himanshu"
           target="_blank"
           rel="noopener noreferrer"
           className="underline underline-offset-2 hover:text-vridhira-primary transition-colors"

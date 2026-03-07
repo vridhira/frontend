@@ -4,6 +4,7 @@ import { getCacheOptions } from "./cookies"
 
 export const listCategories = async (query?: Record<string, any>) => {
   const next = {
+    revalidate: 30, // re-fetch in background every 30 s — category changes appear without restart
     ...(await getCacheOptions("categories")),
   }
 
@@ -20,7 +21,6 @@ export const listCategories = async (query?: Record<string, any>) => {
           ...query,
         },
         next,
-        cache: "force-cache",
       }
     )
     .then(({ product_categories }) => product_categories)

@@ -1,4 +1,5 @@
 import { listProductsWithSort } from "@lib/data/products"
+import { listCategories } from "@lib/data/categories"
 import { getRegion } from "@lib/data/regions"
 import ProductPreview from "@modules/products/components/product-preview"
 import { Pagination } from "@modules/store/components/pagination"
@@ -19,6 +20,7 @@ export default async function PaginatedProducts({
   page,
   collectionId,
   categoryId,
+  categoryHandle,
   productsIds,
   countryCode,
 }: {
@@ -26,6 +28,7 @@ export default async function PaginatedProducts({
   page: number
   collectionId?: string
   categoryId?: string
+  categoryHandle?: string
   productsIds?: string[]
   countryCode: string
 }) {
@@ -37,7 +40,12 @@ export default async function PaginatedProducts({
     queryParams["collection_id"] = [collectionId]
   }
 
-  if (categoryId) {
+  // Resolve categoryHandle → categoryId if provided
+  if (categoryHandle) {
+    const allCats = await listCategories({ handle: categoryHandle })
+    const cat = allCats?.find((c: any) => c.handle === categoryHandle)
+    if (cat) queryParams["category_id"] = [cat.id]
+  } else if (categoryId) {
     queryParams["category_id"] = [categoryId]
   }
 
@@ -68,8 +76,18 @@ export default async function PaginatedProducts({
 
   return (
     <>
+      {products.length === 0 && (
+        <div
+          className="flex flex-col items-center justify-center py-24 text-center rounded-2xl"
+          style={{ background: "#FFFDF9", border: "1px solid #E8DDD4" }}
+        >
+          <span className="text-5xl mb-4">🧺</span>
+          <p className="font-serif text-xl mb-2" style={{ color: "#2C1810" }}>No products yet</p>
+          <p className="text-sm" style={{ color: "#8D6E63" }}>Check back soon — artisans are adding new pieces.</p>
+        </div>
+      )}
       <ul
-        className="grid grid-cols-2 w-full small:grid-cols-3 medium:grid-cols-4 gap-x-6 gap-y-8"
+        className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
         data-testid="products-list"
       >
         {products.map((p) => {

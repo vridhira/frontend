@@ -1,5 +1,3 @@
-import { Text } from "@medusajs/ui"
-import { listProducts } from "@lib/data/products"
 import { getProductPrice } from "@lib/util/get-product-price"
 import { HttpTypes } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
@@ -15,37 +13,64 @@ export default async function ProductPreview({
   isFeatured?: boolean
   region: HttpTypes.StoreRegion
 }) {
-  // const pricedProduct = await listProducts({
-  //   regionId: region.id,
-  //   queryParams: { id: [product.id!] },
-  // }).then(({ response }) => response.products[0])
-
-  // if (!pricedProduct) {
-  //   return null
-  // }
-
-  const { cheapestPrice } = getProductPrice({
-    product,
-  })
+  const { cheapestPrice } = getProductPrice({ product })
 
   return (
-    <LocalizedClientLink href={`/products/${product.handle}`} className="group">
-      <div data-testid="product-wrapper">
-        <Thumbnail
-          thumbnail={product.thumbnail}
-          images={product.images}
-          size="full"
-          isFeatured={isFeatured}
-        />
-        <div className="flex txt-compact-medium mt-4 justify-between">
-          <Text className="text-ui-fg-subtle" data-testid="product-title">
+    <LocalizedClientLink href={`/products/${product.handle}`} className="group block">
+      <div
+        data-testid="product-wrapper"
+        className="rounded-2xl overflow-hidden transition-all duration-300 h-full hover:-translate-y-1"
+        style={{
+          background: "#FFFDF9",
+          border: "1px solid #E8DDD4",
+          boxShadow: "0 1px 4px rgba(139, 69, 19, 0.06)",
+        }}
+      >
+        {/* Thumbnail */}
+        <div className="relative overflow-hidden bg-[#F5EFE7]" style={{ aspectRatio: "1 / 1" }}>
+          <Thumbnail
+            thumbnail={product.thumbnail}
+            images={product.images}
+            size="full"
+            isFeatured={isFeatured}
+            className="!rounded-none !shadow-none !p-0 !bg-transparent w-full h-full"
+          />
+          {/* Hover overlay */}
+          <div
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4"
+            style={{ background: "linear-gradient(to top, rgba(44,24,16,0.45) 0%, transparent 60%)" }}
+          >
+            <span
+              className="text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full"
+              style={{ background: "rgba(250,247,242,0.9)", color: "#8B4513" }}
+            >
+              View Product
+            </span>
+          </div>
+        </div>
+
+        {/* Info */}
+        <div className="px-4 py-3">
+          <p
+            className="text-sm font-medium leading-snug mb-1 line-clamp-2"
+            style={{ color: "#2C1810" }}
+            data-testid="product-title"
+          >
             {product.title}
-          </Text>
-          <div className="flex items-center gap-x-2">
-            {cheapestPrice && <PreviewPrice price={cheapestPrice} />}
+          </p>
+          <div className="flex items-center justify-between mt-1">
+            {cheapestPrice && (
+              <span
+                className="text-sm font-semibold"
+                style={{ color: "#C9762B" }}
+              >
+                <PreviewPrice price={cheapestPrice} />
+              </span>
+            )}
           </div>
         </div>
       </div>
     </LocalizedClientLink>
   )
 }
+

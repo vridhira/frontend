@@ -1,6 +1,5 @@
 "use client"
 
-import { clx } from "@medusajs/ui"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
 export function Pagination({
@@ -35,9 +34,14 @@ export function Pagination({
   ) => (
     <button
       key={p}
-      className={clx("txt-xlarge-plus text-ui-fg-muted", {
-        "text-ui-fg-base hover:text-ui-fg-subtle": isCurrent,
-      })}
+      className="w-9 h-9 rounded-xl text-sm font-medium transition-all duration-200"
+      style={{
+        background: isCurrent ? "rgba(201,118,43,0.12)" : "transparent",
+        color: isCurrent ? "#8B4513" : "#5C4033",
+        fontWeight: isCurrent ? 700 : 400,
+        border: isCurrent ? "1px solid rgba(201,118,43,0.30)" : "1px solid #E8DDD4",
+        cursor: isCurrent ? "default" : "pointer",
+      }}
       disabled={isCurrent}
       onClick={() => handlePageChange(p)}
     >
@@ -49,9 +53,10 @@ export function Pagination({
   const renderEllipsis = (key: string) => (
     <span
       key={key}
-      className="txt-xlarge-plus text-ui-fg-muted items-center cursor-default"
+      className="w-9 h-9 flex items-center justify-center text-sm"
+      style={{ color: "#8D6E63" }}
     >
-      ...
+      &hellip;
     </span>
   )
 
@@ -108,7 +113,7 @@ export function Pagination({
   // Render the component
   return (
     <div className="flex justify-center w-full mt-12">
-      <div className="flex gap-3 items-end" data-testid={dataTestid}>{renderPageButtons()}</div>
+      <div className="flex gap-2 items-center" data-testid={dataTestid}>{renderPageButtons()}</div>
     </div>
   )
 }
