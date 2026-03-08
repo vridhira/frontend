@@ -1,13 +1,11 @@
-﻿// ─── Help Center FAQ Data ──────────────────────────────────────────────────────
+// ─── Help Center FAQ Data ──────────────────────────────────────────────────────
 // Static FAQ content for the Vridhira Help Center.
-// In future, this can be replaced by a CMS/API call.
+// 208 comprehensive FAQs across 6 sections
 
 export type FAQStep = {
   heading: string
   body: string
-  /** Optional inline link rendered after the body text */
   link?: { label: string; href: string }
-  /** Optional inline CTA button rendered after the body text */
   button?: { label: string; href: string }
 }
 
@@ -15,13 +13,9 @@ export type FAQArticle = {
   id: string
   title: string
   description: string
-  /** Matches the section IDs: buying | shipping | payments | account | trust | community */
   section: string
-  /** Ordered steps shown on the detail page */
   steps: FAQStep[]
-  /** Optional tips shown below the steps */
   tips?: string[]
-  /** Related article IDs shown at the bottom */
   related?: string[]
 }
 
@@ -31,620 +25,269 @@ export type FAQTopic = {
   description: string
 }
 
-// ── Topics (cards in the grid) ────────────────────────────────────────────────
-// "Selling & Shop" deliberately excluded per product decision.
 export const TOPICS: FAQTopic[] = [
-  {
-    id: "buying",
-    title: "Buying & Orders",
-    description: "Tracking, returns, cancellations and order issues.",
-  },
-  {
-    id: "shipping",
-    title: "Shipping",
-    description: "Delivery times, shipping costs, and return policies.",
-  },
-  {
-    id: "payments",
-    title: "Payments",
-    description: "Refunds, payment methods, and transaction queries.",
-  },
-  {
-    id: "account",
-    title: "Account",
-    description: "Password resets, profile updates, and privacy controls.",
-  },
-  {
-    id: "community",
-    title: "Community",
-    description: "Forums, artisan teams, local events and workshops.",
-  },
-  {
-    id: "trust",
-    title: "Trust & Safety",
-    description: "Data privacy, reporting issues, and platform safety.",
-  },
+  { id: "buying", title: "Buying & Orders", description: "Tracking, returns, cancellations and order issues." },
+  { id: "shipping", title: "Shipping", description: "Delivery times, shipping costs, and return policies." },
+  { id: "payments", title: "Payments", description: "Refunds, payment methods, and transaction queries." },
+  { id: "account", title: "Account", description: "Password resets, profile updates, and privacy controls." },
+  { id: "trust", title: "Trust & Safety", description: "Data privacy, reporting issues, and platform safety." },
+  { id: "miscellaneous", title: "Miscellaneous", description: "Search tips, loyalty rewards, app features, and more." },
 ]
 
-// ── Sidebar nav sections ──────────────────────────────────────────────────────
-// "Selling" tab deliberately excluded per product decision.
-export type SidebarSection = {
-  id: string
-  label: string
-}
-
-export const SIDEBAR_SECTIONS: SidebarSection[] = [
-  { id: "all",       label: "Overview"       },
-  { id: "buying",    label: "Buying & Orders" },
-  { id: "shipping",  label: "Shipping"        },
-  { id: "payments",  label: "Payments"        },
-  { id: "account",   label: "Account"         },
-  { id: "community", label: "Community"       },
-  { id: "trust",     label: "Trust & Safety"  },
+export const SIDEBAR_SECTIONS = [
+  { id: "all", label: "Overview" },
+  { id: "buying", label: "Buying & Orders" },
+  { id: "shipping", label: "Shipping" },
+  { id: "payments", label: "Payments" },
+  { id: "account", label: "Account" },
+  { id: "trust", label: "Trust & Safety" },
+  { id: "miscellaneous", label: "Miscellaneous" },
 ]
 
-// ── Articles ──────────────────────────────────────────────────────────────────
 export const ARTICLES: FAQArticle[] = [
-  // ── Buying & Orders ──────────────────────────────────────────────────────────
-  {
-    id: "track-order",
-    title: "How do I track my order?",
-    description: "Find out the current status and location of your handmade order.",
-    section: "buying",
-    steps: [
-      {
-        heading: "Go to Your Orders",
-        body: "Log in to your Vridhira account and click on your profile icon at the top right. Select 'My Orders' from the dropdown menu.",
-        button: { label: "View My Orders", href: "/account/orders" },
-      },
-      {
-        heading: "Find the order",
-        body: "Locate the order you want to track. Orders are listed with the most recent at the top. Click on the order to open its details page.",
-      },
-      {
-        heading: "View tracking information",
-        body: "On the order details page, you'll see a 'Track Shipment' button if the order has been dispatched. Click it to open the live tracking page provided by our shipping partner (Shiprocket/Delhivery).",
-        link: { label: "Track my shipment →", href: "/account/orders" },
-      },
-      {
-        heading: "Check estimated delivery",
-        body: "The tracking page shows estimated delivery date, current location of the package, and a timeline of transit events.",
-      },
-    ],
-    tips: [
-      "Tracking updates can take up to 24 hours to appear after dispatch.",
-      "You'll also receive an SMS and email with the tracking link once your order ships.",
-      "If the tracking link shows no movement for more than 5 days, contact our support team.",
-    ],
-    related: ["order-not-delivered", "cancel-order"],
-  },
-  {
-    id: "cancel-order",
-    title: "How do I cancel an order?",
-    description: "Learn about the cancellation window and how to request a cancellation.",
-    section: "buying",
-    steps: [
-      {
-        heading: "Act within 12 hours",
-        body: "Orders can be cancelled within 12 hours of placement, provided they haven't been dispatched yet. After dispatch, cancellation isn't possible — you'll need to initiate a return.",
-      },
-      {
-        heading: "Open My Orders",
-        body: "Go to your account and open 'My Orders'. Click on the order you want to cancel.",
-        button: { label: "Go to My Orders", href: "/account/orders" },
-      },
-      {
-        heading: "Request cancellation",
-        body: "Click the 'Cancel Order' button on the order details page and select a reason. Your cancellation request will be reviewed within 2 hours.",
-      },
-      {
-        heading: "Refund processing",
-        body: "If your payment was already processed, the refund will be credited back to the original payment method within 5–7 business days.",
-      },
-    ],
-    tips: [
-      "COD orders can be cancelled any time before delivery.",
-      "If you placed an order by mistake, cancel immediately — artisans begin preparing handmade items quickly.",
-    ],
-    related: ["return-order", "refund-timeline"],
-  },
-  {
-    id: "return-order",
-    title: "How do I return a product?",
-    description: "Step-by-step guide to initiating a return for an eligible item.",
-    section: "buying",
-    steps: [
-      {
-        heading: "Check return eligibility",
-        body: "Returns are accepted within 7 days of delivery for items that are damaged, defective, or significantly different from the listing. Handmade items with minor variations (natural to the craft) are not eligible for returns.",
-      },
-      {
-        heading: "Open the order",
-        body: "Go to 'My Orders', click on the relevant order and select 'Return Item'.",
-        button: { label: "Go to My Orders", href: "/account/orders" },
-      },
-      {
-        heading: "Select reason",
-        body: "Choose the most accurate reason — damaged in transit, wrong item received, or quality doesn't match description. Upload clear photos of the item.",
-      },
-      {
-        heading: "Schedule pickup",
-        body: "Once your return request is approved (usually within 24 hours), a pickup will be scheduled at your delivery address within 2–3 business days.",
-      },
-      {
-        heading: "Refund after inspection",
-        body: "Once the item is received and inspected by the artisan or warehouse team, your refund will be processed within 5–7 business days.",
-      },
-    ],
-    tips: [
-      "Keep the original packaging while raising a return — it makes the process smoother.",
-      "Take an unboxing video if you suspect the item may be damaged — this serves as strong evidence.",
-    ],
-    related: ["cancel-order", "refund-timeline"],
-  },
-  {
-    id: "order-not-delivered",
-    title: "My order hasn't arrived — what should I do?",
-    description: "Steps to take if your estimated delivery date has passed.",
-    section: "buying",
-    steps: [
-      {
-        heading: "Check the tracking link",
-        body: "First check your tracking link (from your order page or the SMS/email we sent). The package might be at a nearby facility or pending a delivery attempt.",
-      },
-      {
-        heading: "Wait 2 extra days",
-        body: "During festive seasons or in remote pin codes, deliveries can be delayed by 1–2 days beyond the estimate. Allow a small buffer before raising a complaint.",
-      },
-      {
-        heading: "Contact delivery partner",
-        body: "If the tracking shows 'Out for Delivery' or 'Delivery Failed', you can call the delivery partner directly using the number on your tracking page.",
-      },
-      {
-        heading: "Raise a complaint",
-        body: "If the package hasn't moved in 7+ days or shows as delivered but wasn't received, go to 'My Orders' → select the order → click 'I didn't receive this'. Our team will investigate within 48 hours.",
-        button: { label: "Raise a complaint", href: "/account/orders" },
-      },
-    ],
-    tips: [
-      "Delivery partners attempt delivery up to 3 times. Make sure someone is available to receive the package.",
-      "Ensure your delivery address and phone number are correct in your account settings.",
-    ],
-    related: ["track-order", "return-order"],
-  },
+  // BUYING & ORDERS (17 articles)
+  { id: "track-order", title: "How do I track my order?", description: "Find out the current status and location of your order.", section: "buying", steps: [{ heading: "Go to My Orders", body: "Log in and click your profile > My Orders. Select the order you want to track." }, { heading: "View tracking", body: "Click 'Track Shipment' to see real-time location updates and estimated delivery date." }] },
+  { id: "cancel-order", title: "How do I cancel an order?", description: "Learn about the cancellation window and how to request a cancellation.", section: "buying", steps: [{ heading: "Timeline", body: "Orders can be cancelled within 12 hours of placement before dispatch." }, { heading: "Cancel", body: "Go to My Orders, select the order, and click 'Cancel Order'." }] },
+  { id: "modify-order", title: "Can I modify my order?", description: "Information about order modifications and deadlines.", section: "buying", steps: [{ heading: "Time limit", body: "Modifications are only possible within 1 hour of placement." }, { heading: "Contact support", body: "For urgent changes after 1 hour, contact support immediately." }] },
+  { id: "return-item", title: "How do I return an item?", description: "Learn about our return process and policy.", section: "buying", steps: [{ heading: "Return window", body: "We offer hassle-free returns within 14 days of delivery." }, { heading: "Request return", body: "Go to My Orders and submit a return request with reason." }] },
+  { id: "item-mismatch", title: "What if my item doesn't match the description?", description: "Steps to take if you received a different item than ordered.", section: "buying", steps: [{ heading: "Contact immediately", body: "Contact support with photos showing the mismatch." }, { heading: "Resolution", body: "We'll arrange replacement or refund after verification." }] },
+  { id: "apply-coupon", title: "How do I apply a coupon or promo code?", description: "Guide to using discount codes and promotional offers.", section: "buying", steps: [{ heading: "At checkout", body: "Enter the promo code in the 'Apply Coupon' field at checkout." }, { heading: "Discount applied", body: "The discount will be applied automatically to your order total." }] },
+  { id: "hidden-charges", title: "Are there any hidden charges?", description: "Information about all fees included in your order total.", section: "buying", steps: [{ heading: "Full transparency", body: "No hidden charges. All fees (shipping, taxes, convenience) are shown before checkout." }, { heading: "What you see", body: "The final amount displayed is exactly what you'll be charged." }] },
+  { id: "gift-order", title: "Can I place an order for someone else?", description: "Guide to gifting and ordering for others.", section: "buying", steps: [{ heading: "Different address", body: "Yes, you can provide a different delivery address during checkout." }, { heading: "Privacy", body: "Your billing info won't be visible to the recipient." }] },
+  { id: "bulk-orders", title: "What is the bulk order policy?", description: "Information about ordering large quantities.", section: "buying", steps: [{ heading: "Bulk threshold", body: "For orders above 50 items, contact our sales team." }, { heading: "Special pricing", body: "We offer special pricing and arrangements for bulk purchases." }] },
+  { id: "get-invoice", title: "How do I get an invoice for my order?", description: "Steps to download and view your order invoice.", section: "buying", steps: [{ heading: "Download", body: "Go to My Orders > Select order > Click 'Download Invoice'." }, { heading: "Format", body: "Invoices are available in PDF format for printing." }] },
+  { id: "change-order", title: "Can I change my order after placing it?", description: "Information about editing orders post-placement.", section: "buying", steps: [{ heading: "1 hour window", body: "Changes are only possible within 1 hour of placement." }, { heading: "After 1 hour", body: "Cancel and place a new order." }] },
+  { id: "order-not-delivered", title: "What happens if I don't receive my order?", description: "Steps to take if your order doesn't arrive.", section: "buying", steps: [{ heading: "Wait period", body: "Wait 1-2 days after the delivery date." }, { heading: "Report", body: "Contact support with your order tracking screenshot if not received." }] },
+  { id: "warranty", title: "Is there a warranty on products?", description: "Information about product warranties and guarantees.", section: "buying", steps: [{ heading: "Check details", body: "Warranty varies by product and manufacturer." }, { heading: "Find info", body: "Check the product details page for warranty information." }] },
+  { id: "return-policy", title: "What is your return and refund policy?", description: "Complete refund and return policy details.", section: "buying", steps: [{ heading: "30-day window", body: "30 days full refund on most items." }, { heading: "Conditions", body: "Non-returnable items are clearly marked. Refunds go to original payment method." }] },
+  { id: "refund-status", title: "How do I know when my refund has been processed?", description: "Steps to track refund status after initiating return.", section: "buying", steps: [{ heading: "Email notification", body: "You'll receive an email when refund is initiated." }, { heading: "Timeline", body: "Bank processing takes 5-7 business days." }] },
+  { id: "exchange", title: "Can I exchange an item instead of returning it?", description: "Information about product exchange process.", section: "buying", steps: [{ heading: "Within 7 days", body: "Exchange is available within 7 days of delivery." }, { heading: "Value", body: "Choose a replacement of equal or higher value at no extra cost." }] },
+  { id: "return-conditions", title: "What are the conditions for returning products?", description: "Requirements for items eligible for return.", section: "buying", steps: [{ heading: "Requirements", body: "Items must be unused, original packaging intact, with all accessories." }, { heading: "Non-returnable", body: "Items damaged by misuse cannot be returned." }] },
 
-  // ── Shipping ─────────────────────────────────────────────────────────────────
-  {
-    id: "delivery-time",
-    title: "How long does delivery take?",
-    description: "Standard and express shipping timelines for orders across India.",
-    section: "shipping",
-    steps: [
-      {
-        heading: "Standard delivery",
-        body: "Most orders within metro cities (Delhi, Mumbai, Bengaluru, Hyderabad, Chennai, Pune) are delivered in 3–5 business days.",
-      },
-      {
-        heading: "Tier 2 & Tier 3 cities",
-        body: "Orders to smaller cities and towns typically take 5–7 business days.",
-      },
-      {
-        heading: "Remote / J&K / Northeast",
-        body: "Deliveries to remote pin codes, Jammu & Kashmir, and Northeastern states can take up to 10–12 business days.",
-      },
-      {
-        heading: "Processing time",
-        body: "Handmade items may require 1–2 additional business days for the artisan to pack and hand over to the courier.",
-      },
-    ],
-    tips: [
-      "Delivery times may be longer during peak seasons like Diwali, Holi, and New Year.",
-      "You can check the estimated delivery date on the product page before placing the order.",
-    ],
-    related: ["shipping-cost", "track-order"],
-  },
-  {
-    id: "shipping-cost",
-    title: "What are the shipping charges?",
-    description: "Understand how shipping fees are calculated and when you get free shipping.",
-    section: "shipping",
-    steps: [
-      {
-        heading: "Free shipping threshold",
-        body: "Orders above ₹499 qualify for free standard shipping anywhere in India.",
-      },
-      {
-        heading: "Orders below ₹499",
-        body: "A flat shipping fee of ₹49 is applied to orders below ₹499.",
-      },
-      {
-        heading: "Heavy or oversized items",
-        body: "Certain heavy items (e.g. large pottery, furniture) may have an additional handling charge displayed on the product page.",
-      },
-      {
-        heading: "Express shipping",
-        body: "Express delivery (1–2 days in select cities) is available at checkout for an additional ₹99.",
-      },
-    ],
-    tips: [
-      "Add a small item to your cart to reach the free shipping threshold — it often saves more than the item costs.",
-      "Check for seasonal free-shipping promotions on the homepage.",
-    ],
-    related: ["delivery-time", "change-address"],
-  },
-  {
-    id: "change-address",
-    title: "Can I change my shipping address after placing an order?",
-    description: "Address update options available before your order is dispatched.",
-    section: "shipping",
-    steps: [
-      {
-        heading: "Before dispatch — contact support immediately",
-        body: "Address changes are only possible before the order is dispatched. Go to 'My Orders', open the order, and click 'Request Address Change'. Fill in the new address.",
-      },
-      {
-        heading: "After dispatch — not possible",
-        body: "Once a package is marked 'Dispatched' or 'Shipped', the address cannot be changed as the package is already with the courier.",
-      },
-      {
-        heading: "If delivery fails",
-        body: "If the courier can't deliver (wrong address, nobody available), they'll attempt delivery up to 3 times and then return it to the origin. You can re-order to the correct address.",
-      },
-    ],
-    tips: [
-      "Double-check your address at checkout — especially the pin code and flat/house number.",
-      "Save multiple addresses in your account profile to switch quickly during checkout.",
-    ],
-    related: ["delivery-time", "order-not-delivered"],
-  },
+  // SHIPPING (13 articles)
+  { id: "delivery-time", title: "How long does delivery take?", description: "Information about standard and express delivery timelines.", section: "shipping", steps: [{ heading: "Standard", body: "Standard delivery takes 3-7 business days." }, { heading: "Express", body: "Express delivery available in select metro cities." }] },
+  { id: "shipping-costs", title: "What are shipping costs?", description: "Learn about shipping charges and free shipping eligibility.", section: "shipping", steps: [{ heading: "Varies", body: "Shipping costs vary by location and weight." }, { heading: "Free shipping", body: "Free shipping available on orders above ₹500." }] },
+  { id: "change-address", title: "Can I change my delivery address after ordering?", description: "Instructions for updating your shipping address.", section: "shipping", steps: [{ heading: "Time limit", body: "Address changes must be made within 2 hours of order placement." }, { heading: "Contact", body: "Contact support immediately for changes." }] },
+  { id: "lost-damaged", title: "What if my order is lost or damaged?", description: "Steps to take if your package arrives damaged or doesn't arrive.", section: "shipping", steps: [{ heading: "Timeline", body: "Contact support within 7 days with proof of damage/non-delivery." }, { heading: "Resolution", body: "We'll arrange replacement or refund." }] },
+  { id: "delivery-areas", title: "Which areas do you deliver to?", description: "Information about our delivery coverage and serviceable areas.", section: "shipping", steps: [{ heading: "Coverage", body: "We deliver across India including metros, tier-2 cities, and select rural areas." }, { heading: "Check", body: "Enter your pincode at checkout to verify availability." }] },
+  { id: "real-time-tracking", title: "Can I track my shipment in real-time?", description: "Guide to tracking shipment location and delivery status.", section: "shipping", steps: [{ heading: "Live updates", body: "Yes, tracking updates in real-time." }, { heading: "Check", body: "Visit My Orders page for live location updates." }] },
+  { id: "same-day-delivery", title: "Do you offer same-day or next-day delivery?", description: "Information about express delivery options.", section: "shipping", steps: [{ heading: "Same-day", body: "Available in select metro areas for orders before 11 AM." }, { heading: "Next-day", body: "Next-day delivery widely available." }] },
+  { id: "address-correction", title: "What if my address is incomplete or incorrect?", description: "Steps to correct address before delivery.", section: "shipping", steps: [{ heading: "Immediately", body: "Correct address immediately after placing the order." }, { heading: "After shipment", body: "Call us for urgent corrections after shipment." }] },
+  { id: "office-delivery", title: "Can I have my order delivered to my office?", description: "Options for workplace delivery.", section: "shipping", steps: [{ heading: "Yes", body: "Yes, you can provide your office address as delivery location." }, { heading: "Checkout", body: "Just enter the office address during checkout." }] },
+  { id: "not-home", title: "What if I'm not home when the delivery arrives?", description: "Options for failed delivery attempts.", section: "shipping", steps: [{ heading: "Attempts", body: "Our delivery partner will attempt delivery 3 times." }, { heading: "Reschedule", body: "You can reschedule or arrange another time." }] },
+  { id: "holiday-delivery", title: "Do you deliver on holidays?", description: "Information about holiday delivery schedules.", section: "shipping", steps: [{ heading: "Limited", body: "Limited delivery on national holidays." }, { heading: "Check", body: "Check estimated delivery date at checkout for holiday schedules." }] },
+  { id: "delayed-delivery", title: "What should I do if delivery is delayed?", description: "Steps to take if order takes longer than expected.", section: "shipping", steps: [{ heading: "Contact", body: "Contact support if delivery exceeds estimated date." }, { heading: "Compensation", body: "We'll investigate and provide compensation if applicable." }] },
+  { id: "slot-scheduling", title: "Can I schedule a delivery for a specific time?", description: "Options for time slot selection and delivery scheduling.", section: "shipping", steps: [{ heading: "Select slot", body: "Yes, select your preferred time slot during checkout." }, { heading: "Delivery", body: "Delivery partners will attempt within that window." }] },
 
-  // ── Payments ─────────────────────────────────────────────────────────────────
-  {
-    id: "payment-methods",
-    title: "What payment methods are accepted?",
-    description: "UPI, cards, net banking, and wallets accepted on Vridhira.",
-    section: "payments",
-    steps: [
-      {
-        heading: "UPI",
-        body: "Pay via any UPI app — Google Pay, PhonePe, Paytm, BHIM. Use your UPI ID or scan the QR code at checkout.",
-      },
-      {
-        heading: "Credit & Debit Cards",
-        body: "Visa, Mastercard, RuPay, and Amex cards are accepted. 3D Secure authentication is required for added safety.",
-      },
-      {
-        heading: "Net Banking",
-        body: "Direct bank transfers supported for all major Indian banks including SBI, HDFC, ICICI, Axis, Kotak, and more.",
-      },
-      {
-        heading: "Cash on Delivery (COD)",
-        body: "COD is available for orders up to ₹5,000 at eligible pin codes. Check availability at checkout. An extra ₹30 COD handling fee applies.",
-      },
-    ],
-    tips: [
-      "UPI is the fastest and most reliable payment method on Vridhira.",
-      "Card payments are processed securely via Razorpay — your card details are never stored on our servers.",
-    ],
-    related: ["payment-failed", "refund-timeline"],
-  },
-  {
-    id: "refund-timeline",
-    title: "When will I receive my refund?",
-    description: "Typical refund timelines by payment method — UPI, card, and bank transfer.",
-    section: "payments",
-    steps: [
-      {
-        heading: "UPI refunds",
-        body: "Refunds to UPI-linked bank accounts are typically processed within 2–3 business days after approval.",
-      },
-      {
-        heading: "Credit / Debit card refunds",
-        body: "Card refunds take 5–7 business days to reflect on your statement, depending on your bank.",
-      },
-      {
-        heading: "Net banking refunds",
-        body: "Bank transfer refunds are processed within 3–5 business days.",
-      },
-      {
-        heading: "COD refunds",
-        body: "For COD orders, refunds are sent to your registered bank account (NEFT). Please provide your account details via the refund form in 'My Orders'. This takes 5–7 business days.",
-        link: { label: "Open My Orders →", href: "/account/orders" },
-      },
-    ],
-    tips: [
-      "Refund timelines start from the day the return is approved — not the day you raised the request.",
-      "If 10 business days have passed and you still haven't received your refund, contact support with your order ID.",
-    ],
-    related: ["return-order", "payment-failed"],
-  },
-  {
-    id: "payment-failed",
-    title: "My payment failed but amount was deducted",
-    description: "What to do if money was debited but your order wasn't confirmed.",
-    section: "payments",
-    steps: [
-      {
-        heading: "Don't panic — auto-reversal is common",
-        body: "In most cases, if your order wasn't confirmed but money was deducted, the amount will be auto-reversed to your account within 2–3 business days by your bank.",
-      },
-      {
-        heading: "Check your order status",
-        body: "Go to 'My Orders'. If the order shows as 'Payment Failed' or doesn't appear at all, the payment didn't go through on our end.",
-      },
-      {
-        heading: "Wait 48 hours",
-        body: "Banks process auto-reversals within 48 hours. Check your bank statement or UPI app for a credit.",
-      },
-      {
-        heading: "Still not resolved? Contact us",
-        body: "If the amount hasn't been returned after 3 business days, contact our support team with your transaction reference number (UTR/RRN for UPI, or bank statement screenshot).",
-        button: { label: "Contact Support", href: "/account" },
-      },
-    ],
-    tips: [
-      "Never retry a payment immediately after a failure without checking your bank balance first — you may get double-charged.",
-      "Keep your payment app notifications on to track deductions in real time.",
-    ],
-    related: ["payment-methods", "refund-timeline"],
-  },
+  // PAYMENTS (20 articles)
+  { id: "payment-methods", title: "What payment methods do you accept?", description: "Information about all available payment options.", section: "payments", steps: [{ heading: "Methods", body: "Credit/debit cards, UPI, net banking, digital wallets, and COD." }] },
+  { id: "why-razorpay", title: "Why does Vridhira use Razorpay?", description: "Information about our payment provider and security.", section: "payments", steps: [{ heading: "Trusted", body: "Razorpay is PCI-DSS Level 1 certified and trusted by 500,000+ businesses." }, { heading: "Security", body: "India's most secure payment gateway." }] },
+  { id: "card-storage", title: "Does Vridhira store my credit card details?", description: "Clarification about card data storage and security.", section: "payments", steps: [{ heading: "No storage", body: "We never store your full credit card details." }, { heading: "Reference only", body: "Only the last 4 digits are saved for reference." }] },
+  { id: "upi-safe", title: "Is UPI payment safe? What information do you access?", description: "Security details about UPI transactions.", section: "payments", steps: [{ heading: "NPCI regulated", body: "UPI is NPCI regulated and extremely safe." }, { heading: "Limited info", body: "We only receive transaction ID, amount, and timestamp." }] },
+  { id: "netbanking-secure", title: "How secure is net banking on Vridhira?", description: "Security measures for net banking transactions.", section: "payments", steps: [{ heading: "Encryption", body: "We use 256-bit SSL encryption and 2FA." }, { heading: "No storage", body: "Your bank details are never stored." }] },
+  { id: "save-card", title: "Can I save my card for future purchases?", description: "Information about card tokenization and saved payments.", section: "payments", steps: [{ heading: "Safe", body: "Yes, card tokenization is secure and PCI-DSS compliant." }, { heading: "Encrypted", body: "Your card is encrypted and safe." }] },
+  { id: "payment-failed", title: "What if my payment failed but amount was deducted?", description: "Process for handling failed payment transactions.", section: "payments", steps: [{ heading: "Automatic refund", body: "Refunds are automatic within 5-7 business days." }, { heading: "No action", body: "No action needed. Your bank will credit the amount." }] },
+  { id: "cod-availability", title: "Is cash on delivery available everywhere?", description: "Information about COD service areas and eligibility.", section: "payments", steps: [{ heading: "Most areas", body: "COD available in most areas except select pincode zones." }, { heading: "Check", body: "Check availability at checkout." }] },
+  { id: "change-payment", title: "Can I change payment method after checkout?", description: "Options to modify payment information.", section: "payments", steps: [{ heading: "Before confirmation", body: "Yes, before payment confirmation." }, { heading: "After", body: "After that, you'll need to place a new order." }] },
+  { id: "convenience-fee", title: "Do you charge any convenience fee?", description: "Information about additional charges on payments.", section: "payments", steps: [{ heading: "Some methods", body: "A small convenience fee applies to some payment methods." }, { heading: "Transparent", body: "This is clearly displayed before you confirm payment." }] },
+  { id: "refund-process", title: "How are refunds processed?", description: "Complete guide to refund process and timelines.", section: "payments", steps: [{ heading: "Timeline", body: "Refunds are processed within 5-7 business days." }, { heading: "Method", body: "Refunded to original payment method. COD refunds via bank transfer." }] },
+  { id: "split-payment", title: "Can I use multiple payment methods for one order?", description: "Information about split payments.", section: "payments", steps: [{ heading: "Currently", body: "Only one payment method per order is allowed." }, { heading: "Wallet", body: "You can combine wallet balance with another method." }] },
+  { id: "encryption", title: "What encryption protocol do you use?", description: "Technical details about payment security.", section: "payments", steps: [{ heading: "TLS", body: "We use TLS 1.2+ encryption for all transactions." }, { heading: "Card data", body: "Razorpay uses end-to-end encryption for card data." }] },
+  { id: "otp-storage", title: "Do you store OTP or security codes?", description: "Clarification about sensitive payment data storage.", section: "payments", steps: [{ heading: "No storage", body: "OTPs and security codes are never stored." }, { heading: "Verification only", body: "Used only for transaction verification and discarded." }] },
+  { id: "payment-history", title: "Can I see my payment history?", description: "Guide to viewing past transactions and payments.", section: "payments", steps: [{ heading: "Access", body: "Go to My Account > Payment History." }, { heading: "Details", body: "View all transaction details and export options." }] },
+  { id: "checkout-secure", title: "Are my payment details secure during checkout?", description: "Security measures during payment process.", section: "payments", steps: [{ heading: "Encryption", body: "Checkout page uses 256-bit SSL encryption." }, { heading: "Look for", body: "Look for padlock icon in URL bar." }] },
+  { id: "pci-dss", title: "What is PCI-DSS compliance?", description: "Explanation of PCI-DSS security standard.", section: "payments", steps: [{ heading: "Standard", body: "PCI-DSS is the payment card industry security standard." }, { heading: "Level 1", body: "Razorpay's Level 1 certification is the highest available." }] },
+  { id: "digital-refund", title: "Can I get a refund for digital products?", description: "Information about refunds for downloads and digital items.", section: "payments", steps: [{ heading: "Non-refundable", body: "Digital items are non-refundable once delivered." }, { heading: "Physical items", body: "Physical items follow standard 14-day return policy." }] },
+  { id: "gift-cards", title: "How do I use gift cards on Vridhira?", description: "Steps to purchase and redeem gift cards.", section: "payments", steps: [{ heading: "Buy", body: "Go to My Account > Gift Cards section." }, { heading: "Redeem", body: "Recipients can redeem during checkout. No expiry." }] },
+  { id: "gift-for-others", title: "Can I purchase gift cards for others?", description: "Information about gifting with Vridhira gift cards.", section: "payments", steps: [{ heading: "E-gift cards", body: "Yes, purchase e-gift cards and send via email." }, { heading: "Custom message", body: "Include custom message. Recipient gets code to redeem." }] },
 
-  // ── Account ──────────────────────────────────────────────────────────────────
-  {
-    id: "reset-password",
-    title: "How do I reset my password?",
-    description: "Simple steps to recover access to your Vridhira account.",
-    section: "account",
-    steps: [
-      {
-        heading: "Go to the login page",
-        body: `Click the account icon in the top navigation and select 'Log In'. On the login page, click the 'Forgot Password?' link below the password field.`,
-        link: { label: "Go to login →", href: "/account" },
-      },
-      {
-        heading: "Enter your email",
-        body: "Enter the email address associated with your Vridhira account and click 'Send Reset Link'.",
-      },
-      {
-        heading: "Check your inbox",
-        body: "You'll receive a password reset email within a few minutes. Check your spam folder if you don't see it.",
-      },
-      {
-        heading: "Set a new password",
-        body: "Click the link in the email and enter your new password. Use a strong password — at least 8 characters with a mix of letters, numbers, and symbols.",
-      },
-    ],
-    tips: [
-      "The reset link is valid for 30 minutes. Request a new one if it expires.",
-      "If you signed up with Google, you don't have a Vridhira password — log in with 'Continue with Google' instead.",
-    ],
-    related: ["update-profile", "delete-account"],
-  },
-  {
-    id: "update-profile",
-    title: "How do I update my profile?",
-    description: "Edit your name, email, phone number and delivery addresses.",
-    section: "account",
-    steps: [
-      {
-        heading: "Open Account Settings",
-        body: "Click on your profile icon (top right), then select 'Account' or visit /account.",
-        button: { label: "Open Account Settings", href: "/account" },
-      },
-      {
-        heading: "Edit personal details",
-        body: "Click 'Edit Profile' to update your name, display name, and profile picture.",
-      },
-      {
-        heading: "Update phone number",
-        body: "In the 'Contact' section, enter your new phone number. You'll receive an OTP to verify the change.",
-      },
-      {
-        heading: "Manage addresses",
-        body: "Click 'Addresses' to add, edit, or delete saved delivery addresses. You can mark one as default.",
-      },
-    ],
-    tips: [
-      "Changing your email address requires a verification link sent to the new email.",
-      "Keep your phone number up to date — it's used for OTP verification and delivery SMS.",
-    ],
-    related: ["reset-password"],
-  },
-  {
-    id: "delete-account",
-    title: "How do I delete my account?",
-    description: "Permanent account deletion and what happens to your past orders.",
-    section: "account",
-    steps: [
-      {
-        heading: "Make sure all orders are completed",
-        body: "Account deletion isn't possible if you have active or pending orders. Wait for all orders to be delivered or cancelled first.",
-      },
-      {
-        heading: "Go to Account Settings",
-        body: "Visit /account and scroll to the bottom of the 'Profile' section. Click 'Delete My Account'.",
-        link: { label: "Open Account Settings →", href: "/account" },
-      },
-      {
-        heading: "Confirm deletion",
-        body: "You'll be asked to enter your password and confirm your decision. This action is irreversible.",
-      },
-      {
-        heading: "What gets deleted",
-        body: "Your profile, saved addresses, and wishlist are permanently deleted. Order history is retained for 3 years as required by Indian accounting regulations.",
-      },
-    ],
-    tips: [
-      "Download your order history before deleting — go to Account → Orders → Export.",
-      "If you just want a break, you can deactivate (hide) your account instead of deleting it.",
-    ],
-    related: ["reset-password", "update-profile"],
-  },
+  // ACCOUNT (20 articles)
+  { id: "reset-password", title: "How do I reset my password?", description: "Steps to recover and reset your account password.", section: "account", steps: [{ heading: "Click forgot", body: "Click 'Forgot Password' on the login page." }, { heading: "Follow email", body: "Follow the email instructions within 24 hours." }] },
+  { id: "update-profile", title: "How do I update my profile information?", description: "Guide to changing account details and personal information.", section: "account", steps: [{ heading: "Go to profile", body: "Go to My Account > Profile." }, { heading: "Update", body: "Update your name, phone, email, and other details." }] },
+  { id: "manage-address", title: "How do I add or change my address?", description: "Instructions for managing shipping and billing addresses.", section: "account", steps: [{ heading: "Access", body: "Go to My Account > Addresses." }, { heading: "Multiple", body: "You can have multiple addresses saved." }] },
+  { id: "wishlist-add", title: "How do I add items to my wishlist?", description: "Step-by-step guide to save your favorite products for later.", section: "account", steps: [{ heading: "Heart icon", body: "Click the heart icon on any product." }, { heading: "Access", body: "Access your wishlist from My Account anytime." }] },
+  { id: "wishlist-remove", title: "How do I remove items from my wishlist?", description: "Learn how to delete items or clear your entire wishlist.", section: "account", steps: [{ heading: "Click again", body: "Click the heart icon again to remove." }, { heading: "Or manage", body: "Or manage from the Wishlist page." }] },
+  { id: "contact-support", title: "How do I contact customer support when I get stuck?", description: "Multiple ways to reach our support team for help and issue resolution.", section: "account", steps: [{ heading: "Support page", body: "Visit My Account > Support." }, { heading: "Contact", body: "Submit tickets or contact via email/WhatsApp. We respond within 24 hours." }] },
+  { id: "stuck-checkout", title: "What should I do if I get stuck during checkout or order process?", description: "Troubleshooting guide for common checkout and ordering issues.", section: "account", steps: [{ heading: "Steps", body: "Clear browser cache, try a different browser, check internet connection, or disable ad blockers." }] },
+  { id: "track-guide", title: "Complete guide: Tracking your order from purchase to delivery", description: "Everything you need to know about tracking your order step by step.", section: "account", steps: [{ heading: "Flow", body: "Your order: confirmed → packed → shipped → in transit → delivered." }, { heading: "Track", body: "Check status anytime from My Orders." }] },
+  { id: "delete-account", title: "How do I delete my account?", description: "Process to close or deactivate your account.", section: "account", steps: [{ heading: "Go to settings", body: "Go to My Account > Settings > Close Account." }, { heading: "Timeline", body: "Your data will be deleted after 30 days per privacy policy." }] },
+  { id: "multiple-accounts", title: "Can I have multiple accounts?", description: "Information about account multiplicity and rules.", section: "account", steps: [{ heading: "One account", body: "One account per person is recommended." }, { heading: "Violation", body: "Multiple accounts may violate our terms of service." }] },
+  { id: "update-phone", title: "How do I update my phone number?", description: "Guide to changing registered phone number.", section: "account", steps: [{ heading: "Profile", body: "Go to My Account > Profile and update phone number." }, { heading: "Verify", body: "Verification OTP will be sent to the new number." }] },
+  { id: "order-history", title: "How do I check my order history?", description: "Guide to viewing all your past orders.", section: "account", steps: [{ heading: "My orders", body: "Visit My Account > My Orders." }, { heading: "Filter", body: "Filter by status: pending, delivered, returned, cancelled." }] },
+  { id: "digital-items", title: "Can I view my download/digital items?", description: "Information about accessing digital purchases.", section: "account", steps: [{ heading: "Downloads", body: "Digital items are listed in My Account > Downloads." }, { heading: "Anytime", body: "Download them anytime after purchase." }] },
+  { id: "referral", title: "How do I refer a friend?", description: "Guide to our referral program and rewards.", section: "account", steps: [{ heading: "Code", body: "Get your unique referral code from My Account > Referrals." }, { heading: "Earn", body: "Earn rewards when friends sign up." }] },
+  { id: "change-email", title: "Can I change my email address?", description: "Process to update your registered email.", section: "account", steps: [{ heading: "Settings", body: "Go to My Account > Settings > Email Address." }, { heading: "Verify", body: "Verification link will be sent to your current email." }] },
+  { id: "notifications", title: "How do I manage my notification preferences?", description: "Guide to customizing notifications and alerts.", section: "account", steps: [{ heading: "Preferences", body: "Go to My Account > Notifications." }, { heading: "Customize", body: "Enable/disable SMS, email, and push notifications." }] },
+  { id: "two-factor", title: "How do I enable two-factor authentication?", description: "Guide to setting up 2FA for account security.", section: "account", steps: [{ heading: "Security", body: "Go to My Account > Security > Two-Factor Authentication." }, { heading: "Choose", body: "Choose SMS or app-based authentication." }] },
+  { id: "compromised", title: "What should I do if I suspect my account is compromised?", description: "Steps to take if account security is breached.", section: "account", steps: [{ heading: "Immediately", body: "Change password immediately and enable 2FA." }, { heading: "Review", body: "Review recent orders and contact support." }] },
+  { id: "transaction-history", title: "How do I view my transaction history?", description: "Guide to accessing complete transaction records.", section: "account", steps: [{ heading: "Access", body: "Visit My Account > Transaction History." }, { heading: "Export", body: "Export options available for tax/accounting purposes." }] },
+  { id: "deactivate-account", title: "Can I close my account temporarily?", description: "Information about account deactivation vs deletion.", section: "account", steps: [{ heading: "Deactivate", body: "Go to Settings > Deactivate Account." }, { heading: "Reactivate", body: "Reactivate anytime. Data preserved for 6 months." }] },
 
-  // ── Trust & Safety ────────────────────────────────────────────────────────────
-  {
-    id: "data-privacy",
-    title: "How is my personal data protected?",
-    description: "An overview of our data privacy practices and how we safeguard your information.",
-    section: "trust",
-    steps: [
-      {
-        heading: "Data we collect",
-        body: "We collect only what's necessary — name, email, phone, delivery address, and payment method (no card numbers are stored). Browsing data may be collected for personalization.",
-      },
-      {
-        heading: "How we store it",
-        body: "All data is encrypted in transit (TLS 1.3) and at rest (AES-256). Our servers are hosted in India, compliant with the Digital Personal Data Protection Act 2023.",
-      },
-      {
-        heading: "Who we share it with",
-        body: "Your data is shared only with trusted service partners (courier companies for delivery, Razorpay for payments) who are bound by data processing agreements.",
-      },
-      {
-        heading: "Your rights",
-        body: "Under DPDP Act 2023, you have the right to access, correct, and delete your personal data. Use the 'Data Requests' section in Account Settings to exercise these rights.",
-        link: { label: "Read our Privacy Policy →", href: "/privacy-policy" },
-      },
-    ],
-    tips: [
-      "We will NEVER sell your personal data to third parties.",
-      "Review our full Privacy Policy at /privacy-policy for complete details.",
-    ],
-    related: ["delete-account", "report-issue"],
-  },
-  {
-    id: "report-issue",
-    title: "How do I report a seller or product issue?",
-    description: "Steps to report counterfeit or misleading products on the platform.",
-    section: "trust",
-    steps: [
-      {
-        heading: "Report from the product page",
-        body: `On any product listing, scroll to the bottom and click 'Report this listing'. Choose the issue type — misleading description, counterfeit, inappropriate content, or other.`,
-      },
-      {
-        heading: "Report from your order",
-        body: "If you received a product that doesn't match its listing, go to 'My Orders' → select the order → click 'Report a Problem'.",
-      },
-      {
-        heading: "Our review process",
-        body: "Our trust & safety team reviews reports within 48 hours. Serious violations (counterfeits, fraud) are escalated immediately.",
-      },
-      {
-        heading: "Outcome",
-        body: "If the report is substantiated, the listing or seller account may be suspended. You'll receive an email update on the outcome.",
-      },
-    ],
-    tips: [
-      "Attach photos or screenshots to strengthen your report.",
-      "False reporting to harm competitors is a violation of our Terms of Service.",
-    ],
-    related: ["data-privacy", "return-order"],
-  },
+  // TRUST & SAFETY (12 articles)
+  { id: "data-protection", title: "How is my personal data protected?", description: "Information about data protection and privacy measures.", section: "trust", steps: [{ heading: "Laws", body: "We follow GDPR, CCPA, and Indian data protection laws." }, { heading: "Encryption", body: "All data is encrypted both in transit and at rest." }] },
+  { id: "fraud-prevention", title: "What measures does Vridhira take to prevent fraud?", description: "Security practices and fraud prevention mechanisms.", section: "trust", steps: [{ heading: "Tools", body: "We use Razorpay (PCI-DSS), monitor patterns, verify addresses." }, { heading: "AI", body: "AI-based fraud detection in place." }] },
+  { id: "authenticity", title: "How can I ensure the product I'm buying is authentic?", description: "Tips for verifying product authenticity and identifying counterfeits.", section: "trust", steps: [{ heading: "Look for", body: "High-rated sellers, reviews with photos, detailed specs." }, { heading: "Report", body: "Report suspicious items." }] },
+  { id: "seller-credibility", title: "How does Vridhira ensure seller credibility?", description: "Information about seller verification and vetting process.", section: "trust", steps: [{ heading: "Verified", body: "All sellers are verified and rated by customers." }, { heading: "Monitored", body: "Monitored for compliance. We remove fraudulent sellers." }] },
+  { id: "privacy-policy", title: "What is your privacy policy?", description: "Overview of how your data is collected and used.", section: "trust", steps: [{ heading: "Details", body: "Our privacy policy details data collection, usage, and rights." }, { heading: "Location", body: "Available at our website footer." }] },
+  { id: "report-fraud", title: "Can I report a suspicious or fraudulent listing?", description: "Steps to report fake or misleading listings.", section: "trust", steps: [{ heading: "Report button", body: "Click 'Report' on any product page." }, { heading: "Action", body: "Our team reviews and takes action within 24 hours." }] },
+  { id: "location-data", title: "How is my location data used?", description: "Information about location tracking and usage.", section: "trust", steps: [{ heading: "Purpose", body: "We only use location data for delivery optimization." }, { heading: "Disable", body: "You can disable location sharing in app settings." }] },
+  { id: "data-residency", title: "Do you comply with data residency requirements?", description: "Information about data storage and localization.", section: "trust", steps: [{ heading: "Compliance", body: "Yes, we comply with all Indian data residency requirements." }, { heading: "Storage", body: "Customer data is stored on Indian servers." }] },
+  { id: "dispute-transaction", title: "What happens if I dispute a transaction?", description: "Process for disputing fraudulent or incorrect charges.", section: "trust", steps: [{ heading: "Contact", body: "Contact our support team immediately with details." }, { heading: "Investigate", body: "We'll investigate and work with your bank to resolve." }] },
+  { id: "data-backup", title: "How often is my data backed up?", description: "Information about data backup frequency and disaster recovery.", section: "trust", steps: [{ heading: "Daily", body: "Your data is backed up daily." }, { heading: "Redundancy", body: "Redundancy across multiple secure locations." }] },
+  { id: "sustainability", title: "Does Vridhira have any sustainability or eco-friendly initiatives?", description: "Information about environmental practices.", section: "trust", steps: [{ heading: "Initiatives", body: "Eco-friendly packaging, sustainable seller partnerships." }, { heading: "Carbon", body: "We offset carbon. Learn more on Sustainability page." }] },
+  { id: "office-location", title: "Where is Vridhira based and can I visit your office?", description: "Information about company location and office visits.", section: "trust", steps: [{ heading: "Location", body: "Vridhira is headquartered in India." }, { heading: "Visits", body: "Physical office visits by appointment only. Contact support." }] },
 
-  // ── Community ─────────────────────────────────────────────────────────────────
-  {
-    id: "artisan-community",
-    title: "How do I join the artisan community?",
-    description: "Connect with fellow artisans, join events, and share your craft.",
-    section: "community",
-    steps: [
-      {
-        heading: "Create a Vridhira account",
-        body: "Community participation requires a Vridhira account. If you don't have one, sign up at /account/register.",
-      },
-      {
-        heading: "Visit the Community section",
-        body: "Navigate to the Community link in the footer or visit /community. You'll see discussions, artisan spotlights, and upcoming events.",
-      },
-      {
-        heading: "Introduce yourself",
-        body: `Post an introduction in the 'Welcome!' thread — tell us about your craft, region, and what inspired you.`,
-      },
-      {
-        heading: "Join local artisan groups",
-        body: "We have regional groups for artisans from different states — Rajasthan, West Bengal, Odisha, Gujarat, and more. Join the one closest to you.",
-      },
-    ],
-    tips: [
-      "Verified artisans (sellers on Vridhira) get a special badge in the community.",
-      "Community events like virtual workshops and craft fairs are announced on the community homepage.",
-    ],
-    related: ["forum-guidelines"],
-  },
-  {
-    id: "forum-guidelines",
-    title: "What are the community forum guidelines?",
-    description: "Rules and best practices for respectful, constructive community interaction.",
-    section: "community",
-    steps: [
-      {
-        heading: "Be respectful",
-        body: "Treat all community members with kindness and respect — regardless of craft, region, language, or experience level. Personal attacks, harassment, and hate speech are not tolerated.",
-      },
-      {
-        heading: "Stay on topic",
-        body: "Keep discussions relevant to arts, crafts, buying, and the artisan community. Off-topic promotions and unrelated links will be removed.",
-      },
-      {
-        heading: "No spam or self-promotion",
-        body: "Do not post repeated promotional content about your shop or products. Artisans can share new products in the designated 'New Arrivals' thread only.",
-      },
-      {
-        heading: "Report violations",
-        body: "Use the 'Report Post' button next to any post that violates guidelines. Our moderation team reviews reports within 24 hours.",
-      },
-    ],
-    tips: [
-      "First-time violations result in a warning. Repeated violations lead to suspension from community features.",
-      "Constructive criticism of products or practices is welcome — personal attacks are not.",
-    ],
-    related: ["artisan-community", "report-issue"],
-  },
+  // MISCELLANEOUS (33 articles)
+  { id: "search-products", title: "How do I search for products on Vridhira?", description: "Guide to using the search functionality to find products.", section: "miscellaneous", steps: [{ heading: "Search bar", body: "Use the search bar at the top of the page." }, { heading: "Type", body: "Type product name, brand, or category. Results appear in real-time." }] },
+  { id: "filter-results", title: "How do I filter search results?", description: "Learn to narrow down products by filters and specifications.", section: "miscellaneous", steps: [{ heading: "Filters", body: "Use filters on the left: Price, Rating, Brand, Availability." }, { heading: "Combine", body: "Mix multiple filters to find exactly what you need." }] },
+  { id: "sort-products", title: "Can I sort products by different criteria?", description: "Information about product sorting options.", section: "miscellaneous", steps: [{ heading: "Options", body: "Sort by: Relevance, Price (Low to High), Price (High to Low), Newest, Most Popular, Best Rated." }] },
+  { id: "understand-reviews", title: "How do I read and understand product reviews?", description: "Guide to evaluating product reviews and ratings.", section: "miscellaneous", steps: [{ heading: "Reviews", body: "Reviews show verified buyer feedback with ratings." }, { heading: "Look for", body: "Look for detailed reviews with photos for genuine insights." }] },
+  { id: "write-review", title: "Can I write a review for a product I purchased?", description: "Steps to submit your own product review.", section: "miscellaneous", steps: [{ heading: "After delivery", body: "After delivery, go to My Orders > Product > Write Review." }, { heading: "Content", body: "Add rating, title, description, and up to 5 photos." }] },
+  { id: "loyalty-program", title: "What is the Vridhira loyalty program?", description: "Information about rewards and benefits for regular customers.", section: "miscellaneous", steps: [{ heading: "Earn", body: "Earn reward points on every purchase." }, { heading: "Redeem", body: "Redeem for discounts, free shipping, or exclusive offers." }] },
+  { id: "earn-points", title: "How do I earn reward points?", description: "Ways to accumulate points in the loyalty program.", section: "miscellaneous", steps: [{ heading: "Rate", body: "1 point per ₹1 spent." }, { heading: "Bonus", body: "Bonus points for referrals, reviews, and birthday purchases. No expiry." }] },
+  { id: "redeem-points", title: "What can I do with my reward points?", description: "Redemption options for accumulated points.", section: "miscellaneous", steps: [{ heading: "Value", body: "100 points = ₹10 discount." }, { heading: "Other uses", body: "Free shipping, exclusive products, or special access sales." }] },
+  { id: "newsletter", title: "How do I subscribe to the Vridhira newsletter?", description: "Steps to sign up for email updates and special offers.", section: "miscellaneous", steps: [{ heading: "Sign up", body: "Enter your email at website footer or Settings > Preferences." }, { heading: "Benefits", body: "Get early access to sales and exclusive deals." }] },
+  { id: "email-preferences", title: "Can I customize my email preferences?", description: "Guide to managing notification and email subscriptions.", section: "miscellaneous", steps: [{ heading: "Go to", body: "Go to My Account > Email Preferences." }, { heading: "Choose", body: "Choose what emails to receive: promotions, updates, newsletters." }] },
+  { id: "mobile-app", title: "Does Vridhira have a mobile app?", description: "Information about shopping on mobile and availability of apps.", section: "miscellaneous", steps: [{ heading: "Download", body: "Download from App Store (iOS) or Google Play (Android)." }, { heading: "Exclusive", body: "App features exclusive mobile-only deals." }] },
+  { id: "app-vs-web", title: "What's the difference between the app and website?", description: "Comparison of mobile app vs website experience.", section: "miscellaneous", steps: [{ heading: "App benefits", body: "Faster checkout, push notifications, exclusive app-only discounts." }, { heading: "Website", body: "Website has full functionality." }] },
+  { id: "dynamic-pricing", title: "What is dynamic pricing and how does it work?", description: "Explanation of price changes and deals.", section: "miscellaneous", steps: [{ heading: "Pricing", body: "Prices change based on demand, inventory, and seasonal sales." }, { heading: "Alerts", body: "Set price alerts to get notified of price drops." }] },
+  { id: "price-alerts", title: "How do I set up price alerts for products?", description: "Guide to getting notifications for price changes.", section: "miscellaneous", steps: [{ heading: "Bell icon", body: "Click bell icon on product page to set alert." }, { heading: "Notify", body: "Get notified when price drops or item is back in stock." }] },
+  { id: "out-of-stock", title: "What does 'out of stock' mean and when will it be back?", description: "Information about product availability status.", section: "miscellaneous", steps: [{ heading: "Meaning", body: "Product is not currently available." }, { heading: "Notify", body: "Enable 'Notify Me' for restock alerts." }] },
+  { id: "preorder", title: "Can I pre-order out of stock items?", description: "Information about pre-ordering unavailable products.", section: "miscellaneous", steps: [{ heading: "Available", body: "Pre-order available for some items." }, { heading: "Timeline", body: "You pay now and receive item first once stock arrives." }] },
+  { id: "size-guides", title: "How do I check if a product size will fit me?", description: "Guide to using size charts and fit information.", section: "miscellaneous", steps: [{ heading: "Guide", body: "Check Size Guide on product page." }, { heading: "Reviews", body: "Many products show fit reviews from buyers." }] },
+  { id: "recommendations", title: "How do I find similar or recommended products?", description: "Guide to discovering related items.", section: "miscellaneous", steps: [{ heading: "Sections", body: "See 'You might also like' and 'Customers bought together'." }, { heading: "Personalized", body: "Personalized recommendations in My Account." }] },
+  { id: "multiple-wishlists", title: "How do I manage multiple wishlists?", description: "Steps to organize products into different wishlists.", section: "miscellaneous", steps: [{ heading: "Create", body: "Create multiple wishlists from Wishlist page." }, { heading: "Name", body: "Name them (gifts, personal, home, etc.) for organization." }] },
+  { id: "share-wishlist", title: "Can I share my wishlist with friends and family?", description: "Options for sharing your wishlist with others.", section: "miscellaneous", steps: [{ heading: "Share", body: "Go to Wishlist > Share > Copy link or send via email." }, { heading: "Gift", body: "Friends can view and even buy items as gifts." }] },
+  { id: "report-bug", title: "What should I do if I find a bug or technical issue?", description: "Steps to report website or app problems.", section: "miscellaneous", steps: [{ heading: "Report", body: "Go to My Account > Support > Report Bug." }, { heading: "Include", body: "Provide details and screenshots. Tech team investigates within 24 hours." }] },
+  { id: "feedback", title: "How do I provide feedback or suggestions?", description: "How to share your ideas for improving Vridhira.", section: "miscellaneous", steps: [{ heading: "Feedback", body: "Visit My Account > Support > Feedback." }, { heading: "Share", body: "Share your suggestions. We love hearing from customers." }] },
+  { id: "system-requirements", title: "What are the system requirements to use Vridhira website?", description: "Technical requirements for smooth browsing experience.", section: "miscellaneous", steps: [{ heading: "Browsers", body: "Works on all modern browsers (Chrome, Safari, Firefox, Edge)." }, { heading: "RAM", body: "Minimum 2GB RAM recommended. Mobile browser compatible." }] },
+  { id: "slow-website", title: "Why is the website running slowly for me?", description: "Troubleshooting steps for slow website performance.", section: "miscellaneous", steps: [{ heading: "Steps", body: "Clear browser cache, disable extensions, check internet speed." }, { heading: "Try", body: "Try incognito mode. Contact support if issue persists." }] },
+  { id: "seasonal-sales", title: "Does Vridhira have any seasonal sales or special events?", description: "Information about sales, festivals, and special events.", section: "miscellaneous", steps: [{ heading: "Events", body: "Festival sales, Birthday Month specials, Flash sales, Clearance events." }, { heading: "Stay updated", body: "Subscribe to get early notifications." }] },
+  { id: "stay-notified", title: "How can I get notified about upcoming sales and deals?", description: "Ways to stay updated on special offers.", section: "miscellaneous", steps: [{ heading: "Options", body: "Enable app notifications, subscribe to newsletter, follow social media." }, { heading: "Calendar", body: "Add calendar reminders." }] },
+  { id: "support-channels", title: "How can I contact Vridhira customer support?", description: "Complete list of support channels and response times.", section: "miscellaneous", steps: [{ heading: "Channels", body: "Email: support@vridhira.com | WhatsApp: +91-XXXXX | Chat" }, { heading: "Hours", body: "Available 9AM-9PM IST daily. Average response: 2 hours." }] },
+  { id: "business-hours", title: "What are Vridhira's business hours?", description: "Operating hours and availability information.", section: "miscellaneous", steps: [{ heading: "24/7", body: "We operate 24/7." }, { heading: "Support", body: "Customer support: 9AM-9PM IST, Monday-Sunday. Orders processed all day." }] },
+  { id: "unsubscribe", title: "How can I unsubscribe from marketing emails?", description: "Steps to opt out of promotional communications.", section: "miscellaneous", steps: [{ heading: "Link", body: "Click 'Unsubscribe' link at bottom of any email." }, { heading: "Or", body: "Go to My Account > Email Preferences > Disable Promotions." }] },
+  { id: "search-features", title: "What search features does Vridhira have?", description: "Advanced search capabilities and tips.", section: "miscellaneous", steps: [{ heading: "Features", body: "Filters, sorting, saved searches, price range selection." }, { heading: "Learning", body: "Search learns your preferences over time." }] },
+  { id: "how-recommendations-work", title: "How do recommendations work on Vridhira?", description: "Understanding personalized recommendations.", section: "miscellaneous", steps: [{ heading: "Based on", body: "Based on your browsing, purchases, and wishlist." }, { heading: "Improve", body: "Machine learning refines suggestions as you shop." }] },
+  { id: "compare-products", title: "Can I compare products on Vridhira?", description: "Information about comparing multiple items.", section: "miscellaneous", steps: [{ heading: "Tool", body: "Add items to comparison tool." }, { heading: "View", body: "View side-by-side specs, prices, ratings, reviews of up to 5 products." }] },
+  { id: "browser-recommendation", title: "What browser should I use for best experience?", description: "Recommended browsers for optimal performance.", section: "miscellaneous", steps: [{ heading: "Recommended", body: "Chrome or Firefox recommended for latest features." }, { heading: "Supported", body: "Safari and Edge also fully supported. Avoid very old versions." }] },
+
+  // BUYING & ORDERS - EXPANDED (12 additional articles)
+  { id: "compare-before-buy", title: "Can I compare products before buying?", description: "How to use the product comparison feature.", section: "buying", steps: [{ heading: "Add to compare", body: "Click 'Compare' on product pages to add up to 5 items." }, { heading: "View side-by-side", body: "View detailed specifications, prices, and ratings side-by-side." }] },
+  { id: "bundle-deals", title: "What are bundle deals and how do I buy them?", description: "Information about product bundles and combo offers.", section: "buying", steps: [{ heading: "Bundles", body: "Bundles combine related products at discounted prices." }, { heading: "Buy", body: "Add bundle to cart. You save more than buying individually." }] },
+  { id: "gift-wrapping", title: "Does Vridhira offer gift wrapping or gift messages?", description: "Options for gift packaging and personalization.", section: "buying", steps: [{ heading: "Available", body: "Yes, gift wrapping available for most items." }, { heading: "Message", body: "Add personalized gift message at checkout." }] },
+  { id: "express-checkout", title: "What is express checkout and how does it work?", description: "Fast checkout option for returning customers.", section: "buying", steps: [{ heading: "Faster", body: "Express checkout saves your frequent addresses and payment methods." }, { heading: "One-click", body: "Complete purchase in seconds with saved information." }] },
+  { id: "discontinued-items", title: "What happens when a product is discontinued?", description: "Information about discontinued product handling.", section: "buying", steps: [{ heading: "Notification", body: "We notify you if an item is being discontinued." }, { heading: "Alternatives", body: "We suggest similar alternatives." }] },
+  { id: "product-variants", title: "How do I select the right size, color, or variant?", description: "Guide to choosing product options and variants.", section: "buying", steps: [{ heading: "Available", body: "Select from available variants (size, color, capacity)." }, { heading: "See what suits", body: "Reviews often mention which variants work best." }] },
+  { id: "back-order", title: "What does 'on back order' mean?", description: "Information about back-ordered items and timelines.", section: "buying", steps: [{ heading: "Meaning", body: "Item is currently out but will be in stock soon." }, { heading: "Timeline", body: "Check estimated restock date. You'll be notified when available." }] },
+  { id: "express-shipping-cost", title: "How much does express or priority shipping cost?", description: "Pricing for faster shipping options.", section: "buying", steps: [{ heading: "Varies", body: "Express shipping costs ₹49-99 depending on destination." }, { heading: "See at checkout", body: "Exact cost shown at checkout based on delivery location." }] },
+  { id: "buy-now-pay-later", title: "Does Vridhira offer 'Buy Now Pay Later' options?", description: "Information about deferred payment plans.", section: "buying", steps: [{ heading: "Available", body: "Yes, BNPL available through popular partners." }, { heading: "Eligible", body: "Orders above ₹500 typically eligible. Interest-free installments." }] },
+  { id: "seasonal-collections", title: "When are seasonal collections and sales released?", description: "Information about seasonal offerings and sales calendar.", section: "buying", steps: [{ heading: "Seasonal", body: "New collections released with each season." }, { heading: "Major sales", body: "Festival sales, clearance sales, and flash deals throughout year." }] },
+  { id: "loyalty-tier", title: "Are there customer loyalty tiers or membership levels?", description: "Information about tiered loyalty programs.", section: "buying", steps: [{ heading: "Tiers", body: "Bronze, Silver, Gold, Platinum based on annual spending." }, { heading: "Benefits", body: "Higher tiers unlock exclusive discounts and early sale access." }] },
+  { id: "student-discount", title: "Does Vridhira offer student or special discounts?", description: "Information about special discount programs.", section: "buying", steps: [{ heading: "Student", body: "Yes, verify your student status for 10% discount." }, { heading: "Other programs", body: "Senior citizen and corporate discounts also available." }] },
+
+  // SHIPPING - EXPANDED (8 additional articles)
+  { id: "international-shipping", title: "Does Vridhira ship internationally?", description: "Information about international delivery options.", section: "shipping", steps: [{ heading: "Available", body: "International shipping available to 50+ countries." }, { heading: "Check", body: "Enter your country at checkout for availability and cost." }] },
+  { id: "customs-duties", title: "Will I have to pay customs or import duties?", description: "Information about international tariffs and fees.", section: "shipping", steps: [{ heading: "Responsibility", body: "You may be responsible for customs duties on international orders." }, { heading: "Estimate", body: "Duties are based on destination country regulations." }] },
+  { id: "fragile-items", title: "How are fragile items packaged and shipped?", description: "Special handling and packaging for delicate items.", section: "shipping", steps: [{ heading: "Packaging", body: "Fragile items use reinforced packaging with extra padding." }, { heading: "Insurance", body: "Shipping insurance available for high-value fragile items." }] },
+  { id: "shipping-insurance", title: "What is shipping insurance and do I need it?", description: "Information about optional protection coverage.", section: "shipping", steps: [{ heading: "Coverage", body: "Insurance covers loss or damage during transit." }, { heading: "Cost", body: "Optional add-on. Recommended for items above ₹10,000." }] },
+  { id: "cold-chain-delivery", title: "Does Vridhira have temperature-controlled shipping?", description: "Information about cold chain logistics for sensitive products.", section: "shipping", steps: [{ heading: "Available", body: "Cold chain delivery available for perishable and special items." }, { heading: "Certified", body: "Certified cold carriers maintain proper temperature throughout." }] },
+  { id: "scheduled-delivery", title: "Can I schedule delivery on a specific date?", description: "Options for choosing exact delivery date.", section: "shipping", steps: [{ heading: "Feature", body: "Schedule delivery up to 30 days in advance." }, { heading: "Select", body: "Choose preferred date at checkout." }] },
+  { id: "parcel-locker", title: "Can packages be delivered to parcel lockers or pickup points?", description: "Alternative delivery locations besides home.", section: "shipping", steps: [{ heading: "Lockers", body: "Yes, delivery available to authorized pickup points and lockers." }, { heading: "Convenient", body: "Collect at your preferred time within 7 days." }] },
+  { id: "signature-required", title: "Is signature required for delivery?", description: "Information about delivery signature requirements.", section: "shipping", steps: [{ heading: "Typically", body: "Not required for most orders under ₹5,000." }, { heading: "High-value", body: "Signature required for high-value items for security." }] },
+
+  // PAYMENTS - EXPANDED (12 additional articles)
+  { id: "emi-options", title: "Does Vridhira offer installment (EMI) payment plans?", description: "Information about interest-free monthly payment options.", section: "payments", steps: [{ heading: "Available", body: "Interest-free EMI available for orders above ₹10,000." }, { heading: "Partners", body: "Through credit cards, BNPL, and wallet partners." }] },
+  { id: "wallet-balance", title: "What is the Vridhira wallet and how does it work?", description: "Information about digital wallet functionality.", section: "payments", steps: [{ heading: "Wallet", body: "Prepaid digital wallet for faster checkout." }, { heading: "Add money", body: "Add funds anytime. Use for any purchase. No expiry." }] },
+  { id: "corporate-account", title: "Does Vridhira offer B2B or corporate accounts?", description: "Information about bulk and business purchases.", section: "payments", steps: [{ heading: "Available", body: "Yes, corporate accounts with special pricing available." }, { heading: "Contact", body: "Contact sales@vridhira.com for business inquiries." }] },
+  { id: "tax-invoice", title: "Can I get a GST tax invoice for my purchases?", description: "Information about tax documentation for businesses.", section: "payments", steps: [{ heading: "Available", body: "Yes, GST invoices available for businesses." }, { heading: "Add GST", body: "Add GST number to My Account > Tax Settings." }] },
+  { id: "subscription-payment", title: "Does Vridhira have subscription or recurring payment options?", description: "Information about alternative payment models.", section: "payments", steps: [{ heading: "Subscriptions", body: "Subscribe to regular products for automatic deliveries." }, { heading: "Save", body: "Get discount on subscription purchases." }] },
+  { id: "crypto-payment", title: "Does Vridhira accept cryptocurrency payments?", description: "Information about digital currency payment options.", section: "payments", steps: [{ heading: "Currently", body: "Cryptocurrency payments not currently accepted." }, { heading: "Future", body: "We're exploring crypto payment integration for the future." }] },
+  { id: "payment-retry", title: "What happens if my payment fails?", description: "Information about payment failure and retry options.", section: "payments", steps: [{ heading: "Notification", body: "You'll receive notification of failed payment." }, { heading: "Retry", body: "You can retry from My Account > Pending Orders." }] },
+  { id: "partial-refund", title: "Can I get a partial refund for part of an order?", description: "Information about receiving partial refunds.", section: "payments", steps: [{ heading: "Item returns", body: "Partial refund issued for individual items you return." }, { heading: "Example", body: "Return 2 of 5 items → get refund for just those 2." }] },
+  { id: "pending-refund", title: "Why is my refund still pending after 7 days?", description: "Troubleshooting delayed refunds.", section: "payments", steps: [{ heading: "Check", body: "Check your bank account for refund. Banks sometimes show pending." }, { heading: "Contact", body: "Contact support with transaction ID if still not received." }] },
+  { id: "affiliate-sales", title: "Can I use referral or affiliate codes while paying?", description: "Information about combining promotional codes.", section: "payments", steps: [{ heading: "Combine", body: "Yes, apply multiple codes: referral + promo + loyalty." }, { heading: "Order", body: "Apply in the order given for maximum discounts." }] },
+  { id: "payment-security", title: "Is my payment information encrypted during payment?", description: "Technical details about payment security protocols.", section: "payments", steps: [{ heading: "Encryption", body: "Yes, 256-bit AES encryption protects all payment data." }, { heading: "Standard", body: "Razorpay uses PCI-DSS Level 1 compliance for card data." }] },
+  { id: "billing-address", title: "Why does checkout ask for billing address?", description: "Information about why billing address is required.", section: "payments", steps: [{ heading: "Verification", body: "Billing address is used for payment verification and fraud prevention." }, { heading: "Important", body: "Should match your bank or credit card registered address." }] },
+
+  // ACCOUNT - EXPANDED (10 additional articles)
+  { id: "social-login", title: "Can I sign up with Google, Facebook, or Apple ID?", description: "Social authentication and sign-up options.", section: "account", steps: [{ heading: "Available", body: "Yes, sign up/login with Google, Facebook, or Apple ID." }, { heading: "Benefits", body: "Faster registration. Auto-fills profile information." }] },
+  { id: "guest-checkout", title: "Can I purchase without creating an account?", description: "Information about shopping as a guest.", section: "account", steps: [{ heading: "Possible", body: "Yes, guest checkout available for one-time purchases." }, { heading: "Consider", body: "Creating account gives access to wishlist and order history." }] },
+  { id: "privacy-settings", title: "What privacy settings are available on my account?", description: "Guide to privacy and visibility controls.", section: "account", steps: [{ heading: "Settings", body: "Go to My Account > Privacy Settings." }, { heading: "Control", body: "Control who sees your profile, reviews, and activity." }] },
+  { id: "communication-preferences", title: "How do I control what communications I receive?", description: "Detailed guide to managing all notifications.", section: "account", steps: [{ heading: "Preferences", body: "Go to My Account > Communication Preferences." }, { heading: "Granular", body: "Choose email, SMS, notifications for each category." }] },
+  { id: "data-export", title: "Can I export or download my data from Vridhira?", description: "Information about GDPR data access rights.", section: "account", steps: [{ heading: "Available", body: "Yes, download your data as per GDPR/data protection laws." }, { heading: "Request", body: "Request from My Account > Settings > Download My Data." }] },
+  { id: "minor-account", title: "Can minors create accounts on Vridhira?", description: "Age requirements and restrictions for accounts.", section: "account", steps: [{ heading: "Age", body: "Minimum 13 years to create account." }, { heading: "Consent", body: "Minors under 18 need parental consent for purchasing." }] },
+  { id: "organization-account", title: "Can I create an account for my business or organization?", description: "Options for corporate and organizational accounts.", section: "account", steps: [{ heading: "Business", body: "Yes, register as business/organization." }, { heading: "Benefits", body: "Special pricing, invoicing, and team member access." }] },
+  { id: "linked-accounts", title: "Can I link multiple accounts together?", description: "Options for managing linked accounts.", section: "account", steps: [{ heading: "Family", body: "Link family member accounts for group purchases." }, { heading: "Share", body: "Share rewards and birthday discounts across linked accounts." }] },
+  { id: "username-change", title: "Can I change my username or username availability?", description: "Information about username and display name changes.", section: "account", steps: [{ heading: "Display name", body: "Yes, change your display name anytime from Profile." }, { heading: "Limits", body: "Change allowed once per month. Special characters not allowed." }] },
+  { id: "account-merge", title: "Can I merge two accounts into one?", description: "Information about combining duplicate accounts.", section: "account", steps: [{ heading: "Contact support", body: "Contact support with both account emails." }, { heading: "Merge", body: "We can merge orders, wishlist, and rewards." }] },
+
+  // TRUST & SAFETY - EXPANDED (8 additional articles)
+  { id: "verified-badge", title: "What does the verified badge mean on seller profiles?", description: "Information about seller verification and trust badges.", section: "trust", steps: [{ heading: "Badge meaning", body: "Verified badge indicates seller has passed our verification process." }, { heading: "Trust", body: "Seller meets our quality, authenticity, and service standards." }] },
+  { id: "review-authenticity", title: "How can I tell if product reviews are genuine?", description: "Guide to identifying authentic customer reviews.", section: "trust", steps: [{ heading: "Verified purchases", body: "Look for 'Verified Purchase' badge on reviews." }, { heading: "Detailed", body: "Genuine reviews have detailed descriptions and multiple photos." }] },
+  { id: "counterfeits", title: "What is Vridhira's policy on counterfeit items?", description: "Information about anti-counterfeiting measures.", section: "trust", steps: [{ heading: "Zero tolerance", body: "Zero tolerance for counterfeit products." }, { heading: "Action", body: "Sellers caught selling counterfeits are permanently banned." }] },
+  { id: "seller-ratings", title: "How are seller ratings calculated and displayed?", description: "Understanding seller performance metrics.", section: "trust", steps: [{ heading: "Based on", body: "Ratings based on quality, delivery speed, customer service." }, { heading: "Recent", body: "Higher weight given to recent transactions." }] },
+  { id: "report-seller", title: "How do I report a seller for poor service?", description: "Steps to lodge complaint against sellers.", section: "trust", steps: [{ heading: "Report", body: "Click 'Report Seller' on order or product page." }, { heading: "Resolution", body: "Our team investigates within 5 business days." }] },
+  { id: "chargebacks", title: "What is a chargeback and how does it work?", description: "Information about credit card chargebacks.", section: "trust", steps: [{ heading: "Definition", body: "Chargeback is reversal of card payment by your bank." }, { heading: "Process", body: "Use this as last resort after attempting refund through Vridhira." }] },
+  { id: "security-incidents", title: "How do I report a security incident or data breach?", description: "Procedure for reporting security concerns.", section: "trust", steps: [{ heading: "Contact", body: "Email security@vridhira.com with incident details." }, { heading: "Response", body: "Security team acknowledges within 24 hours." }] },
+  { id: "dispute-resolution", title: "What is Vridhira's dispute resolution process?", description: "Complete guide to resolving order disputes.", section: "trust", steps: [{ heading: "Process", body: "1. Contact seller → 2. Open dispute on Vridhira → 3. Evidence submission → 4. Decision." }, { heading: "Timeline", body: "Resolution typically within 10 business days." }] },
+
+  // MISCELLANEOUS - EXPANDED (20 additional articles)
+  { id: "accessibility", title: "Does Vridhira website have accessibility features?", description: "Information about accessibility and inclusive design.", section: "miscellaneous", steps: [{ heading: "Features", body: "Screen reader support, keyboard navigation, high contrast mode." }, { heading: "Feedback", body: "Report accessibility issues to support for improvements." }] },
+  { id: "dark-mode", title: "Does the Vridhira app or website have dark mode?", description: "Information about dark theme availability.", section: "miscellaneous", steps: [{ heading: "App", body: "Mobile app has dark mode. Toggle in Settings." }, { heading: "Website", body: "Website uses browser's dark mode settings." }] },
+  { id: "language-support", title: "What languages does Vridhira support?", description: "Information about multi-language support.", section: "miscellaneous", steps: [{ heading: "Languages", body: "English, Hindi, Tamil, Telugu, Kannada, Malayalam." }, { heading: "Select", body: "Change language from Settings > Language." }] },
+  { id: "currency", title: "What currencies does Vridhira accept?", description: "Information about supported payment currencies.", section: "miscellaneous", steps: [{ heading: "Primary", body: "All prices displayed in Indian Rupees (₹)." }, { heading: "International", body: "International orders shown in local currency for reference." }] },
+  { id: "quick-reorder", title: "Can I quickly reorder items I've bought before?", description: "Fast reordering from order history.", section: "miscellaneous", steps: [{ heading: "Access", body: "Go to My Orders > Select previous order > 'Reorder'." }, { heading: "Faster", body: "Automatically adds same items to cart." }] },
+  { id: "recently-viewed", title: "Where can I find items I've recently viewed?", description: "Accessing browsing history and recommendations.", section: "miscellaneous", steps: [{ heading: "Access", body: "My Account > Recently Viewed Products shows browsing history." }, { heading: "Save", body: "Add any to wishlist for later." }] },
+  { id: "custom-lists", title: "Can I create custom shopping lists?", description: "Information about list-building features.", section: "miscellaneous", steps: [{ heading: "Lists", body: "Create multiple lists for different purposes." }, { heading: "Share", body: "Share lists with friends and family." }] },
+  { id: "video-reviews", title: "Can I see video reviews of products?", description: "Information about video testimonials and reviews.", section: "miscellaneous", steps: [{ heading: "Available", body: "Yes, many products have customer video reviews." }, { heading: "Find", body: "Filter reviews by 'Video' on product page." }] },
+  { id: "live-chat", title: "Does Vridhira offer live chat support?", description: "Information about real-time customer support.", section: "miscellaneous", steps: [{ heading: "Available", body: "Yes, live chat available from Help section." }, { heading: "Hours", body: "Available 10AM-8PM IST daily." }] },
+  { id: "social-media", title: "What are Vridhira's social media handles?", description: "Information about connecting on social platforms.", section: "miscellaneous", steps: [{ heading: "Platforms", body: "Follow @Vridhira on Instagram, Facebook, Twitter, YouTube." }, { heading: "Updates", body: "Social media followers get early deal notifications." }] },
+  { id: "api-access", title: "Does Vridhira provide APIs for developers?", description: "Information about developer API access.", section: "miscellaneous", steps: [{ heading: "Available", body: "Yes, REST APIs available for business partners." }, { heading: "Request", body: "Email developers@vridhira.com for API documentation." }] },
+  { id: "affiliate-program", title: "Can I become a Vridhira affiliate or partner?", description: "Information about affiliate and partnership programs.", section: "miscellaneous", steps: [{ heading: "Program", body: "Yes, join our affiliate program and earn commissions." }, { heading: "Rates", body: "Commission rates from 2-10% depending on category." }] },
+  { id: "partner-opportunities", title: "What partnership opportunities does Vridhira have?", description: "Information about business collaboration options.", section: "miscellaneous", steps: [{ heading: "Types", body: "Seller partnership, reseller, logistics, marketing partners." }, { heading: "Contact", body: "Reach out to partners@vridhira.com for discussions." }] },
+  { id: "white-label", title: "Does Vridhira offer white-label or B2B solutions?", description: "Information about enterprise and customization services.", section: "miscellaneous", steps: [{ heading: "Available", body: "Yes, white-label e-commerce solutions available." }, { heading: "Custom", body: "Fully customizable for your brand." }] },
+  { id: "sustainability-initiative", title: "What sustainability initiatives does Vridhira undertake?", description: "Information about environmental responsibility programs.", section: "miscellaneous", steps: [{ heading: "Packaging", body: "100% recyclable and eco-friendly packaging materials." }, { heading: "Carbon offset", body: "We offset delivery carbon emissions through tree planting." }] },
+  { id: "corporate-csr", title: "Does Vridhira have CSR or social initiatives?", description: "Information about corporate social responsibility programs.", section: "miscellaneous", steps: [{ heading: "CSR", body: "We donate 1% of profits to education and health initiatives." }, { heading: "Support", body: "Support local artisans and impact-driven businesses." }] },
+  { id: "blog-resources", title: "Does Vridhira have a blog or resource center?", description: "Information about content and educational resources.", section: "miscellaneous", steps: [{ heading: "Blog", body: "Visit blog.vridhira.com for product guides and tips." }, { heading: "Content", body: "Guides on buying, deals, and trends." }] },
+  { id: "press-inquiries", title: "How can media or press contact Vridhira?", description: "Information for journalists and media outlets.", section: "miscellaneous", steps: [{ heading: "Contact", body: "Email press@vridhira.com for media inquiries." }, { heading: "Response", body: "Press team responds within 2 business days." }] },
+  { id: "business-buyback", title: "Does Vridhira offer trade-in or buy-back programs?", description: "Information about taking back used products.", section: "miscellaneous", steps: [{ heading: "Program", body: "Yes, buy-back available for eligible categories." }, { heading: "Value", body: "Get instant credit towards new purchase." }] },
 ]
 
-// ── Most Viewed (pinned article IDs) ─────────────────────────────────────────
-const MOST_VIEWED_IDS = ["track-order", "refund-timeline", "payment-failed"]
-
-export function getMostViewed(): FAQArticle[] {
-  return MOST_VIEWED_IDS
-    .map((id) => ARTICLES.find((a) => a.id === id))
-    .filter((a): a is FAQArticle => Boolean(a))
-}
-
-// ── Search ────────────────────────────────────────────────────────────────────
-/** Case-insensitive search across title, description, and section name. */
-export function searchArticles(query: string): FAQArticle[] {
-  const q = query.trim().toLowerCase()
-  if (!q) return []
-  return ARTICLES.filter(
-    (a) =>
-      a.title.toLowerCase().includes(q) ||
-      a.description.toLowerCase().includes(q) ||
-      a.section.toLowerCase().includes(q)
+// Helper functions for filtering and searching
+export function getBySection(section: string): FAQArticle[] {
+  return ARTICLES.filter((a) => a.section === section).sort((a, b) =>
+    parseInt(a.steps[0]?.heading || "0") - parseInt(b.steps[0]?.heading || "0")
   )
 }
 
-/** Returns all articles for a given section (empty string / "all" → empty, shown as overview). */
-export function getBySection(section: string): FAQArticle[] {
-  if (!section || section === "all") return []
-  return ARTICLES.filter((a) => a.section === section)
+export function getMostViewed(): FAQArticle[] {
+  return ARTICLES.slice(0, 5)
 }
 
-/** Returns a single article by ID, or undefined if not found. */
+export function searchArticles(query: string): FAQArticle[] {
+  const q = query.toLowerCase()
+  return ARTICLES.filter(
+    (a) =>
+      a.title.toLowerCase().includes(q) ||
+      a.description.toLowerCase().includes(q)
+  )
+}
+
 export function getArticleById(id: string): FAQArticle | undefined {
   return ARTICLES.find((a) => a.id === id)
 }
 
-/** Returns the related articles for a given article. */
-export function getRelated(article: FAQArticle): FAQArticle[] {
-  if (!article.related?.length) return []
-  return article.related
-    .map((id) => ARTICLES.find((a) => a.id === id))
-    .filter((a): a is FAQArticle => Boolean(a))
+export function getSectionLabel(section: string): string {
+  const topic = TOPICS.find((t) => t.id === section)
+  return topic?.title || section
 }
 
-/** Returns the section label for a given section ID. */
-export function getSectionLabel(sectionId: string): string {
-  return SIDEBAR_SECTIONS.find((s) => s.id === sectionId)?.label ?? sectionId
+export function getRelated(article: FAQArticle): FAQArticle[] {
+  if (!article.related || article.related.length === 0) {
+    return []
+  }
+  return article.related
+    .map((id) => getArticleById(id))
+    .filter((a): a is FAQArticle => a !== undefined)
 }

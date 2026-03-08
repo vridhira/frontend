@@ -10,7 +10,7 @@ import { AskFormClient } from "../components/ask-form-client"
 export default function AskTemplate() {
   return (
     <div
-      className="min-h-screen"
+      className="min-h-screen pt-20 small:pt-24 lg:pt-40"
       style={{ background: "#FAF7F2" }}
     >
       {/* ── Breadcrumb strip ── */}
