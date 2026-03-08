@@ -56,3 +56,12 @@ dump.rdb
 /blob-report/
 /playwright/.cache/
 /playwright/.auth
+
+# ── Reference Documentation (Development Only) ────────────────────────────────
+# These are internal guides and reference docs for development, not needed in production
+STOREFRONT_SETUP.md
+COMPONENT_GUIDE.md
+CATEGORY_COMPONENTS_GUIDE.md
+*-REFERENCE.md
+*-reference.md
+README_STOREFRONT_CATEGORY.md
