@@ -1,7 +1,7 @@
-﻿Vridhira Attribution License
+﻿Attribution License
 Version 2.0 — March 2026
 
-Copyright (c) 2026 Himanshu — Vridhira (https://github.com/Newbie-Himanshu)
+Copyright (c) 2026 Himanshu (https://github.com/Newbie-Himanshu)
 All rights reserved.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -9,7 +9,7 @@ All rights reserved.
 GRANT OF LICENSE
 
 Subject to full and continuous compliance with ALL conditions set out in this
-License, the Licensor (Himanshu — Vridhira) hereby grants you a worldwide,
+License, the Licensor (Himanshu) hereby grants you a worldwide,
 royalty-free, non-exclusive license to:
 
   (a) use, copy, and run this software for personal or commercial purposes;
@@ -34,17 +34,15 @@ CONDITION 1 — PROJECT DOCUMENTATION ATTRIBUTION
 
 If you use, distribute, publish, host, or deploy this software or any
 portion of it — whether the project is public or private, commercial or
-non-commercial, storefront-based or headless/API-only — your project's
-primary documentation file (README, landing page, or equivalent) MUST
+non-commercial — your project's primary documentation file (README, landing page, or equivalent) MUST
 contain a clearly visible attribution section that includes ALL of the
 following fields exactly as written:
 
-    Based on Vridhira — E-Commerce for Indian Artisans
+    Based on software by Himanshu
     Original author: Himanshu (https://github.com/Newbie-Himanshu)
-    Source: https://github.com/Newbie-Himanshu/vridhira-frontend
-    License: Vridhira Attribution License v2.0
+    License: Attribution License v2.0
 
-All four fields are required. No field may be omitted, paraphrased,
+All three fields are required. No field may be omitted, paraphrased,
 summarised, or replaced with a vague reference such as "inspired by a
 GitHub project." The attribution must:
 
@@ -62,13 +60,10 @@ accessible website, app, hosted service, or internal tool accessible to
 any end user) built on this software, the application MUST display visible
 credits to the original project at ALL times. Specifically:
 
-  (a) The VridhiraCredits component (located at
-      src/modules/layout/components/vridhira-credits/) or an equivalent
-      visible UI credit block MUST remain present and rendered in the
+  (a) A visible credit block MUST remain present and rendered in the
       application footer on every page of the deployed application.
 
-  (b) The credits MUST include working links to:
-        — https://github.com/Newbie-Himanshu/vridhira-frontend
+  (b) The credits MUST include a working link to:
         — https://github.com/Newbie-Himanshu
 
   (c) Credits must be fully LEGIBLE at all times. The following are
@@ -93,8 +88,8 @@ existing attribution.
 
 You MAY NOT:
   • Remove, replace, hide, obscure, or comment-out any existing attribution
-    text, links, or copyright notices referencing Himanshu or Vridhira.
-  • Rename, refactor, or restructure the VridhiraCredits component in a way
+    text, links, or copyright notices referencing Himanshu or this project.
+  • Rename, refactor, or restructure any credit components in a way
     that removes or suppresses the original attribution from the rendered UI.
   • Modify the copyright notice at the top of any source file to remove or
     alter the original author line.
@@ -170,4 +165,4 @@ ACKNOWLEDGEMENT OF FRAMEWORK
 This project uses MedusaJS (https://github.com/medusajs/medusa) as its
 commerce engine, licensed separately under the MIT License by Medusa, Inc.
 This acknowledgement does not alter the terms of this License with respect
-to the Vridhira codebase.
+to this codebase.
