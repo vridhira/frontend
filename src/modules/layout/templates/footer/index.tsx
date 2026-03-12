@@ -1,17 +1,17 @@
 /**
  * ============================================================
- * VRIDHIRA — E-Commerce for Indian Artisans
+ * The Storefront — E-Commerce for Indian Artisans
  * ============================================================
  * @author      Himanshu
  * @github      https://github.com/Newbie-Himanshu
- * @repo        https://github.com/Newbie-Himanshu/vridhira-frontend
- * @copyright   2026 Himanshu — Vridhira. All rights reserved.
- * @license     MIT
+ * @repo        https://github.com/Newbie-Himanshu/frontend
+ * @copyright   2026 Himanshu. All rights reserved.
+ * @license     Dual-License (Community/Commercial) v2.0
  * ------------------------------------------------------------
  * @lastModifiedBy  Himanshu
- * @modifiedWith    GitHub Copilot
- * @modifiedOn      2026-03-06
- * @changeNote      Replaced Medusa branding with Vridhira; added VridhiraCredits
+ * @modifiedWith    GitHub Copilot & Claude
+ * @modifiedOn      2026-03-12
+ * @changeNote      Updated branding and repository URLs
  * ============================================================
  */
 
@@ -20,7 +20,7 @@ import { listCollections } from "@lib/data/collections"
 import { Text, clx } from "@medusajs/ui"
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import VridhiraCredits from "@modules/layout/components/vridhira-credits"
+import ProjectCredits from "@modules/layout/components/vridhira-credits"
 
 export default async function Footer() {
   const { collections } = await listCollections({
@@ -130,7 +130,7 @@ export default async function Footer() {
               <ul className="grid grid-cols-1 gap-y-2 text-ui-fg-subtle txt-small">
                 <li>
                   <a
-                    href="https://github.com/vridhira/vridhira-frontend"
+                    href="https://github.com/Newbie-Himanshu/frontend"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-ui-fg-base"
@@ -143,7 +143,7 @@ export default async function Footer() {
           </div>
         </div>
         <div className="flex flex-col w-full mb-16">
-          <VridhiraCredits />
+          <ProjectCredits />
         </div>
       </div>
     </footer>

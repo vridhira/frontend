@@ -1,17 +1,17 @@
 /**
  * ============================================================
- * VRIDHIRA — E-Commerce for Indian Artisans
+ * The Storefront — E-Commerce for Indian Artisans
  * ============================================================
  * @author      Himanshu
  * @github      https://github.com/Newbie-Himanshu
- * @repo        https://github.com/Newbie-Himanshu/vridhira-frontend
- * @copyright   2026 Himanshu — Vridhira. All rights reserved.
- * @license     MIT
+ * @repo        https://github.com/Newbie-Himanshu/frontend
+ * @copyright   2026 Himanshu. All rights reserved.
+ * @license     Dual-License (Community/Commercial) v2.0
  * ------------------------------------------------------------
  * @lastModifiedBy  Himanshu
- * @modifiedWith    GitHub Copilot
- * @modifiedOn      2026-03-06
- * @changeNote      Added Vridhira Google font imports (Plus Jakarta Sans, Playfair Display, Tiro Devanagari Hindi)
+ * @modifiedWith    GitHub Copilot & Claude
+ * @modifiedOn      2026-03-12
+ * @changeNote      Updated branding and repository URLs
  * ============================================================
  */
 

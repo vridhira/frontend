@@ -1,17 +1,17 @@
 /**
  * ============================================================
- * VRIDHIRA — E-Commerce for Indian Artisans
+ * The Storefront — E-Commerce for Indian Artisans
  * ============================================================
  * @author      Himanshu
  * @github      https://github.com/Newbie-Himanshu
- * @repo        https://github.com/Newbie-Himanshu/vridhira-frontend
- * @copyright   2026 Himanshu — Vridhira. All rights reserved.
- * @license     MIT
+ * @repo        https://github.com/Newbie-Himanshu/frontend
+ * @copyright   2026 Himanshu. All rights reserved.
+ * @license     Dual-License (Community/Commercial) v2.0
  * ------------------------------------------------------------
  * @lastModifiedBy  Himanshu
- * @modifiedWith    GitHub Copilot
- * @modifiedOn      2026-03-06
- * @changeNote      Initial creation of VridhiraCredits component
+ * @modifiedWith    GitHub Copilot & Claude
+ * @modifiedOn      2026-03-12
+ * @changeNote      Updated branding and repository URLs
  * ============================================================
  */
 
@@ -19,7 +19,7 @@ import React from "react"
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-type VridhiraCreditsProps = {
+type ProjectCreditsProps = {
   /** Controls visual weight. Use 'full' in footer, 'minimal' in tight spaces */
   variant?: "full" | "minimal"
   /** Optional custom class overrides for the wrapper */
@@ -44,14 +44,14 @@ const GitHubIcon = () => (
 
 /**
  * MAINTENANCE NOTE (for AI agents):
- * The social icon in the footer shows the Vridhira brand org repo only.
+ * The social icon in the footer shows the project repository.
  * Himanshu's personal GitHub (Newbie-Himanshu) lives in code headers only — NOT here.
- * When Himanshu adds LinkedIn/Twitter/Instagram, add them to this array.
+ * When additional social links are added, update this array.
  */
 const FOOTER_LINKS: Array<{ label: string; href: string; Icon: React.FC }> = [
   {
-    label: "vridhira-frontend",
-    href: "https://github.com/vridhira/vridhira-frontend",
+    label: "frontend",
+    href: "https://github.com/Newbie-Himanshu/frontend",
     Icon: GitHubIcon,
   },
   // ← Future: LinkedIn, Twitter/X, Instagram go here
@@ -60,33 +60,33 @@ const FOOTER_LINKS: Array<{ label: string; href: string; Icon: React.FC }> = [
 // ─── Component ────────────────────────────────────────────────────────────────
 
 /**
- * VridhiraCredits
+ * ProjectCredits
  *
- * Renders visible author credits for Himanshu — Vridhira in the storefront footer.
+ * Renders visible author credits for Himanshu in the storefront footer.
  * This is a Server Component — no client-side logic needed.
  *
  * Usage:
- *   <VridhiraCredits />                    ← full variant (default)
- *   <VridhiraCredits variant="minimal" />  ← one-liner for tight spaces
+ *   <ProjectCredits />                    ← full variant (default)
+ *   <ProjectCredits variant="minimal" />  ← one-liner for tight spaces
  */
-const VridhiraCredits: React.FC<VridhiraCreditsProps> = ({
+const ProjectCredits: React.FC<ProjectCreditsProps> = ({
   variant = "full",
   className = "",
 }) => {
   if (variant === "minimal") {
     return (
       <p
-        className={`text-xs text-vridhira-muted text-center ${className}`}
+        className={`text-xs text-muted text-center ${className}`}
         aria-label="Project credits"
       >
         Built with ❤️ by{" "}
         <a
-          href="https://github.com/vridhira/vridhira-frontend"
+          href="https://github.com/Newbie-Himanshu/frontend"
           target="_blank"
           rel="noopener noreferrer"
-          className="underline underline-offset-2 hover:text-vridhira-primary transition-colors"
+          className="underline underline-offset-2 hover:text-primary transition-colors"
         >
-          Himanshu — Vridhira
+          Himanshu
         </a>
         {" "}for Indian artisans.
       </p>
@@ -95,35 +95,35 @@ const VridhiraCredits: React.FC<VridhiraCreditsProps> = ({
 
   return (
     <section
-      className={`border-t border-vridhira-border pt-6 mt-6 ${className}`}
+      className={`border-t border-border pt-6 mt-6 ${className}`}
       aria-label="Project credits and attribution"
     >
       {/* Divider */}
       <div className="flex items-center gap-3 mb-4">
-        <div className="h-px flex-1 bg-vridhira-border" aria-hidden="true" />
-        <span className="text-xs text-vridhira-muted font-medium tracking-widest uppercase">
+        <div className="h-px flex-1 bg-border" aria-hidden="true" />
+        <span className="text-xs text-muted font-medium tracking-widest uppercase">
           Crafted by
         </span>
-        <div className="h-px flex-1 bg-vridhira-border" aria-hidden="true" />
+        <div className="h-px flex-1 bg-border" aria-hidden="true" />
       </div>
 
       {/* Main credits card */}
       <div className="flex flex-col items-center gap-3 text-center">
         {/* Name */}
-        <p className="text-sm font-semibold text-vridhira-text">
-          Himanshu — Vridhira
+        <p className="text-sm font-semibold text-text">
+          Himanshu
         </p>
 
         {/* Tagline */}
-        <p className="text-xs text-vridhira-muted max-w-xs leading-relaxed">
-          Building Vridhira independently — an open platform for India&apos;s artisans.
+        <p className="text-xs text-muted max-w-xs leading-relaxed">
+          Building The Storefront independently — an open platform for India&apos;s artisans.
         </p>
 
         {/* Social / repo links (brand org only — visible to website visitors) */}
         {FOOTER_LINKS.length > 0 && (
           <ul
             className="flex items-center gap-4 mt-1"
-            aria-label="Vridhira project links"
+            aria-label="Project links"
           >
             {FOOTER_LINKS.map(({ label, href, Icon }) => (
               <li key={label}>
@@ -132,7 +132,7 @@ const VridhiraCredits: React.FC<VridhiraCreditsProps> = ({
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`${label} on GitHub`}
-                  className="flex items-center gap-1.5 text-xs text-vridhira-muted hover:text-vridhira-primary transition-colors"
+                  className="flex items-center gap-1.5 text-xs text-muted hover:text-primary transition-colors"
                 >
                   <Icon />
                   <span>{label}</span>
@@ -143,18 +143,18 @@ const VridhiraCredits: React.FC<VridhiraCreditsProps> = ({
         )}
 
         {/* Copyright */}
-        <p className="text-xs text-vridhira-muted mt-1">
-          © {new Date().getFullYear()} Himanshu — Vridhira. All rights reserved.
+        <p className="text-xs text-muted mt-1">
+          © {new Date().getFullYear()} Himanshu. All rights reserved.
         </p>
 
         {/* Framework acknowledgment */}
-        <p className="text-xs text-vridhira-muted">
+        <p className="text-xs text-muted">
           Built using{" "}
           <a
             href="https://github.com/medusajs/medusa"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline underline-offset-2 hover:text-vridhira-primary transition-colors"
+            className="underline underline-offset-2 hover:text-primary transition-colors"
           >
             MedusaJS
           </a>{" "}
@@ -165,4 +165,4 @@ const VridhiraCredits: React.FC<VridhiraCreditsProps> = ({
   )
 }
 
-export default VridhiraCredits
+export default ProjectCredits
