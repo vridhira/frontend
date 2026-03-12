@@ -1,28 +1,28 @@
 ﻿<!--
   ============================================================
-  Himanshu — E-Commerce for Indian Artisans
+  The Storefront — E-Commerce for Indian Artisans
   ============================================================
   Author:         Himanshu
   GitHub:         https://github.com/Newbie-Himanshu
-  Repo:           https://github.com/Newbie-Himanshu/Himanshu-frontend
-  Copyright:      2026 Himanshu — Himanshu. All rights reserved.
-  License:        Himanshu Attribution License v2.0
-  Last Modified:  Himanshu via GitHub Copilot on 2026-03-06
-  Change:         Nav + links converted to badge images (no underlines); license updated
+  Repo:           https://github.com/Newbie-Himanshu/frontend
+  Copyright:      2026 Himanshu. All rights reserved.
+  License:        Dual-License (Community/Commercial) v2.0
+  Last Modified:  2026-03-12
+  Change:         Pronoun-based branding: Project identity replaced with "The Storefront"
   ============================================================
 -->
 
 <p align="center">
-  <a href="https://github.com/Himanshu/Himanshu-frontend">
+  <a href="https://github.com/Newbie-Himanshu/frontend">
     <img
-      src="https://img.shields.io/badge/%F0%9F%9B%95%20himanshu-Open%20Commerce%20for%20Indian%20Artisans-8B4513?style=for-the-badge&labelColor=2d1a0e&color=8B4513"
-      alt="Himanshu Banner"
+      src="https://img.shields.io/badge/%F0%9F%9B%95%20The%20Storefront-Open%20Commerce%20for%20Indian%20Artisans-8B4513?style=for-the-badge&labelColor=2d1a0e&color=8B4513"
+      alt="The Storefront Banner"
       height="48"
     />
   </a>
 </p>
 
-<h1 align="center">Himanshu — Storefront</h1>
+<h1 align="center">The Storefront</h1>
 
 <p align="center">
   India's open e-commerce platform for artisans and handcraft sellers<br />
@@ -38,14 +38,14 @@
   &nbsp;
   <a href="#-payments"><img src="https://img.shields.io/badge/-Payments-1976D2?style=flat-square" alt="Payments" /></a>
   &nbsp;
-  <a href="https://github.com/Newbie-Himanshu/Himanshu-backend"><img src="https://img.shields.io/badge/-Backend_Repo-24292f?style=flat-square&logo=github&logoColor=white" alt="Backend Repo" /></a>
+  <a href="https://github.com/Newbie-Himanshu/backend"><img src="https://img.shields.io/badge/-Backend_Repo-24292f?style=flat-square&logo=github&logoColor=white" alt="Backend Repo" /></a>
   &nbsp;
   <a href="#-contributing"><img src="https://img.shields.io/badge/-Contributing-2da44e?style=flat-square" alt="Contributing" /></a>
 </p>
 
 <p align="center">
   <a href="./LICENSE">
-    <img src="https://img.shields.io/badge/license-himanshu_Attribution_v2.0-8B4513?style=flat-square" alt="Himanshu Attribution License v2.0" />
+    <img src="https://img.shields.io/badge/license-Dual--License_v2.0-8B4513?style=flat-square" alt="Dual-License v2.0" />
   </a>
   <img src="https://img.shields.io/badge/version-0.1.0-8B4513?style=flat-square" alt="v0.1.0" />
   <a href="https://nextjs.org">
@@ -60,7 +60,7 @@
   <a href="https://tailwindcss.com">
     <img src="https://img.shields.io/badge/Tailwind-CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
   </a>
-  <a href="https://github.com/Newbie-Himanshu/Himanshu-frontend/pulls">
+  <a href="https://github.com/Newbie-Himanshu/frontend/pulls">
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square" alt="PRs Welcome" />
   </a>
 </p>
@@ -84,7 +84,7 @@
 
 | # | Section | What's inside |
 |:---:|:---|:---|
-| 1 | [🛕 Overview](#-overview) | What Himanshu is and why it exists |
+| 1 | [🛕 Overview](#-overview) | What it is and why it exists |
 | 2 | [✨ Features](#-features) | Full feature grid — commerce, payments, logistics, search |
 | 3 | [🇮🇳 India-First Commerce](#-india-first-commerce) | UPI, COD-OTP, INR/GST, Devanagari — built for India |
 | 4 | [🚀 Quickstart](#-quickstart) | Prerequisites → install → `.env` → running locally |
@@ -115,7 +115,7 @@ This is the **customer-facing storefront**. It connects to the **Himanshu Backen
 > This repository is the **storefront only**. You also need the Himanshu Backend running to serve data. Both repos must be set up together for a working store. See [Related Repositories](#-related-repositories).
 
 > [!NOTE]
-> Himanshu is an **actively developed** project. Some features — Algolia search, Wishlist, and Google OAuth — are fully built in the backend but the storefront UI for these is still being migrated. The project is **not yet production-ready**. Track progress in the [GitHub issues](https://github.com/Newbie-Himanshu/Himanshu-frontend/issues).
+> This is an **actively developed** project. Some features — Algolia search, Wishlist, and Google OAuth — are fully built in the backend but the storefront UI for these is still being migrated. The project is **not yet production-ready**. Track progress in the [GitHub issues](https://github.com/Newbie-Himanshu/frontend/issues).
 
 ---
 
@@ -162,7 +162,7 @@ This is the **customer-facing storefront**. It connects to the **Himanshu Backen
 
 ## 🇮🇳 India-First Commerce
 
-Himanshu is **not** a generic global storefront with INR added as an afterthought. Every layer is built for the way India shops, sells, and ships.
+This is **not** a generic global storefront with INR added as an afterthought. Every layer is built for the way India shops, sells, and ships.
 
 | Feature | Details |
 |:---|:---|
@@ -295,7 +295,7 @@ Copy `.env.template` to `.env.local` and fill in your values:
 |:---|:---|:---|
 | Framework | <a href="https://nextjs.org"><img src="https://img.shields.io/badge/Next.js-15-000000?style=flat-square&logo=nextdotjs&logoColor=white" alt="Next.js 15" /></a> | **App Router** + RSC + ISR — fast by default, SEO-friendly |
 | Language | <a href="https://www.typescriptlang.org"><img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" /></a> | **Type safety** across the full stack — catches bugs at compile time |
-| Styling | <a href="https://tailwindcss.com"><img src="https://img.shields.io/badge/Tailwind-CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" /></a> | Utility-first with **Himanshu's earthy design tokens** (saffron, teak, wheat) |
+| Styling | <a href="https://tailwindcss.com"><img src="https://img.shields.io/badge/Tailwind-CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" /></a> | Utility-first with **Its earthy design tokens** (saffron, teak, wheat) |
 | Commerce Engine | <a href="https://medusajs.com"><img src="https://img.shields.io/badge/MedusaJS-v2-7c3aed?style=flat-square" alt="MedusaJS v2" /></a> | **Headless, modular, open-licensed** — full control, no vendor lock-in |
 | Payments | <a href="https://razorpay.com"><img src="https://img.shields.io/badge/Razorpay-payments-2196F3?style=flat-square" alt="Razorpay" /></a> | India's **most complete** payment gateway — UPI + COD + EMI in one SDK |
 | Logistics | <a href="https://shiprocket.in"><img src="https://img.shields.io/badge/Shiprocket-logistics-FF6B00?style=flat-square" alt="Shiprocket" /></a> | India's **leading D2C** fulfillment & real-time tracking network |
@@ -376,7 +376,7 @@ Himanshu-frontend/
 
 **Core Frameworks**
 
-- <a href="https://docs.medusajs.com"><img src="https://img.shields.io/badge/MedusaJS-Documentation-7c3aed?style=flat-square" alt="MedusaJS Documentation" /></a> — The **commerce engine** powering Himanshu's backend
+- <a href="https://docs.medusajs.com"><img src="https://img.shields.io/badge/MedusaJS-Documentation-7c3aed?style=flat-square" alt="MedusaJS Documentation" /></a> — The **commerce engine** powering The Marketplace
 - <a href="https://nextjs.org/docs"><img src="https://img.shields.io/badge/Next.js-Documentation-000000?style=flat-square&logo=nextdotjs&logoColor=white" alt="Next.js Documentation" /></a> — **App Router**, RSC, SSR, and ISR guides
 - <a href="https://tailwindcss.com/docs"><img src="https://img.shields.io/badge/Tailwind_CSS-Documentation-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind CSS Documentation" /></a> — Utility classes and theme customisation
 
@@ -387,7 +387,7 @@ Himanshu-frontend/
 - <a href="https://www.algolia.com/doc/guides/building-search-ui/what-is-instantsearch/react"><img src="https://img.shields.io/badge/Algolia-InstantSearch_Docs-003DFF?style=flat-square&logo=algolia&logoColor=white" alt="Algolia InstantSearch Docs" /></a> — Connecting Algolia to your React/Next.js UI
 
 > [!TIP]
-> Medusa provides a **Storefront Development Guide** at `docs.medusajs.com/storefront-development` that explains exactly which API endpoints Himanshu's `src/lib/data/` calls map to. Read it if you're extending or debugging data-fetching logic.
+> Medusa provides a **Storefront Development Guide** at `docs.medusajs.com/storefront-development` that explains exactly which API endpoints This project's `src/lib/data/` calls map to. Read it if you're extending or debugging data-fetching logic.
 
 > [!WARNING]
 > **MedusaJS v2 is not backward-compatible with v1.** Most tutorials, YouTube videos, blog posts, and Stack Overflow answers you find online are for v1. Their code will not work — the module system, API routes, and SDK are completely different. Always check the URL contains `/v2/` or the version header says `2.x` before following any guide.
@@ -429,7 +429,7 @@ yarn lint           # ESLint — no warnings on changed files
 
 ## 🙏 Acknowledgements
 
-Himanshu is built on the shoulders of these excellent open-source projects:
+These projects are built on the shoulders of these excellent open-source projects:
 
 | Project | Role in Himanshu | License |
 |:---|:---|:---:|
@@ -448,7 +448,7 @@ Himanshu is built on the shoulders of these excellent open-source projects:
 
 Distributed under the **Himanshu Attribution License v2.0** — see [LICENSE](./LICENSE) for full text.
 
-Copyright © 2026 **Himanshu — Himanshu**. All rights reserved.
+Copyright © 2026 **Himanshu**. All rights reserved.
 
 > [!NOTE]
 > You are **free to fork, self-host, modify, and use commercially** — but you **must** publicly credit Himanshu and Himanshu in your README and keep the storefront credits visible. Removing attribution is a license violation. See [LICENSE](./LICENSE) for exact conditions.
@@ -515,14 +515,14 @@ This is **not** "AI wrote my code." This is a new way of building:
 | One dev = one feature at a time | One dev = multiple modules in parallel |
 | AI as autocomplete | AI as a junior engineer you manage |
 
-Himanshu — the entire frontend + backend — is built this way. Every module, every payment integration, every security decision was **directed by Himanshu and executed with AI agents**.
+These projects — the entire frontend and backend — are built this way. Every module, every payment integration, every security decision was architected and executed with precision and AI agents.
 
 ---
 
 ### How this project was built
 
 ```
-Himanshu (architect + director)
+This project (architected + executed)
     │
     ├── GitHub Copilot     → component migration, TypeScript, README
     ├── Antigravity        → backend modules, API wiring, security audit
@@ -538,7 +538,7 @@ Himanshu (architect + director)
 
 India has **7 crore+ artisans** — weavers, potters, block printers, leatherworkers — with no good open-source storefront built for how India actually shops: UPI-first, COD-heavy, Hindi-ready, Shiprocket-wired. Every existing solution is either a paid SaaS, a generic Western template with INR bolted on, or enterprise software that a solo artisan can't run.
 
-Himanshu is built to fix that. One dev, AI-augmented, shipping fast.
+This is built to fix that. One dev, AI-augmented, shipping fast.
 
 > [!NOTE]
 > If you find this project useful — **star the repo**, share it with someone building for India, or open a PR. That's the best way to support independent AI-native open-source work.
