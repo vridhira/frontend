@@ -30,8 +30,8 @@ jobs:
       - name: Build (validates production output)
         run: npm run build
         env:
-          MEDUSA_BACKEND_URL: https://admin.vridhira.in
+          MEDUSA_BACKEND_URL: https://admin.yourdomain.com
           NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY }}
-          NEXT_PUBLIC_BASE_URL: https://vridhira.in
+          NEXT_PUBLIC_BASE_URL: https://yourdomain.com
           NEXT_PUBLIC_DEFAULT_REGION: in
           REVALIDATE_SECRET: ${{ secrets.REVALIDATE_SECRET }}
