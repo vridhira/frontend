@@ -1,5 +1,5 @@
-Vridhira E-Commerce Storefront
-Dual-License Model
+E-Commerce Storefront
+Dual-License Model v2.0
 
 Copyright (c) 2026 Himanshu (https://github.com/Newbie-Himanshu)
 All rights reserved.
@@ -8,7 +8,7 @@ All rights reserved.
 
 PREAMBLE
 
-This Software is released under a DUAL-LICENSE model:
+This E-Commerce Storefront Software is released under a DUAL-LICENSE model:
   • FREE TIER for non-commercial and educational use
   • PAID TIER for commercial use with royalty obligations
 
@@ -105,8 +105,8 @@ COMMERCIAL LICENSE INCLUDES:
   ✓ Optional: dedicate support (negotiable)
 
 TO OBTAIN A COMMERCIAL LICENSE:
-  Email: himanshu@example.com
-  Subject: "Vridhira Commercial License - [Your Company Name]"
+  Email: hk8913114@gmail.com
+  Subject: "Commercial License - [Your Company Name]"
   Include: Company name, nature of business, expected monthly revenue
 
 PRICING:
@@ -130,10 +130,10 @@ Attribution is NON-NEGOTIABLE and must be maintained at all times.
 Every source code file MUST retain the original copyright notice at the top:
 
 /*
- * Vridhira E-Commerce Storefront
+ * E-Commerce Storefront
  * Original creator: Himanshu
  * GitHub: https://github.com/Newbie-Himanshu
- * License: Dual-License (Community / Commercial)
+ * License: Dual-License (Community / Commercial) v2.0
  *
  * [Your modifications below this line]
 */
@@ -152,9 +152,9 @@ Your README.md MUST include an "Attribution" or "Credits" section with:
 
 ## Attribution
 
-Built on **Vridhira E-Commerce Storefront** by [Himanshu](https://github.com/Newbie-Himanshu)
+Built on **E-Commerce Storefront** by [Himanshu](https://github.com/Newbie-Himanshu)
 
-[View License](link-to-LICENSE.md)
+[View License](./LICENSE)
 
 REQUIREMENTS:
   ✓ Visible without expanding collapsed sections
@@ -168,7 +168,7 @@ REQUIREMENTS:
 
 If you deploy a live storefront, every page MUST include visible footer credit:
 
-"Powered by Vridhira | [Link to GitHub]"
+"Powered by E-Commerce Software | [Link to GitHub]"
 
 LEGIBILITY REQUIREMENTS (STRICTLY ENFORCED):
   ✓ Font size: minimum 11px
@@ -189,8 +189,8 @@ PROHIBITED TECHNIQUES (VIOLATIONS):
 If you substantially use or fork components from this Software, document them.
 Include comments in the code identifying the original source:
 
-// Based on Vridhira checkout flow
-// Original: https://github.com/Newbie-Himanshu/vridhira-*
+// Based on E-Commerce Software component
+// Original: https://github.com/Newbie-Himanshu
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -323,4 +323,5 @@ For detailed information:
   • COMMERCIAL-LICENSE-AGREEMENT.md — Formal contract template
   • LICENSING-GUIDE.md — FAQ and decision help
 
-Questions? Contact: himanshu@example.com
+Questions? Contact: hk8913114@gmail.com
+GitHub: https://github.com/Newbie-Himanshu
