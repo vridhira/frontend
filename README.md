@@ -95,9 +95,9 @@
 | 9 | [🔗 Related Repositories](#-related-repositories) | Frontend & backend repos |
 | 10 | [📚 Resources](#-resources) | Official docs for every integration |
 | 11 | [🤝 Contributing](#-contributing) | How to fork, branch, commit, and PR |
-| 12 | [🙏 Acknowledgements](#-acknowledgements) | Open-source projects that power Himanshu |
-| 13 | [📜 License](#-license) | Himanshu Attribution License v2.0 — use freely, **always credit** |
-| 14 | [👤 Author](#-author) | Built by Himanshu for India's artisans |
+| 12 | [🙏 Acknowledgements](#-acknowledgements) | Open-source projects that power these projects |
+| 13 | [📜 License](#-license) | Dual-License v2.0 — use freely, **always credit** |
+| 14 | [👤 Author](#-author) | Created by Himanshu for India's artisans |
 
 </details>
 
@@ -105,14 +105,14 @@
 
 ## 🛕 Overview
 
-**Himanshu** is an **open-source**, **India-first** e-commerce storefront designed for artisans, weavers, potters, and handcraft sellers — people whose work deserves a digital home built for **how India actually shops**.
+**The Storefront** is an **open-source**, **India-first** e-commerce storefront designed for artisans, weavers, potters, and handcraft sellers — people whose work deserves a digital home built for **how India actually shops**.
 
-This is the **customer-facing storefront**. It connects to the **Himanshu Backend** — a **MedusaJS v2** server with custom Indian commerce modules — to deliver shopping experiences optimised for Indian buyers: **UPI**, **COD with OTP**, **GST-inclusive pricing**, **Hindi-ready typography**, and **Shiprocket logistics**.
+This is the **customer-facing storefront**. It connects to **The Marketplace** — a **MedusaJS v2** server with custom Indian commerce modules — to deliver shopping experiences optimised for Indian buyers: **UPI**, **COD with OTP**, **GST-inclusive pricing**, **Hindi-ready typography**, and **Shiprocket logistics**.
 
 > _Think of it as Shopify's Indian artisan cousin — **open source**, **self-hosted**, and built on **Indian payment rails** from day one._
 
 > [!IMPORTANT]
-> This repository is the **storefront only**. You also need the Himanshu Backend running to serve data. Both repos must be set up together for a working store. See [Related Repositories](#-related-repositories).
+> This repository is the **storefront only**. You also need The Marketplace running to serve data. Both repos must be set up together for a working store. See [Related Repositories](#-related-repositories).
 
 > [!NOTE]
 > This is an **actively developed** project. Some features — Algolia search, Wishlist, and Google OAuth — are fully built in the backend but the storefront UI for these is still being migrated. The project is **not yet production-ready**. Track progress in the [GitHub issues](https://github.com/Newbie-Himanshu/frontend/issues).
@@ -193,7 +193,7 @@ This is **not** a generic global storefront with INR added as an afterthought. E
 |:---|:---|:---|
 | **Node.js** | >= 20 | Use [nvm](https://github.com/nvm-sh/nvm) to manage versions |
 | **Yarn** | >= 1.22 | `npm install -g yarn` |
-| **Himanshu Backend** | Running at `:9000` | See [Related Repositories](#-related-repositories) |
+| **The Marketplace** | Running at `:9000` | See [Related Repositories](#-related-repositories) |
 
 > [!NOTE]
 > A `.env.template` file is already included in the repo with all variable names and placeholder descriptions. Copy it to `.env.local` — never rename or edit `.env.template` itself, it's committed to the repo as a reference for contributors.
@@ -206,8 +206,8 @@ This is **not** a generic global storefront with INR added as an afterthought. E
 **1 · Clone the repo**
 
 ```bash
-git clone https://github.com/Newbie-Himanshu/Himanshu-frontend.git
-cd Himanshu-frontend
+git clone https://github.com/Newbie-Himanshu/frontend.git
+cd frontend
 ```
 
 **2 · Install dependencies**
@@ -241,7 +241,7 @@ Your storefront is live at `http://localhost:8000`.
 
 ## 💳 Payments
 
-Himanshu ships with **two payment providers**, pre-configured for Indian consumers out of the box.
+This ships with **two payment providers**, pre-configured for Indian consumers out of the box.
 
 | Provider | Methods Supported | Best For |
 |:---|:---|:---|
@@ -291,11 +291,11 @@ Copy `.env.template` to `.env.local` and fill in your values:
 
 ## 🗂️ Tech Stack
 
-| Layer | Technology | Why Himanshu chose it |
+| Layer | Technology | Why It Was Chosen |
 |:---|:---|:---|
 | Framework | <a href="https://nextjs.org"><img src="https://img.shields.io/badge/Next.js-15-000000?style=flat-square&logo=nextdotjs&logoColor=white" alt="Next.js 15" /></a> | **App Router** + RSC + ISR — fast by default, SEO-friendly |
 | Language | <a href="https://www.typescriptlang.org"><img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" /></a> | **Type safety** across the full stack — catches bugs at compile time |
-| Styling | <a href="https://tailwindcss.com"><img src="https://img.shields.io/badge/Tailwind-CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" /></a> | Utility-first with **Its earthy design tokens** (saffron, teak, wheat) |
+| Styling | <a href="https://tailwindcss.com"><img src="https://img.shields.io/badge/Tailwind-CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" /></a> | Utility-first with **its earthy design tokens** (saffron, teak, wheat) |
 | Commerce Engine | <a href="https://medusajs.com"><img src="https://img.shields.io/badge/MedusaJS-v2-7c3aed?style=flat-square" alt="MedusaJS v2" /></a> | **Headless, modular, open-licensed** — full control, no vendor lock-in |
 | Payments | <a href="https://razorpay.com"><img src="https://img.shields.io/badge/Razorpay-payments-2196F3?style=flat-square" alt="Razorpay" /></a> | India's **most complete** payment gateway — UPI + COD + EMI in one SDK |
 | Logistics | <a href="https://shiprocket.in"><img src="https://img.shields.io/badge/Shiprocket-logistics-FF6B00?style=flat-square" alt="Shiprocket" /></a> | India's **leading D2C** fulfillment & real-time tracking network |
@@ -316,7 +316,7 @@ Copy `.env.template` to `.env.local` and fill in your values:
 ## 📁 Project Structure
 
 ```
-Himanshu-frontend/
+frontend/
 ├── src/
 │   ├── app/
 │   │   └── [countryCode]/              ← i18n-aware routing root (e.g. /in/…)
@@ -334,10 +334,10 @@ Himanshu-frontend/
 │   │   ├── account/                    ← Login, register, order history
 │   │   ├── home/                       ← Hero, featured collections
 │   │   └── layout/
-│   │       ├── templates/footer/       ← Footer with himanshuCredits component
+│   │       ├── templates/footer/       ← Footer with project credits component
 │   │       ├── templates/nav/          ← Top navigation bar
 │   │       └── components/
-│   │           └── Himanshu-credits/   ← Brand attribution + GitHub link
+│   │           └── credits/            ← Brand attribution + GitHub link
 │   ├── lib/
 │   │   ├── data/                       ← Server actions & Medusa JS SDK calls
 │   │   └── util/                       ← Price formatters, helpers, constants
@@ -361,8 +361,8 @@ Himanshu-frontend/
 
 | Repository | Description | Visibility |
 |:---|:---|:---:|
-| <a href="https://github.com/Himanshu/Himanshu-frontend"><img src="https://img.shields.io/badge/Himanshu--frontend-storefront-8B4513?style=flat-square&logo=github&logoColor=white" alt="Himanshu-frontend" /></a> | **This repo** — public-facing brand org storefront | 🌐 Public |
-| <a href="https://github.com/Newbie-Himanshu/Himanshu-backend"><img src="https://img.shields.io/badge/Himanshu--backend-backend-24292f?style=flat-square&logo=github&logoColor=white" alt="Himanshu-backend" /></a> | MedusaJS v2 backend — **COD**, **Razorpay queue**, **Shiprocket**, **Wishlist**, **Algolia** modules | 🔒 Private |
+| <a href="https://github.com/Newbie-Himanshu/frontend"><img src="https://img.shields.io/badge/frontend-storefront-8B4513?style=flat-square&logo=github&logoColor=white" alt="Frontend" /></a> | **This repo** — public-facing storefront | 🌐 Public |
+| <a href="https://github.com/Newbie-Himanshu/backend"><img src="https://img.shields.io/badge/backend-marketplace-24292f?style=flat-square&logo=github&logoColor=white" alt="Backend" /></a> | MedusaJS v2 backend — **COD**, **Razorpay queue**, **Shiprocket**, **Wishlist**, **Algolia** modules | 🔒 Private |
 
 > [!NOTE]
 > The storefront and backend are **decoupled via REST API**. You can run the storefront against any MedusaJS v2 backend — not just Himanshu's. This makes it easy to prototype with a vanilla Medusa instance before wiring up the custom modules.
@@ -400,7 +400,7 @@ Contributions are welcome — from fixing a typo in the README to building new f
 
 **Steps to contribute**
 
-1. <a href="https://github.com/Newbie-Himanshu/Himanshu-frontend/fork"><img src="https://img.shields.io/badge/Fork-this_repo-8B4513?style=flat-square&logo=github&logoColor=white" alt="Fork" /></a> the repository
+1. <a href="https://github.com/Newbie-Himanshu/frontend/fork"><img src="https://img.shields.io/badge/Fork-this_repo-8B4513?style=flat-square&logo=github&logoColor=white" alt="Fork" /></a> the repository
 2. **Create a branch** — use a descriptive name: `feat/product-reviews` or `fix/cart-quantity-bug`
 3. **Make focused changes** — one concern per PR keeps reviews fast
 4. **Commit** using [Conventional Commits](https://www.conventionalcommits.org):
@@ -420,7 +420,7 @@ yarn lint           # ESLint — no warnings on changed files
 > **Small PRs merge faster.** If your change touches more than 3 files or 150 lines, consider splitting it. Reviewers are human — focused diffs get reviewed same-day.
 
 > [!NOTE]
-> Himanshu uses **Conventional Commits** — your PR title and commit messages must follow the pattern. PRs with messages like `update stuff` or `fix` will be asked to rebase with proper messages before merging.
+> This uses **Conventional Commits** — your PR title and commit messages must follow the pattern. PRs with messages like `update stuff` or `fix` will be asked to rebase with proper messages before merging.
 
 > [!IMPORTANT]
 > **Do not commit `.env.local`**, API keys, secrets, or any credentials. If you accidentally commit a secret, rotate it immediately — don't just delete the file in a follow-up commit (the secret is still in git history).
@@ -431,7 +431,7 @@ yarn lint           # ESLint — no warnings on changed files
 
 These projects are built on the shoulders of these excellent open-source projects:
 
-| Project | Role in Himanshu | License |
+| Project | Role in This Project | License |
 |:---|:---|:---:|
 | <a href="https://github.com/medusajs/medusa"><img src="https://img.shields.io/badge/MedusaJS-github-7c3aed?style=flat-square&logo=github&logoColor=white" alt="MedusaJS" /></a> | **Commerce engine** — orders, products, regions, payments | MIT |
 | <a href="https://github.com/vercel/next.js"><img src="https://img.shields.io/badge/Next.js-github-000000?style=flat-square&logo=github&logoColor=white" alt="Next.js" /></a> | **React framework** — App Router, SSR, image optimisation | MIT |
@@ -440,18 +440,18 @@ These projects are built on the shoulders of these excellent open-source project
 | <a href="https://shiprocket.in"><img src="https://img.shields.io/badge/Shiprocket-website-FF6B00?style=flat-square" alt="Shiprocket" /></a> | **Logistics infrastructure** — D2C fulfillment & tracking | Commercial |
 
 > [!NOTE]
-> The Himanshu **custom backend modules** (COD payment, Razorpay queue, Shiprocket fulfillment, Wishlist, Algolia indexing) are original work by Himanshu and are **not part of MedusaJS**. They are covered by the Himanshu Attribution License v2.0 — not by MedusaJS's MIT license. MedusaJS's MIT license applies only to the MedusaJS framework core.
+> The custom backend modules (COD payment, Razorpay queue, Shiprocket fulfillment, Wishlist, Algolia indexing) are original work and are **not part of MedusaJS**. They are covered by the Dual-License v2.0 — not by MedusaJS's MIT license. MedusaJS's MIT license applies only to the MedusaJS framework core.
 
 ---
 
 ## 📜 License
 
-Distributed under the **Himanshu Attribution License v2.0** — see [LICENSE](./LICENSE) for full text.
+Distributed under the **Dual-License (Community/Commercial) v2.0** — see [LICENSE](./LICENSE) for full text.
 
 Copyright © 2026 **Himanshu**. All rights reserved.
 
 > [!NOTE]
-> You are **free to fork, self-host, modify, and use commercially** — but you **must** publicly credit Himanshu and Himanshu in your README and keep the storefront credits visible. Removing attribution is a license violation. See [LICENSE](./LICENSE) for exact conditions.
+> You are **free to fork, self-host, modify, and use commercially** — but you **must** publicly credit Himanshu in your README and keep the storefront credits visible. Removing attribution is a license violation. See [LICENSE](./LICENSE) for exact conditions.
 
 > [!IMPORTANT]
 > **v2.0 introduces a one-time cure rule.** If you violate the license and cure within 7 days, rights are reinstated — but **only once per licensee**. A second violation is permanent termination with no reinstatement path.
@@ -487,16 +487,12 @@ Copyright © 2026 **Himanshu**. All rights reserved.
     <img src="https://img.shields.io/badge/GitHub-Newbie--Himanshu-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub" />
   </a>
   &nbsp;
-  <a href="https://github.com/Newbie-Himanshu/Himanshu-frontend">
-    <img src="https://img.shields.io/badge/Frontend-Himanshu--frontend-8B4513?style=flat-square&logo=github&logoColor=white" alt="Frontend Repo" />
+  <a href="https://github.com/Newbie-Himanshu/frontend">
+    <img src="https://img.shields.io/badge/Frontend-frontend-8B4513?style=flat-square&logo=github&logoColor=white" alt="Frontend Repo" />
   </a>
   &nbsp;
-  <a href="https://github.com/Newbie-Himanshu/Himanshu-backend">
-    <img src="https://img.shields.io/badge/Backend-Himanshu--backend-24292f?style=flat-square&logo=github&logoColor=white" alt="Backend Repo" />
-  </a>
-  &nbsp;
-  <a href="https://github.com/Himanshu">
-    <img src="https://img.shields.io/badge/Org-Himanshu-8B4513?style=flat-square&logo=github&logoColor=white" alt="Org: Himanshu" />
+  <a href="https://github.com/Newbie-Himanshu/backend">
+    <img src="https://img.shields.io/badge/Backend-backend-24292f?style=flat-square&logo=github&logoColor=white" alt="Backend Repo" />
   </a>
 </p>
 
