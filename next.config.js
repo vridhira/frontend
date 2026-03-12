@@ -1,10 +1,10 @@
 /**
  * ============================================================
- * himanshu — E-Commerce for Indian Artisans
+ * The Storefront — E-Commerce for Indian Artisans
  * ============================================================
  * @author      Himanshu
  * @github      https://github.com/Newbie-Himanshu
- * @repo        https://github.com/Newbie-Himanshu/himanshu-frontend
+ * @repo        https://github.com/Newbie-Himanshu/frontend
  * @copyright   2026 Himanshu — himanshu. All rights reserved.
  * @license     MIT
  * ------------------------------------------------------------
