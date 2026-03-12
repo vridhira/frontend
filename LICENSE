@@ -1,4 +1,4 @@
-﻿Attribution License
+﻿E-Commerce Storefront Attribution License
 Version 2.0 — March 2026
 
 Copyright (c) 2026 Himanshu (https://github.com/Newbie-Himanshu)
@@ -6,109 +6,212 @@ All rights reserved.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+PREAMBLE
+
+This License governs the use of a customer-facing e-commerce storefront
+application (hereinafter "Storefront Software" or "Software"). The Storefront
+Software includes but is not limited to: frontend user interfaces, customer
+checkout flows, product catalogs, shopping cart implementations, and all
+customer-interactive elements.
+
+The Licensor retains all intellectual property rights in the Software and
+imposes mandatory attribution requirements to ensure proper credit for the
+original engineering work. These conditions are binding and non-waivable.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 GRANT OF LICENSE
 
 Subject to full and continuous compliance with ALL conditions set out in this
 License, the Licensor (Himanshu) hereby grants you a worldwide,
-royalty-free, non-exclusive license to:
+royalty-free, non-exclusive, non-transferable license to:
 
-  (a) use, copy, and run this software for personal or commercial purposes;
-  (b) modify this software and create derivative works;
-  (c) distribute copies of this software or derivative works.
+  (a) use, copy, and run this Storefront Software in personal or commercial
+      e-commerce deployments;
+  (b) modify this Storefront Software and create derivative works;
+  (c) distribute copies of this Storefront Software or derivative works
+      in source code form to other developers.
+
+RESTRICTIONS:
+  • You may NOT sublicense, transfer, share, or resell this license to any
+    third party without express written permission from the Licensor.
+  • You may NOT deploy the Storefront Software for competing e-commerce
+    platforms without explicit authorization.
+  • Distribution in compiled/minified form is permitted ONLY with full
+    attribution embedded in the application runtime.
 
 This grant is conditional. Any violation of the conditions below immediately
 and automatically terminates all rights granted under this License without
-notice.
+notice or cure period for repeated violations.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 MANDATORY ATTRIBUTION CONDITIONS
 
-The following attribution conditions are NON-NEGOTIABLE and must be satisfied
-at all times. Failure to comply constitutes copyright infringement and a
-material breach of this License.
+The following attribution conditions are NON-NEGOTIABLE, binding, and
+enforceable. Any deviation constitutes copyright infringement and
+immediate license termination. These conditions apply to ALL uses,
+whether the Storefront is:
+  • Public or private
+  • Commercial or non-commercial
+  • Self-hosted, cloud-hosted, or SaaS
+  • Modified or unmodified
 
 ───────────────────────────────────────────────────────────────────────────
-CONDITION 1 — PROJECT DOCUMENTATION ATTRIBUTION
+CONDITION 1 — README/DOCUMENTATION ATTRIBUTION (Code Repository)
 ───────────────────────────────────────────────────────────────────────────
 
-If you use, distribute, publish, host, or deploy this software or any
-portion of it — whether the project is public or private, commercial or
-non-commercial — your project's primary documentation file (README, landing page, or equivalent) MUST
-contain a clearly visible attribution section that includes ALL of the
-following fields exactly as written:
+If you deploy or distribute this Storefront Software (modified or not), your
+project's primary documentation file MUST contain a clearly visible, dedicated
+attribution section that includes ALL of the following fields, exactly as
+written and in this order:
 
-    Based on software by Himanshu
-    Original author: Himanshu (https://github.com/Newbie-Himanshu)
-    License: Attribution License v2.0
+    ┌─────────────────────────────────────────────────────────┐
+    │ Built on Himanshu's E-Commerce Storefront Framework    │
+    │ Original author: Himanshu (https://github.com/Newbie-Himanshu) │
+    │ Source: https://github.com/Newbie-Himanshu/vridhira... │
+    │ License: E-Commerce Storefront Attribution License v2.0│
+    └─────────────────────────────────────────────────────────┘
 
-All three fields are required. No field may be omitted, paraphrased,
-summarised, or replaced with a vague reference such as "inspired by a
-GitHub project." The attribution must:
+MANDATORY PROPERTIES:
+  ✓ All four fields MUST be present, unmodified, in exact order
+  ✓ Visible without expanding collapsed sections or hidden elements
+  ✓ Hyperlinks must be ACTIVE and working
+  ✓ Appear in the PRIMARY documentation (README.md, INSTALL.md, or landing page)
+  ✓ Appear ABOVE the fold (within first 50% of document)
+  ✓ Applied in a contrasting color (minimum 4.5:1 contrast ratio with background)
+  ✓ Font size minimum 11px
+  ✓ No disclaimer or qualification permitted (e.g., "Inspired by..." or "Based loosely on..." are NOT acceptable)
 
-  • Be visible without expanding collapsed sections or hidden elements.
-  • Include working hyperlinks to both URLs listed above.
-  • Appear in the primary documentation file — not only in a comment,
-    footnote, changelog, or secondary file.
-
-───────────────────────────────────────────────────────────────────────────
-CONDITION 2 — UI CREDITS (Deployed Applications)
-───────────────────────────────────────────────────────────────────────────
-
-If you deploy a live application (any publicly accessible or internally
-accessible website, app, hosted service, or internal tool accessible to
-any end user) built on this software, the application MUST display visible
-credits to the original project at ALL times. Specifically:
-
-  (a) A visible credit block MUST remain present and rendered in the
-      application footer on every page of the deployed application.
-
-  (b) The credits MUST include a working link to:
-        — https://github.com/Newbie-Himanshu
-
-  (c) Credits must be fully LEGIBLE at all times. The following are
-      explicitly prohibited and each independently constitutes a violation:
-        — font-size below 10px
-        — colour contrast ratio below 3:1 against background
-        — display: none
-        — visibility: hidden
-        — opacity below 0.3
-        — position: absolute or fixed with off-screen coordinates
-          (e.g. left: -9999px, top: -9999px)
-        — z-index placing the element behind other elements
-        — any other CSS, HTML, or JavaScript technique that renders
-          the credit invisible or inaccessible to a standard user
+VIOLATIONS include:
+  • Paraphrasing or summarizing the attribution text
+  • Moving attribution to secondary documents (CHANGELOG, LICENSE only, footer comments)
+  • Removing hyperlinks or replacing them with non-functional text
+  • Abbreviating URLs or project names
+  • Prefixing with disclaimers like "Uses code from..." or "Includes..."
 
 ───────────────────────────────────────────────────────────────────────────
-CONDITION 3 — CREDITS ARE ADDITIVE ONLY (Non-Removal Clause)
+CONDITION 2 — LIVE UI CREDITS FOOTER (Deployed Storefronts)
 ───────────────────────────────────────────────────────────────────────────
 
-You MAY add your own credits, branding, and attribution on top of the
-existing attribution.
+IF AND ONLY IF you deploy a live, publicly accessible storefront application
+(website, mobile app, PWA, or any customer-facing interface), the Storefront
+MUST display an attribution credit block at ALL TIMES, visible on every page
+without exception.
 
-You MAY NOT:
-  • Remove, replace, hide, obscure, or comment-out any existing attribution
-    text, links, or copyright notices referencing Himanshu or this project.
-  • Rename, refactor, or restructure any credit components in a way
-    that removes or suppresses the original attribution from the rendered UI.
-  • Modify the copyright notice at the top of any source file to remove or
-    alter the original author line.
+REQUIRED CREDIT BLOCK PROPERTIES:
+  (a) PLACEMENT: Footer section of every page
+      ✗ NOT: Header, sidebar, hidden modal, collapsible menu, or off-screen
+      ✓ Visible on initial page load without user interaction
+      ✓ Persists across all pages and navigation states
 
-You MUST treat all existing attribution as a minimum floor — you build
-on top of it, never beneath it.
+  (b) CONTENT: Must include at minimum:
+      • Crediting text: "Storefront powered by Himanshu"
+      • Active hyperlink to: https://github.com/Newbie-Himanshu
+      • Explicit reference to this License
+      (Example: "Built with Himanshu's Storefront Framework - License v2.0")
+
+  (c) LEGIBILITY REQUIREMENTS (STRICTLY ENFORCED):
+      • Font-size: MINIMUM 11px (measured in user agent resolution)
+      • Color contrast ratio: MINIMUM 4.5:1 against background
+      • Font weight: NORMAL or BOLD (not thin/100-300 weight)
+      • Line height: MINIMUM 1.4em
+      • Letter spacing: Not compressed below default browser rendering
+
+  (d) PROHIBITED VISIBILITY TECHNIQUES (each is a violation):
+      ✗ display: none, visibility: hidden, opacity < 0.8
+      ✗ position: absolute/fixed with off-screen coordinates (-9999px, etc.)
+      ✗ z-index: negative or layered behind other elements
+      ✗ pointer-events: none, user-select: none, or text-indent tricks
+      ✗ Color matching text to background (#FFF on white, etc.)
+      ✗ Negative text-indent or transform: translateX(-9999px)
+      ✗ width: 0, height: 0, or overflow: hidden wrappers
+      ✗ max-height: 0, max-width: 0
+      ✗ Removing from DOM via JavaScript after page load
+      ✗ Conditional hiding based on user behavior or geography
+      ✗ Hiding in browsers/devices where you assume users won't notice
+      ✗ Any other CSS, HTML, or JavaScript technique that reduces visibility
+
+  (e) RUNTIME VERIFICATION:
+      The credit block MUST be detectable by:
+      • Visual inspection of the deployed application
+      • CSS inspection (computed styles) showing proper visibility
+      • DOM analysis showing element is rendered and in viewport
+      • Automated accessibility tools must detect the text
 
 ───────────────────────────────────────────────────────────────────────────
-CONDITION 4 — COPYRIGHT NOTICE PRESERVATION (Source Files)
+CONDITION 3 — SOURCE CODE COPYRIGHT HEADER PRESERVATION (Non-Removal Clause)
 ───────────────────────────────────────────────────────────────────────────
 
-All copies or substantial portions of this software — whether modified or
-unmodified — MUST retain:
-  • This License file in full, unmodified, in the root of the repository.
-  • The copyright notice block at the top of every source file that contains
-    one (Author, GitHub, Copyright, License header comments).
+All copies or substantial portions of the Storefront Software MUST retain:
 
-You may add additional copyright notices for your own contributions above
-the existing ones. You may not alter or delete the existing notices.
+  (a) This LICENSE file in full, unmodified, in the root of the repository
+  (b) Every source file containing Licensor copyright notices MUST preserve:
+      • Original copyright line: (c) 2026 Himanshu
+      • Reference to this License
+      • Original author attribution
+      This header is often located at the top of JavaScript/React/TypeScript files
+
+  (c) You MAY:
+      • Add your own copyright notices ABOVE the existing ones
+      • Add comments explaining your modifications
+      • Refactor the code's internal structure
+
+  (d) You MAY NOT:
+      • Remove, comment-out, or hide the original copyright header
+      • Replace the header with your own copyright (you may only ADD above)
+      • Modify the author name or remove "Himanshu" reference
+      • Move the header to a separate file or comment block that obscures it
+      • Delete or rewrite the LICENSE file
+      • Claim the Software as original work unless it is a substantial,
+        independently-created derivative
+
+───────────────────────────────────────────────────────────────────────────
+CONDITION 4 — COMPONENTS & IMPORTS ATTRIBUTION
+───────────────────────────────────────────────────────────────────────────
+
+If you include, import, or use any identifiable components, modules, or
+utilities originally from this Storefront Software (e.g., custom checkout
+flow, cart state management, product catalog display, payment integration),
+you MUST:
+
+  (a) Identify these components in comments or documentation:
+      // Based on Himanshu's Storefront Framework - [component name]
+      // Original source: https://github.com/Newbie-Himanshu/...
+
+  (b) Maintain a COMPONENTS_ORIGIN.md file documenting:
+      • Original component name
+      • Current name (if changed)
+      • Whether modified (Y/N) and how
+      • Link to original source
+
+  (c) You MAY NOT:
+      • Completely rewrite component logic to obscure its origin
+      • Claim custom components as original work if substantially based
+        on this Software
+      • Hide component sources through obfuscation
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BREACH DETECTION & ESCALATION
+
+The Licensor may:
+
+  1. AUTOMATED DETECTION: Monitor for violations through:
+     • Crawling publicly deployed applications
+     • Automated screenshot analysis
+     • CSS inspection of deployed sites
+     • GitHub repository scanning
+
+  2. NOTIFICATION: Upon detection of any violation:
+     • Issue a formal breach notice via email/GitHub
+     • Specify exact violations and remediation steps
+     • Provide 3 business days to respond
+
+  3. CURE PERIOD:
+     • First-time violations: 7 calendar days to cure
+     • Subsequent violations by same licensee: 3 calendar days
+     • Third+ violation: NO cure period, immediate termination
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -117,52 +220,73 @@ TERMINATION AND ENFORCEMENT
 1. AUTOMATIC TERMINATION
    Any violation of Conditions 1, 2, 3, or 4 immediately and automatically
    terminates all rights granted under this License without notice. Upon
-   termination you must immediately cease all use, distribution, and hosting
-   of the software and any derivative works.
+   termination you must:
+     • Immediately cease all use and deployment
+     • Remove the Storefront Software from all live environments within 24 hours
+     • Notify the Licensor of compliance
+     • Destroy all local copies
 
-2. CURE PERIOD AND ONE-TIME REINSTATEMENT
-   If you become aware that you are in violation, you have 7 (seven)
-   calendar days from the date you first knew, or reasonably should have
-   known, of the violation to bring yourself into full compliance. If you
-   cure the violation within this 7-day window, your rights under this
-   License are reinstated. This reinstatement is available ONCE per
-   licensee. A second violation by the same licensee results in permanent
-   and irrevocable termination with no cure period available.
+2. CURE PERIOD AND REINSTATEMENT
+   Violations detected before deployment: 14 days to cure, unlimited reinstatements
+   Violations in deployed applications: 7 days for first violation
+   Repeated violations: 3 days, then permanent termination with no further reinstatement
 
-3. LEGAL ACTION
-   Violations of this License constitute copyright infringement under the
-   Indian Copyright Act, 1957 and applicable international copyright
-   treaties. The Licensor reserves all rights to pursue legal remedies
-   including:
-     • Injunctive relief (takedown of infringing deployments or repositories)
-     • Damages for copyright infringement
-     • Recovery of legal costs and attorney fees
-     • Any other relief available under applicable law
+3. DAMAGES & ENFORCEMENT
+   Violations constitute copyright infringement and breach of contract.
+   As damages are difficult to calculate, you agree to pay upon demand:
+     • $500 USD per day of violation (calculated from detection date)
+     • $10,000 USD per instance of header removal
+     • $25,000 USD per hidden/obscured credit block
+     • Legal fees and court costs (if litigation required)
+     • Injunctive relief forcing immediate removal from deployment
 
 4. GOVERNING LAW AND JURISDICTION
-   This License shall be governed by and construed in accordance with the
-   laws of India. Any dispute arising from or related to this License shall
-   be subject to the exclusive jurisdiction of the courts of India. If you
-   are located outside India, you consent to the jurisdiction of Indian
-   courts for the purposes of enforcing this License.
+   This License is governed by the laws of India and subject to exclusive
+   jurisdiction of Indian courts. If you are outside India, you:
+     • Consent to Indian court jurisdiction
+     • Waive any objections to forum non conveniens
+     • Agree to bear costs of international enforcement
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 DISCLAIMER OF WARRANTIES
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+THE STOREFRONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+
+IN NO EVENT SHALL THE LICENSOR BE LIABLE FOR:
+  • Any direct, indirect, incidental, special, or consequential damages
+  • Lost profits, lost revenue, or lost business opportunity
+  • Data loss or corruption
+  • Service interruption, downtime, or lost customer transactions
+  • Payment processing failures
+
+This applies regardless of cause, even if advised of possibility of such damages,
+whether under contract, tort, strict liability, or any other legal theory.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-ACKNOWLEDGEMENT OF FRAMEWORK
+DEPENDENCIES & FRAMEWORKS
 
-This project uses MedusaJS (https://github.com/medusajs/medusa) as its
-commerce engine, licensed separately under the MIT License by Medusa, Inc.
-This acknowledgement does not alter the terms of this License with respect
-to this codebase.
+This Storefront Software uses MedusaJS (https://github.com/medusajs/medusa)
+as its commerce engine (MIT Licensed). This License does not supersede or
+alter MedusaJS's MIT terms. You must comply with both licenses independently.
+
+Other dependencies may include open-source projects with their own licenses
+(React, Next.js, etc.). You MUST comply with all applicable dependency licenses
+in ADDITION to this License. This License applies ONLY to Himanshu's
+original Storefront code.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+INTERPRETATION & SEVERABILITY
+
+If any provision of this License is found unenforceable:
+  • That provision is modified to minimum necessary extent to enforce intent
+  • All other provisions remain in full force
+  • The core attribution requirements (Conditions 1-2) are ESSENTIAL and
+    cannot be severed without voiding the entire License
+
+This License is the complete and exclusive agreement regarding the Storefront
+Software and supersedes all prior negotiations, understandings, or agreements.
