@@ -7,6 +7,11 @@ import { StoreCollection, StoreRegion } from "@medusajs/types"
 import CollectionTemplate from "@modules/collections/templates"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 
+// Allow dynamic params for pages not pre-rendered at build time
+// Pages generate on-demand during first request (ISR)
+export const dynamicParams = true
+export const revalidate = 60 // Revalidate every 60 seconds
+
 type Props = {
   params: Promise<{ handle: string; countryCode: string }>
   searchParams: Promise<{

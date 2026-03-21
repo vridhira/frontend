@@ -5,6 +5,11 @@ import { getRegion, listRegions } from "@lib/data/regions"
 import ProductTemplate from "@modules/products/templates"
 import { HttpTypes } from "@medusajs/types"
 
+// Allow dynamic params for pages not pre-rendered at build time
+// Pages generate on-demand during first request (ISR)
+export const dynamicParams = true
+export const revalidate = 60 // Revalidate every 60 seconds
+
 type Props = {
   params: Promise<{ countryCode: string; handle: string }>
   searchParams: Promise<{ v_id?: string }>
