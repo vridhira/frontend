@@ -9,10 +9,8 @@ type FormState =
   | { stage: "success"; subject: string }
   | { stage: "error"; message: string }
 
-const BACKEND_URL =
-  typeof window !== "undefined"
-    ? ""
-    : (process.env.MEDUSA_BACKEND_URL ?? "http://localhost:9000")
+// Backend URL is resolved dynamically in handleSubmit since ask-form-client is a client-side component
+// Using dynamic import to avoid ESM issues with env var resolution
 
 /**
  * AskFormClient – client-side form that POSTs a customer query to
@@ -52,7 +50,9 @@ export function AskFormClient() {
 
     startTransition(async () => {
       try {
-        const res = await fetch(`${BACKEND_URL}/store/faq-queries`, {
+        const { getClientBackendUrl } = await import("@lib/util/get-client-backend-url")
+        const backendUrl = getClientBackendUrl()
+        const res = await fetch(`${backendUrl}/store/faq-queries`, {
           method:  "POST",
           headers: { "Content-Type": "application/json" },
           body:    JSON.stringify({ customer_name: name, customer_email: email, subject, question }),

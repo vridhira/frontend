@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { getClientBackendUrl } from "@lib/util/get-client-backend-url"
 
 interface Product {
   id: string
@@ -35,7 +36,7 @@ export const ProductList = ({
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        let url = `${process.env.NEXT_PUBLIC_API_URL}/store/products`
+        let url = `${getClientBackendUrl()}/store/products`
 
         if (categoryId) {
           url += `?category_id=${categoryId}&limit=${limit}`

@@ -31,8 +31,9 @@ export const CategorySidebar = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
+        const { getClientBackendUrl } = await import("@lib/util/get-client-backend-url")
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/store/categories?tree=true`
+          `${getClientBackendUrl()}/store/categories?tree=true`
         )
         const data = await response.json()
         setCategories(data.categories || [])

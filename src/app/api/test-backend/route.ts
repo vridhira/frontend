@@ -1,18 +1,13 @@
 import { NextResponse } from "next/server"
+import { resolveBackendUrl } from "@lib/util/resolve-backend-url"
 
 export async function GET() {
-  const backendUrl = process.env.MEDUSA_BACKEND_URL
+  const { url: backendUrl, source: backendUrlSource } = resolveBackendUrl()
   const publishableKey = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY
-
-  if (!backendUrl) {
-    return NextResponse.json({
-      status: "error",
-      message: "MEDUSA_BACKEND_URL is not set",
-    })
-  }
 
   const results: Record<string, unknown> = {
     MEDUSA_BACKEND_URL: backendUrl,
+    backendUrlSource,
     NEXT_PUBLIC_DEFAULT_REGION: process.env.NEXT_PUBLIC_DEFAULT_REGION,
     publishableKeySet: !!publishableKey,
     publishableKeyPrefix: publishableKey?.slice(0, 10) + "...",

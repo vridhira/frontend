@@ -260,7 +260,8 @@ export default function NavShell({ sideMenu, cartButton }: Props) {
     setIsSearching(true)
     debounceRef.current = setTimeout(async () => {
       try {
-        const baseUrl = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL || "http://localhost:9000"
+        const { getClientBackendUrl } = await import("@lib/util/get-client-backend-url")
+        const baseUrl = getClientBackendUrl()
         const pubKey = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || ""
         const res = await fetch(
           `${baseUrl}/store/products?q=${encodeURIComponent(q.trim())}&limit=5&fields=id,title,handle,thumbnail,*variants.calculated_price`,

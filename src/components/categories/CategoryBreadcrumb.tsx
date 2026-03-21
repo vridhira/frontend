@@ -27,8 +27,9 @@ export const CategoryBreadcrumb = ({ categoryId }: CategoryBreadcrumbProps) => {
   useEffect(() => {
     const fetchBreadcrumb = async () => {
       try {
+        const { getClientBackendUrl } = await import("@lib/util/get-client-backend-url")
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/store/categories/${categoryId}/breadcrumb`
+          `${getClientBackendUrl()}/store/categories/${categoryId}/breadcrumb`
         )
         const data = await response.json()
         setBreadcrumb(data.breadcrumb || [])
