@@ -16,35 +16,34 @@ Before deploying/building on Hostinger, configure these in your hosting environm
 **Critical for Build Time:**
 ```
 # MUST be set before build starts
-MEDUSA_BACKEND_URL=https://your-backend-api.com
-# OR use one of these alternatives:
-NEXT_PUBLIC_MEDUSA_BACKEND_URL=https://your-backend-api.com
-NEXT_PUBLIC_BACKEND_URL=https://your-backend-api.com
-NEXT_PUBLIC_API_URL=https://your-backend-api.com
+MEDUSA_BACKEND_URL=https://api.vridhira.in
 ```
 
 **Critical for Runtime:**
 ```
 NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=pk_live_xxxxxxxxxxxxx
 NEXT_PUBLIC_DEFAULT_REGION=in
+NODE_ENV=production
 ```
 
-**Verify DNS:**
-- Ensure `your-backend-api.com` resolves via DNS
-- Test: `ping your-backend-api.com` from your local machine
-- If it fails, backend isn't publicly accessible
-
-### Step 2: Verify Backend Accessibility
-
-Before pushing a build to Hostinger:
-
+**Backend is verified accessible:**
 ```bash
-# Test from your local machine
-curl https://your-backend-api.com/health
-curl -H "x-publishable-api-key: pk_..." https://your-backend-api.com/store/regions
+curl https://api.vridhira.in/health
+# Response: OK ✓
 ```
 
-Expected response: `200 OK` (not timeout, not 502/503)
+### Step 2: Backend Already Verified ✓
+
+Backend connectivity confirmed:
+```bash
+curl https://api.vridhira.in/health
+# Response: OK ✓
+
+curl -H "x-publishable-api-key: pk_live_xxxxx" https://api.vridhira.in/store/regions
+# Response: List of configured regions
+```
+
+Backend is ready for builds.
 
 ### Step 3: After Deployment
 
@@ -61,6 +60,41 @@ Should return:
   "health": { "status": 200, "ok": true },
   "regions": { "status": 200, "ok": true }
 }
+```
+
+## **For Your Next Hostinger Deploy:**
+
+### **Step 1: In Hostinger Dashboard, Set These Env Vars:**
+
+1. Go to **Hosting Settings** → **Environment Variables**
+2. Add each variable (click "Add New Variable"):
+
+| Key | Value | Purpose |
+|-----|-------|---------|
+| `MEDUSA_BACKEND_URL` | `https://api.vridhira.in` | Build-time API access ✅ |
+| `NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY` | `pk_live_xxxxx` | Runtime API authentication ✅ |
+| `NEXT_PUBLIC_DEFAULT_REGION` | `in` | Default region for storefront ✅ |
+| `NODE_ENV` | `production` | Enable production optimizations ✅ |
+
+### **Step 2: Trigger a New Build**
+
+1. In Hostinger dashboard, go to **Build/Deploy** section
+2. Click **"Trigger New Build"** or redeploy from GitHub
+3. Build should now complete successfully (no timeouts)
+
+### **Step 3: Test After Deploy**
+
+```bash
+# Test backend integration
+curl https://vridhira.in/api/test-backend
+
+# Expected response includes:
+# {
+#   "MEDUSA_BACKEND_URL": "https://api.vridhira.in",
+#   "backendUrlSource": "MEDUSA_BACKEND_URL",
+#   "health": { "status": 200, "ok": true },
+#   "regions": { "status": 200, "ok": true }
+# }
 ```
 
 ## ISR (Incremental Static Regeneration)
@@ -84,10 +118,11 @@ After these changes, product/collection/category pages use ISR:
 
 | Error | Cause | Fix |
 |-------|-------|-----|
-| `Connect Timeout Error (attempted address: api.vridhira.in:443)` | Backend unreachable or timeout | Verify API is running, check DNS resolution |
-| `Application error: server-side exception` | Missing env vars at runtime | Set MEDUSA_BACKEND_URL in Hostinger env vars |
-| `backendUrlSource: "fallback"` in /api/test-backend | No env var found | MEDUSA_BACKEND_URL not set in Hostinger |
-| Pages show empty (no products) | Publishable key missing | Set NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY |
+| `Application error: server-side exception has occurred` | Build failed, missing env vars | Set `MEDUSA_BACKEND_URL=https://api.vridhira.in` in Hostinger |
+| `Connect Timeout Error (attempted address: api.vridhira.in:443)` | Build can't reach backend | Backend is up (✓ confirmed), but env var not set correctly |
+| `/api/test-backend` shows `backendUrlSource: "fallback"` | No env var found at runtime | MEDUSA_BACKEND_URL not set in Hostinger environment |
+| Pages show empty (no products) | Publishable key missing or incorrect | Set `NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY` with correct live key |
+| Build still times out | ISR not properly applied | Verify `dynamicParams = true` on routes (already applied) |
 
 ## Important Notes
 
